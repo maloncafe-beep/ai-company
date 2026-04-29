@@ -165,21 +165,27 @@ async function poll() {
         : (lastIncomingPreview ?? '(メッセージ内容なし)');
 
       if (accountId === AI_PROJECT_ID) {
-        const taskPath = path.join(MEMBERS_DIR, 'leader', 'inbox', 'task.md');
-        const taskContent =
-          `# タスク依頼（@AI-Project 経由）\n\n` +
-          `依頼元: ${displayName ?? 'Unknown'} (friendId: ${friendId})\n` +
-          `受信: ${lastIncomingAt}\n\n` +
-          `## メッセージ内容\n\n${messageText}\n\n` +
-          `## 完了条件\n` +
-          `- 担当メンバーを選定し、members/{担当}/inbox/task.md を作成する\n` +
-          `- @Leader から経営者に担当と方針を返信する\n`;
-        try {
-          fs.mkdirSync(path.join(MEMBERS_DIR, 'leader', 'inbox'), { recursive: true });
-          fs.writeFileSync(taskPath, taskContent, 'utf8');
-          console.log(`[bridge] wrote leader/inbox/task.md`);
-        } catch (e) {
-          console.error(`[bridge] failed to write task.md:`, e.message);
+        const inboxDir = path.join(MEMBERS_DIR, 'leader', 'inbox');
+        const taskPath = path.join(inboxDir, 'task.md');
+        const taskAskedPath = path.join(inboxDir, 'task_asked.md');
+        if (fs.existsSync(taskAskedPath)) {
+          console.log(`[bridge] task_asked.md exists, skipping task.md overwrite`);
+        } else {
+          const taskContent =
+            `# タスク依頼（@AI-Project 経由）\n\n` +
+            `依頼元: ${displayName ?? 'Unknown'} (friendId: ${friendId})\n` +
+            `受信: ${lastIncomingAt}\n\n` +
+            `## メッセージ内容\n\n${messageText}\n\n` +
+            `## 完了条件\n` +
+            `- 担当メンバーを選定し、members/{担当}/inbox/task.md を作成する\n` +
+            `- @Leader から経営者に担当と方針を返信する\n`;
+          try {
+            fs.mkdirSync(inboxDir, { recursive: true });
+            fs.writeFileSync(taskPath, taskContent, 'utf8');
+            console.log(`[bridge] wrote leader/inbox/task.md`);
+          } catch (e) {
+            console.error(`[bridge] failed to write task.md:`, e.message);
+          }
         }
       }
 

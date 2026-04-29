@@ -19,8 +19,12 @@
       "mcp__line-harness__manage_friends",
       "Bash(pkill -f \"node.*bridge.js\")",
       "Write(//c/Users/yyasu/ai-company/members/**)",
+      "Write(C:/Users/yyasu/ai-company/members/**)",
       "Bash(mv //c/Users/yyasu/ai-company/members/**)",
-      "Bash(mv C:/Users/yyasu/ai-company/members/**)"
+      "Bash(mv C:/Users/yyasu/ai-company/members/**)",
+      "Bash(rm C:/Users/yyasu/ai-company/members/**)",
+      "Bash(rm //c/Users/yyasu/ai-company/members/**)",
+      "Bash(git commit -m ' *)"
     ]
   },
   "enabledMcpjsonServers": [
