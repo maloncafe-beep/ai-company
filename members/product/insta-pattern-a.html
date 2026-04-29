@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram投稿自動化マニュアル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pink:#E1306C;--orange:#F77737;--purple:#833AB4;--yellow:#FCAF45;--bg:linear-gradient(135deg,#833AB4 0%,#E1306C 40%,#F77737 70%,#FCAF45 100%);--card:#fff;--text:#262626;--muted:#8e8e8e;--radius:20px;--shadow:0 8px 32px rgba(0,0,0,.12)}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);min-height:100vh;color:var(--text);line-height:1.7;padding-bottom:120px;position:relative;overflow-x:hidden}
+.wrap{max-width:750px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
+
+/* Progress */
+.progress-wrap{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:10px 16px 8px}
+.progress-inner{max-width:750px;margin:0 auto}
+.progress-label{font-size:12px;font-weight:700;color:var(--pink);margin-bottom:4px;display:flex;justify-content:space-between}
+.progress-bar{height:8px;background:#f0f0f0;border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--pink),var(--orange));border-radius:99px;transition:width .6s cubic-bezier(.22,1,.36,1)}
+
+/* Logo bar */
+.logo-bar{background:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:center}
+.logo-bar img{height:44px;width:auto}
+
+/* Scrolling text background */
+.scroll-bg{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
+.scroll-row{display:flex;white-space:nowrap;animation:scrollLeft 12s linear infinite;font-size:clamp(32px,8vw,56px);font-weight:900;color:rgba(255,255,255,.06);line-height:1.4;gap:40px;padding:8px 0}
+.scroll-row:nth-child(even){animation:scrollRight 15s linear infinite}
+.scroll-row span{flex-shrink:0}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes scrollRight{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+
+/* Title */
+.title-section{text-align:center;padding:80px 0 32px;color:#fff;position:relative;z-index:1}
+.badge{display:inline-block;background:rgba(255,255,255,.25);backdrop-filter:blur(8px);color:#fff;font-size:13px;font-weight:700;padding:6px 18px;border-radius:99px;margin-bottom:16px;letter-spacing:.5px}
+.title-section h1{font-size:clamp(24px,6vw,36px);font-weight:900;line-height:1.3;text-shadow:0 2px 12px rgba(0,0,0,.15)}
+.title-section p{font-size:15px;margin-top:12px;opacity:.9}
+
+/* Card */
+.card{background:var(--card);border-radius:12px;border:1px solid #dbdbdb;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:28px 24px;margin-bottom:20px}
+
+/* Thumbnail */
+.thumb{background:linear-gradient(135deg,#f8f8f8,#eee);border-radius:0;display:flex;align-items:center;justify-content:center;margin:0 -24px 20px;overflow:hidden;position:relative}
+.thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(131,58,180,.08),rgba(225,48,108,.08))}
+.thumb-icon{font-size:48px;opacity:.3;position:relative;z-index:1}
+
+/* Goal */
+.goal-title{font-size:18px;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.goal-list{list-style:none;padding:0}
+.goal-list li{padding:8px 0 8px 28px;position:relative;font-size:15px}
+.goal-list li::before{content:'✅';position:absolute;left:0;top:8px;font-size:14px}
+
+/* Sticky Checklist */
+.checklist-nav{position:sticky;top:52px;z-index:90;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:16px 20px;margin-bottom:24px}
+.checklist-nav h3{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.checklist-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;cursor:pointer;transition:background .2s;font-size:14px;font-weight:500}
+.checklist-item:hover{background:#fef2f6}
+.checklist-check{width:24px;height:24px;border-radius:50%;border:2.5px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:all .3s}
+.checklist-item.done .checklist-check{background:var(--pink);border-color:var(--pink);color:#fff}
+.checklist-item.done{color:var(--muted);text-decoration:line-through}
+
+/* Step */
+.step-card{background:var(--card);border-radius:12px;border:1px solid #dbdbdb;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:28px 24px;margin-bottom:24px;scroll-margin-top:160px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;font-size:22px;font-weight:900;margin-bottom:12px;box-shadow:0 4px 16px rgba(225,48,108,.3)}
+.step-title{font-size:18px;font-weight:900;margin-bottom:16px;line-height:1.4}
+
+/* Video placeholder */
+.video-placeholder{aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;cursor:pointer;position:relative;overflow:hidden}
+.video-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(225,48,108,.15),transparent 70%)}
+.play-btn{width:64px;height:64px;background:rgba(255,255,255,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);position:relative;z-index:1}
+.play-btn::after{content:'';border-left:22px solid var(--pink);border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:4px}
+
+/* Action block */
+.action-block{border:3px solid var(--pink);border-radius:16px;padding:20px;margin:20px 0;background:linear-gradient(135deg,#fff5f8,#fff)}
+.action-block-title{font-size:14px;font-weight:700;color:var(--pink);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.prompt-box{background:#f8f8f8;border-radius:12px;padding:16px;font-size:13px;line-height:1.8;white-space:pre-wrap;position:relative;max-height:200px;overflow-y:auto;margin-bottom:12px}
+.copy-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;transition:transform .15s,box-shadow .15s}
+.copy-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(225,48,108,.3)}
+.copy-btn:active{transform:scale(.97)}
+.copy-btn.copied{background:linear-gradient(135deg,#27ae60,#2ecc71)}
+
+.action-text{font-size:14px;line-height:1.8}
+.action-text ol{padding-left:20px}
+.action-text li{margin-bottom:8px}
+
+/* Task checklist inside action blocks */
+.task-list{list-style:none;padding:0}
+.task-item{display:flex;flex-direction:column;padding:12px;border-radius:10px;transition:background .2s;font-size:14px;line-height:1.6}
+.task-item:hover{background:rgba(225,48,108,.04)}
+.task-item+.task-item{border-top:1px solid rgba(0,0,0,.05)}
+.task-check{width:22px;height:22px;min-width:22px;border:2.5px solid #ddd;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all .25s;margin-top:1px}
+.task-item.checked .task-check{background:var(--pink);border-color:var(--pink);color:#fff}
+.task-item.checked .task-label{color:var(--muted);text-decoration:line-through}
+.task-item.current{background:linear-gradient(135deg,rgba(225,48,108,.08),rgba(131,58,180,.08));border-radius:12px;border:1.5px solid rgba(225,48,108,.2)}
+.task-item.current .task-label{color:var(--text);font-weight:700}
+.task-item.current .task-check{border-color:var(--pink)}
+
+/* Task progress bar */
+.task-progress{margin-bottom:16px}
+.task-progress-label{font-size:11px;font-weight:700;color:var(--pink);display:flex;justify-content:space-between;margin-bottom:4px}
+.task-progress-bar{height:6px;background:#f0f0f0;border-radius:99px;overflow:hidden}
+.task-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--pink),var(--orange));border-radius:99px;transition:width .4s ease}
+.task-row{display:flex;align-items:center;gap:12px;width:100%}
+.task-label{flex:1}
+.task-toggle{min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(0,0,0,.04);color:var(--muted);font-size:12px;transition:all .2s;flex-shrink:0;cursor:pointer}
+.task-item.open .task-toggle{background:rgba(225,48,108,.08);color:var(--pink);transform:rotate(180deg)}
+.task-detail{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:13px;color:#777;line-height:1.7;margin-left:34px;background:rgba(0,0,0,.02);border-radius:8px}
+.task-item.open .task-detail{max-height:200px;padding:10px 12px;margin-top:8px}
+
+/* Character hint */
+.complete-wrap{position:relative;margin-top:24px}
+.char-hint-img{display:block;width:190px;margin:0 auto -50px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,.15))}
+.char-hint-bubble{display:inline-block;background:#fff;color:var(--pink);font-size:12px;font-weight:700;padding:6px 14px;border-radius:16px;box-shadow:0 2px 10px rgba(225,48,108,.12);margin-bottom:8px}
+.char-hint-top{text-align:center}
+
+/* Complete btn */
+.complete-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border:2.5px solid var(--pink);background:#fff;color:var(--pink);font-size:15px;font-weight:700;border-radius:14px;cursor:pointer;font-family:inherit;transition:all .3s;margin-top:16px}
+.complete-btn:hover{background:#fef2f6}
+.complete-btn.done{background:var(--pink);color:#fff}
+
+/* Start button */
+.start-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px;background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;font-size:18px;font-weight:900;border:none;border-radius:16px;cursor:pointer;font-family:inherit;box-shadow:0 6px 24px rgba(225,48,108,.35);transition:transform .15s,box-shadow .15s;margin-bottom:24px}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(225,48,108,.4)}
+.start-btn:active{transform:scale(.97)}
+
+/* Hidden content area */
+.steps-area{max-height:0;overflow:hidden;opacity:0;transition:max-height .8s cubic-bezier(.22,1,.36,1),opacity .5s ease}
+.steps-area.open{max-height:none;opacity:1}
+
+/* Finish */
+.finish-section{display:none;text-align:center;padding:48px 24px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-top:24px;animation:popIn .5s cubic-bezier(.22,1,.36,1)}
+.finish-section.show{display:block}
+.finish-icon{font-size:64px;margin-bottom:16px}
+.finish-section h2{font-size:24px;font-weight:900;margin-bottom:12px;background:linear-gradient(135deg,var(--purple),var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.finish-section p{color:var(--muted);margin-bottom:24px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;font-size:16px;font-weight:700;padding:16px 40px;border-radius:14px;text-decoration:none;box-shadow:0 4px 20px rgba(225,48,108,.3);transition:transform .15s,box-shadow .15s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(225,48,108,.4)}
+
+@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+/* Insta-style card header */
+.insta-header{display:flex;align-items:center;gap:10px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid #efefef;flex-wrap:nowrap}
+.insta-avatar{width:32px;height:32px;border-radius:50%;background:var(--bg);flex-shrink:0;outline:2.5px solid;outline-color:transparent;outline-offset:2px;background-clip:padding-box;position:relative}.insta-avatar::before{content:'';position:absolute;inset:-4px;border-radius:50%;background:linear-gradient(135deg,#FCAF45,#F77737,#E1306C,#833AB4);z-index:-1}
+.insta-name{font-size:13px;font-weight:700;white-space:nowrap;flex:1}
+.insta-dots{color:#999;font-size:16px;letter-spacing:2px;cursor:pointer}
+
+@media(max-width:500px){
+  .wrap{padding:0 8px}
+  .card,.step-card{padding:20px 12px}
+  .thumb{margin:0 -12px 20px}
+  .action-block{padding:14px 12px}
+  .prompt-box{padding:12px}
+  .title-section{padding:70px 0 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="logo-bar"><img src="https://utagesystem.s3.ap-northeast-1.amazonaws.com/GYbKT7Y9d0eR/nDkeTIpDKGTDPmIPq7zaNvo2veqL5EZ43W1tZRTq.png" alt="アドネス株式会社"></div>
+
+<div class="scroll-bg" id="scrollBg">
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+  <div class="scroll-row"><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span><span>Instagram × AI Automation</span></div>
+</div>
+
+<div class="progress-wrap" id="progressWrap" style="display:none">
+  <div class="progress-inner">
+    <div class="progress-label"><span>進捗</span><span id="progressText">0 / 3 完了</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="title-section">
+    <div class="badge">BONUS TUTORIAL</div>
+    <h1>Instagramフィード投稿<br>自動化マニュアル</h1>
+    <p>3ステップで投稿作成を自動化しよう</p>
+  </section>
+
+  <div class="card">
+    <div class="insta-header"><div class="insta-avatar"></div><span class="insta-name">Instagram自動化マニュアル</span><span class="insta-dots">···</span></div>
+    <div class="thumb" style="aspect-ratio:auto;height:auto"><img src="https://utagesystem.s3.ap-northeast-1.amazonaws.com/GYbKT7Y9d0eR/GDJALbdHKvEYLxoIlE8ItJCFMY69u5CdFtRKShGx.png" alt="FV" style="width:100%;height:auto;display:block"></div>
+    <div class="goal-title">🎯 このマニュアルで達成できること</div>
+    <ul class="goal-list">
+      <li>AIで投稿画像の企画を自動生成</li>
+      <li>Canvaでプロ品質に仕上げる方法</li>
+      <li>Meta Business Suiteで予約投稿を設定</li>
+    </ul>
+  </div>
+
+  <button class="start-btn" id="startBtn" onclick="startTutorial()">🚀 チュートリアルを始める</button>
+
+  <div class="steps-area" id="stepsArea">
+
+  <!-- STEP 1 -->
+  <div class="step-card" id="step1">
+    <div class="insta-header"><div class="insta-avatar"></div><span class="insta-name">STEP 1</span><span class="insta-dots">···</span></div>
+    <div class="step-title">Claude Codeで投稿画像を自動生成するプロンプトをコピー</div>
+    <div class="video-placeholder"><div class="play-btn"></div></div>
+    <div class="action-block">
+      <div class="action-block-title">📋 プロンプトをコピー</div>
+      <div class="prompt-box" id="promptText">あなたはInstagramのフィード投稿に最適な画像を企画するプロのSNSマーケターです。
+
+以下の条件でInstagramフィード投稿用の画像企画を5枚分作成してください。
+
+【アカウントのジャンル】AI活用術
+【ターゲット】20〜30代の副業に興味がある会社員
+【投稿の目的】フォロワー獲得・保存数アップ
+【トーン】カジュアルだけど信頼感がある
+
+各投稿について以下を含めてください:
+1. 画像のテキスト内容（表紙・中面がある場合は全ページ）
+2. 配色の指定（HEXコード）
+3. レイアウトの説明
+4. キャプション文
+5. ハッシュタグ（10個）</div>
+      <button class="copy-btn" onclick="copyPrompt(this)">📋 プロンプトをコピーする</button>
+    </div>
+    <button class="complete-btn" data-step="1" onclick="completeStep(1)">✅ STEP 1 を完了にする</button>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card" id="step2">
+    <div class="insta-header"><div class="insta-avatar"></div><span class="insta-name">STEP 2</span><span class="insta-dots">···</span></div>
+    <div class="step-title">生成された画像をCanvaで仕上げる</div>
+    <div class="video-placeholder"><div class="play-btn"></div></div>
+    <div class="action-block">
+      <div class="action-block-title">🎨 Canvaでの作業手順</div>
+      <div class="task-progress" id="tp2">
+        <div class="task-progress-label"><span>進捗</span><span id="tp2Text">0 / 5</span></div>
+        <div class="task-progress-bar"><div class="task-progress-fill" id="tp2Fill"></div></div>
+      </div>
+      <ul class="task-list" data-progress="tp2" data-total="5">
+        <li class="task-item current">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">Canvaで「Instagramの投稿」テンプレートを開く</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">Canvaにログイン → 「デザインを作成」→ 検索で「Instagram投稿」→ 1080×1080pxのテンプレートを選択。空白から始めてもOKです。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">AIが生成したテキスト内容をコピーして配置</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">STEP1で生成された画像テキストをそのままコピペ。表紙と中面がある場合はページを追加して配置します。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">指定されたHEXコードで配色を設定</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">AIが出力したHEXコード（例：#FF6B6B）をCanvaのカラーピッカーに入力。背景・テキスト・アクセントそれぞれに設定します。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">レイアウト説明に従って要素を配置</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">AIが指定したレイアウト（中央揃え、左寄せ等）に合わせてテキストや図形を配置。Canvaのガイド線を使うと揃えやすいです。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">フォント・装飾を調整して完成</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">おすすめフォント：見出しは「Noto Sans JP Bold」、本文は「Noto Sans JP Regular」。最後にPNGでダウンロードしておきましょう。</div>
+        </li>
+      </ul>
+    </div>
+    <button class="complete-btn" data-step="2" onclick="completeStep(2)">✅ STEP 2 を完了にする</button>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card" id="step3">
+    <div class="insta-header"><div class="insta-avatar"></div><span class="insta-name">STEP 3</span><span class="insta-dots">···</span></div>
+    <div class="step-title">Meta Business Suiteで予約投稿する</div>
+    <div class="video-placeholder"><div class="play-btn"></div></div>
+    <div class="action-block">
+      <div class="action-block-title">📅 予約投稿の手順</div>
+      <div class="task-progress" id="tp3">
+        <div class="task-progress-label"><span>進捗</span><span id="tp3Text">0 / 6</span></div>
+        <div class="task-progress-bar"><div class="task-progress-fill" id="tp3Fill"></div></div>
+      </div>
+      <ul class="task-list" data-progress="tp3" data-total="6">
+        <li class="task-item current">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">Meta Business Suiteにログイン</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">business.facebook.com にアクセス。Facebookアカウントでログインし、Instagramアカウントが連携されていることを確認。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">「コンテンツを作成」→「投稿」を選択</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">左メニューの「コンテンツを作成」ボタンをクリック → 「投稿」を選択。Instagram投稿先にチェックを入れます。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">Canvaで作成した画像をアップロード</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">「写真/動画を追加」からPNG画像をアップ。カルーセルの場合は複数枚選択できます。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">キャプションとハッシュタグを貼り付け</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">STEP1で生成されたキャプション文とハッシュタグ10個をそのまま貼り付け。改行は2回入れると読みやすくなります。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">投稿日時をスケジュール設定</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">「スケジュール」をクリック → 日時を選択。おすすめ時間帯：平日12:00〜13:00、19:00〜21:00。</div>
+        </li>
+        <li class="task-item">
+          <div class="task-row"><div class="task-check" onclick="event.stopPropagation();toggleTask(this)">✓</div><span class="task-label">プレビュー確認して確定</span><div class="task-toggle" onclick="event.stopPropagation();this.closest('.task-item').classList.toggle('open')">▼</div></div>
+          <div class="task-detail">右側のプレビューで画像・テキストの見え方をチェック。問題なければ「スケジュール」ボタンで確定！</div>
+        </li>
+      </ul>
+    </div>
+    <button class="complete-btn" data-step="3" onclick="completeStep(3)">✅ STEP 3 を完了にする</button>
+  </div>
+
+  <!-- Finish -->
+  <div class="finish-section" id="finishSection">
+    <div class="finish-icon">🎉</div>
+    <h2>すべてのステップ完了！</h2>
+    <p>おめでとうございます！Instagramフィード投稿の自動化フローをマスターしました。</p>
+    <a href="#" class="cta-btn">🚀 次のチュートリアルへ進む</a>
+  </div>
+
+  </div><!-- /steps-area -->
+
+</div>
+
+<script>
+const completed = new Set();
+
+function scrollToStep(n) {
+  document.getElementById('step' + n).scrollIntoView({ behavior: 'smooth' });
+}
+
+function completeStep(n) {
+  var btn = document.querySelector('.complete-btn[data-step="' + n + '"]');
+  if (completed.has(n)) {
+    completed.delete(n);
+    btn.classList.remove('done');
+    btn.textContent = '✅ STEP ' + n + ' を完了にする';
+    document.getElementById('finishSection').classList.remove('show');
+  } else {
+    completed.add(n);
+    btn.classList.add('done');
+    btn.textContent = '✅ 完了しました！';
+    if (completed.size === 3) {
+      setTimeout(function() {
+        document.getElementById('finishSection').classList.add('show');
+        document.getElementById('finishSection').scrollIntoView({ behavior: 'smooth' });
+      }, 400);
+    } else if (n < 3) {
+      setTimeout(function() {
+        document.getElementById('step' + (n + 1)).scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = (completed.size / 3) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = completed.size + ' / 3 完了';
+}
+
+function toggleTask(checkEl) {
+  var item = checkEl.closest('.task-item');
+  item.classList.toggle('checked');
+  var list = item.closest('.task-list');
+  var progressId = list.getAttribute('data-progress');
+  var total = parseInt(list.getAttribute('data-total'));
+  var done = list.querySelectorAll('.task-item.checked').length;
+  var pct = (done / total) * 100;
+  document.getElementById(progressId + 'Fill').style.width = pct + '%';
+  document.getElementById(progressId + 'Text').textContent = done + ' / ' + total;
+  highlightNext(list);
+}
+
+function highlightNext(list) {
+  var items = list.querySelectorAll('.task-item');
+  var found = false;
+  items.forEach(function(item) {
+    item.classList.remove('current');
+    if (!found && !item.classList.contains('checked')) {
+      item.classList.add('current');
+      found = true;
+    }
+  });
+}
+
+// 初期表示時に各リストの最初のタスクをハイライト
+document.querySelectorAll('.task-list').forEach(function(list) {
+  highlightNext(list);
+});
+
+function copyPrompt(btn) {
+  const text = document.getElementById('promptText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.textContent = '✅ コピーしました！';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.textContent = '📋 プロンプトをコピーする';
+    }, 2000);
+  });
+}
+
+function startTutorial() {
+  document.getElementById('startBtn').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'block';
+  var area = document.getElementById('stepsArea');
+  area.classList.add('open');
+  setTimeout(function() {
+    area.scrollIntoView({ behavior: 'smooth' });
+  }, 200);
+}
+<\/script>
+</body>
+</html>

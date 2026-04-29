@@ -1,0 +1,23 @@
+# 秘密情報（必須・絶対にコミットしない）
+.env
+.env.*
+config.yaml
+.mcp.json
+
+# 一般
+node_modules/
+venv/
+__pycache__/
+.DS_Store
+
+# メディア中間ファイル
+*.mp4
+*.mov
+*.MOV
+temp_frames/
+temp_segments/
+*.pdf
+*.pptx
+
+# Netlify
+.netlify

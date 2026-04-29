@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__line-harness__list_channels",
+      "mcp__line-harness__account_summary",
+      "Read(//c/Users/yyasu/line-harness/apps/worker/**)",
+      "Bash(npx wrangler *)",
+      "Read(//c/Users/yyasu/line-harness/**)",
+      "Bash(pnpm deploy:worker)",
+      "Bash(vite build *)",
+      "Bash(npx vite *)",
+      "Bash(node *)",
+      "mcp__line-harness__list_conversations",
+      "mcp__line-harness__get_conversation",
+      "mcp__line-harness__send_message",
+      "mcp__line-harness__list_friends",
+      "mcp__line-harness__get_friend_detail",
+      "mcp__line-harness__manage_tags",
+      "mcp__line-harness__manage_friends",
+      "Bash(pkill -f \"node.*bridge.js\")",
+      "Write(//c/Users/yyasu/ai-company/members/**)",
+      "Bash(mv //c/Users/yyasu/ai-company/members/**)",
+      "Bash(mv C:/Users/yyasu/ai-company/members/**)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "line-harness"
+  ],
+  "hooks": {
+    "CwdChanged": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash C:/Users/yyasu/ai-company/scripts/cwd-changed-hook.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

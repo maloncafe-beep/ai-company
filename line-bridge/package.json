@@ -1,0 +1,14 @@
+{
+  "name": "line-bridge",
+  "version": "1.0.0",
+  "description": "LINE webhook receiver → Claude Code spawn bridge",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

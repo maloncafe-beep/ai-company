@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__line-harness__list_friends",
+      "mcp__line-harness__list_channels",
+      "mcp__line-harness__send_message"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "line-harness"
+  ]
+}

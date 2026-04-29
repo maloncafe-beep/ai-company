@@ -1,0 +1,6 @@
+node_modules/
+.env
+credentials/
+dist/
+*.zip
+.claude/settings.local.json

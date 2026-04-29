@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>クラウドワークス 案件管理</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  header h1 span { color: #4a90d9; }
+
+  .summary {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 20px;
+    min-width: 130px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+
+  .card .label { font-size: 0.72rem; color: #777; margin-bottom: 4px; }
+  .card .value { font-size: 1.5rem; font-weight: 700; color: #1a1a2e; }
+  .card.income .value { color: #27ae60; }
+
+  .toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .toolbar input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 0.87rem;
+    width: 220px;
+    outline: none;
+  }
+
+  .toolbar input[type="text"]:focus { border-color: #4a90d9; }
+
+  .toolbar select {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 0.87rem;
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.87rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: #4a90d9; color: #fff; }
+  .btn-success { background: #27ae60; color: #fff; }
+  .btn-danger  { background: #e74c3c; color: #fff; font-size: 0.78rem; padding: 5px 10px; }
+
+  .table-wrap {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  thead th {
+    background: #f0f4f8;
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #555;
+    white-space: nowrap;
+    border-bottom: 2px solid #e8edf2;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  thead th:hover { background: #e4eaf1; }
+  thead th.sort-asc::after  { content: " ↑"; color: #4a90d9; }
+  thead th.sort-desc::after { content: " ↓"; color: #4a90d9; }
+
+  tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.1s; }
+  tbody tr:hover { background: #f7fafd; }
+  tbody td { padding: 11px 14px; vertical-align: middle; }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .badge-応募中  { background: #fff3cd; color: #856404; }
+  .badge-進行中  { background: #cce5ff; color: #004085; }
+  .badge-納品済  { background: #d4edda; color: #155724; }
+  .badge-支払済  { background: #e2e3e5; color: #383d41; }
+
+  .actions { display: flex; gap: 6px; }
+
+  /* モーダル */
+  .overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+  .overlay.open { display: flex; }
+
+  .modal {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    width: min(480px, 96vw);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+
+  .modal h2 { font-size: 1.05rem; margin-bottom: 20px; color: #1a1a2e; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label { font-size: 0.78rem; font-weight: 600; color: #555; }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 9px 11px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: #4a90d9; }
+
+  .form-group textarea { resize: vertical; min-height: 68px; }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #555;
+    padding: 8px 16px;
+    border-radius: 7px;
+    font-size: 0.87rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .empty { text-align: center; padding: 48px; color: #aaa; font-size: 0.9rem; }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .card { min-width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>CW</span> 案件管理</h1>
+  <button class="btn btn-success" onclick="openModal()">＋ 案件追加</button>
+</header>
+
+<div class="summary">
+  <div class="card"><div class="label">総案件数</div><div class="value" id="total">0</div></div>
+  <div class="card"><div class="label">進行中</div><div class="value" id="active">0</div></div>
+  <div class="card"><div class="label">今月納品</div><div class="value" id="delivery">0</div></div>
+  <div class="card income"><div class="label">受注総額</div><div class="value" id="income">¥0</div></div>
+</div>
+
+<div class="toolbar">
+  <input type="text" id="search" placeholder="案件名 / クライアントで絞り込み" oninput="render()">
+  <select id="filterStatus" onchange="render()">
+    <option value="">すべてのステータス</option>
+    <option>応募中</option>
+    <option>進行中</option>
+    <option>納品済</option>
+    <option>支払済</option>
+  </select>
+  <button class="btn btn-primary" onclick="exportCSV()">CSV出力</button>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th onclick="sortBy('name')">案件名</th>
+        <th onclick="sortBy('client')">クライアント</th>
+        <th onclick="sortBy('ordered')">受注日</th>
+        <th onclick="sortBy('deadline')">納期</th>
+        <th onclick="sortBy('reward')">報酬</th>
+        <th onclick="sortBy('status')">ステータス</th>
+        <th>備考</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<!-- モーダル -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <h2 id="modalTitle">案件追加</h2>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>案件名 *</label>
+        <input type="text" id="f-name" placeholder="例：商品説明文ライティング10本">
+      </div>
+      <div class="form-group">
+        <label>クライアント名</label>
+        <input type="text" id="f-client" placeholder="例：株式会社○○">
+      </div>
+      <div class="form-group">
+        <label>ステータス</label>
+        <select id="f-status">
+          <option>応募中</option>
+          <option>進行中</option>
+          <option>納品済</option>
+          <option>支払済</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>受注日</label>
+        <input type="date" id="f-ordered">
+      </div>
+      <div class="form-group">
+        <label>納期</label>
+        <input type="date" id="f-deadline">
+      </div>
+      <div class="form-group">
+        <label>報酬金額（円）</label>
+        <input type="number" id="f-reward" min="0" placeholder="0">
+      </div>
+      <div class="form-group full">
+        <label>備考</label>
+        <textarea id="f-note" placeholder="修正回数・特記事項など"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal()">キャンセル</button>
+      <button class="btn btn-primary" onclick="saveRow()">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const KEY = 'cw_tracker_v1';
+let data = JSON.parse(localStorage.getItem(KEY) || '[]');
+let editIdx = null;
+let sortKey = 'deadline';
+let sortDir = 1;
+
+const SAMPLE = [
+  { id: uid(), name: 'LP文章作成（美容系）', client: '株式会社サンプル', ordered: '2026-04-20', deadline: '2026-04-30', reward: 15000, status: '進行中', note: '修正2回まで' },
+  { id: uid(), name: 'メルマガ原稿5本', client: '個人事業主A', ordered: '2026-04-22', deadline: '2026-05-05', reward: 8000, status: '応募中', note: '' },
+];
+
+if (!data.length) { data = SAMPLE; save(); }
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function save() { localStorage.setItem(KEY, JSON.stringify(data)); }
+
+function filtered() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const st = document.getElementById('filterStatus').value;
+  return data.filter(r =>
+    (!q || r.name.toLowerCase().includes(q) || r.client.toLowerCase().includes(q)) &&
+    (!st || r.status === st)
+  );
+}
+
+function sortBy(key) {
+  if (sortKey === key) { sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+  render();
+}
+
+function render() {
+  const rows = filtered().sort((a, b) => {
+    let va = a[sortKey] ?? '', vb = b[sortKey] ?? '';
+    if (sortKey === 'reward') { va = +va; vb = +vb; }
+    return va < vb ? -sortDir : va > vb ? sortDir : 0;
+  });
+
+  // サマリー
+  document.getElementById('total').textContent = data.length;
+  document.getElementById('active').textContent = data.filter(r => r.status === '進行中').length;
+  const now = new Date();
+  const m = now.getMonth(), y = now.getFullYear();
+  document.getElementById('delivery').textContent = data.filter(r => {
+    if (!r.deadline) return false;
+    const d = new Date(r.deadline);
+    return d.getFullYear() === y && d.getMonth() === m;
+  }).length;
+  const total = data.reduce((s, r) => s + (+r.reward || 0), 0);
+  document.getElementById('income').textContent = '¥' + total.toLocaleString();
+
+  // テーブル
+  const tbody = document.getElementById('tbody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="empty">案件がありません</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = rows.map((r, i) => {
+    const realIdx = data.indexOf(r);
+    const reward = r.reward ? '¥' + Number(r.reward).toLocaleString() : '—';
+    const deadline = r.deadline || '—';
+    const ordered = r.ordered || '—';
+    const overdue = r.deadline && new Date(r.deadline) < new Date() && !['納品済','支払済'].includes(r.status);
+    return `<tr style="${overdue ? 'background:#fff5f5;' : ''}">
+      <td><strong>${esc(r.name)}</strong></td>
+      <td>${esc(r.client)}</td>
+      <td style="white-space:nowrap">${ordered}</td>
+      <td style="white-space:nowrap;color:${overdue ? '#e74c3c' : 'inherit'}">${deadline}${overdue ? ' ⚠' : ''}</td>
+      <td style="text-align:right;font-variant-numeric:tabular-nums">${reward}</td>
+      <td><span class="badge badge-${r.status}">${r.status}</span></td>
+      <td style="max-width:180px;white-space:pre-wrap;font-size:0.82rem;color:#666">${esc(r.note)}</td>
+      <td>
+        <div class="actions">
+          <button class="btn btn-primary" style="font-size:0.78rem;padding:5px 10px" onclick="editRow(${realIdx})">編集</button>
+          <button class="btn btn-danger" onclick="deleteRow(${realIdx})">削除</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // ソートアイコン
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.remove('sort-asc', 'sort-desc');
+  });
+  const headers = ['name','client','ordered','deadline','reward','status'];
+  const idx = headers.indexOf(sortKey);
+  if (idx >= 0) {
+    const ths = document.querySelectorAll('thead th');
+    ths[idx].classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+  }
+}
+
+function esc(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function openModal(idx = null) {
+  editIdx = idx;
+  const r = idx !== null ? data[idx] : {};
+  document.getElementById('modalTitle').textContent = idx !== null ? '案件編集' : '案件追加';
+  document.getElementById('f-name').value    = r.name    || '';
+  document.getElementById('f-client').value  = r.client  || '';
+  document.getElementById('f-status').value  = r.status  || '応募中';
+  document.getElementById('f-ordered').value = r.ordered || '';
+  document.getElementById('f-deadline').value= r.deadline|| '';
+  document.getElementById('f-reward').value  = r.reward  || '';
+  document.getElementById('f-note').value    = r.note    || '';
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('f-name').focus();
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('open');
+  editIdx = null;
+}
+
+function saveRow() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { alert('案件名を入力してください'); return; }
+  const row = {
+    id: editIdx !== null ? data[editIdx].id : uid(),
+    name,
+    client:   document.getElementById('f-client').value.trim(),
+    status:   document.getElementById('f-status').value,
+    ordered:  document.getElementById('f-ordered').value,
+    deadline: document.getElementById('f-deadline').value,
+    reward:   +document.getElementById('f-reward').value || 0,
+    note:     document.getElementById('f-note').value.trim(),
+  };
+  if (editIdx !== null) { data[editIdx] = row; } else { data.push(row); }
+  save();
+  document.getElementById('overlay').classList.remove('open');
+  editIdx = null;
+  render();
+}
+
+function editRow(idx)   { openModal(idx); }
+function deleteRow(idx) {
+  if (!confirm(`「${data[idx].name}」を削除しますか？`)) return;
+  data.splice(idx, 1);
+  save();
+  render();
+}
+
+function exportCSV() {
+  const headers = ['案件名','クライアント','受注日','納期','報酬','ステータス','備考'];
+  const rows = data.map(r => [r.name, r.client, r.ordered, r.deadline, r.reward, r.status, r.note]
+    .map(v => `"${(v||'').toString().replace(/"/g,'""')}"`).join(','));
+  const csv = '﻿' + [headers.join(','), ...rows].join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  a.download = `crowdworks_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// キーボード
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('overlay').classList.remove('open');
+  if (e.key === 'Enter' && document.getElementById('overlay').classList.contains('open')) {
+    if (document.activeElement.tagName !== 'TEXTAREA') saveRow();
+  }
+});
+
+render();
+</script>
+</body>
+</html>
