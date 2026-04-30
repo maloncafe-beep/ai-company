@@ -5,7 +5,9 @@
       "Bash(curl -s http://127.0.0.1:18789/health)",
       "mcp__line-harness__send_message",
       "mcp__line-harness__list_channels",
-      "mcp__line-harness__list_friends"
+      "mcp__line-harness__list_friends",
+      "Bash(rm \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\writer\\\\inbox\\\\task_done.md\")",
+      "Bash(mv \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\leader\\\\inbox\\\\task_asked.md\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\leader\\\\inbox\\\\task_done.md\")"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -24,7 +24,10 @@
       "Bash(mv C:/Users/yyasu/ai-company/members/**)",
       "Bash(rm C:/Users/yyasu/ai-company/members/**)",
       "Bash(rm //c/Users/yyasu/ai-company/members/**)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(tasklist)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   },
   "enabledMcpjsonServers": [

@@ -169,23 +169,26 @@ async function poll() {
         const taskPath = path.join(inboxDir, 'task.md');
         const taskAskedPath = path.join(inboxDir, 'task_asked.md');
         if (fs.existsSync(taskAskedPath)) {
-          console.log(`[bridge] task_asked.md exists, skipping task.md overwrite`);
-        } else {
-          const taskContent =
-            `# タスク依頼（@AI-Project 経由）\n\n` +
-            `依頼元: ${displayName ?? 'Unknown'} (friendId: ${friendId})\n` +
-            `受信: ${lastIncomingAt}\n\n` +
-            `## メッセージ内容\n\n${messageText}\n\n` +
-            `## 完了条件\n` +
-            `- 担当メンバーを選定し、members/{担当}/inbox/task.md を作成する\n` +
-            `- @Leader から経営者に担当と方針を返信する\n`;
-          try {
-            fs.mkdirSync(inboxDir, { recursive: true });
-            fs.writeFileSync(taskPath, taskContent, 'utf8');
-            console.log(`[bridge] wrote leader/inbox/task.md`);
-          } catch (e) {
-            console.error(`[bridge] failed to write task.md:`, e.message);
-          }
+          console.log(`[bridge] task_asked.md exists, skipping spawn`);
+          continue;
+        }
+        const taskContent =
+          `# タスク依頼（@AI-Project 経由）\n\n` +
+          `依頼元: ${displayName ?? 'Unknown'} (friendId: ${friendId})\n` +
+          `受信: ${lastIncomingAt}\n\n` +
+          `## メッセージ内容\n\n${messageText}\n\n` +
+          `## 完了条件\n` +
+          `- 担当メンバーを選定し、members/{担当}/inbox/task.md を作成する\n` +
+          `- @Leader から経営者に担当と方針を返信する\n`;
+        try {
+          fs.mkdirSync(inboxDir, { recursive: true });
+          fs.writeFileSync(taskPath, taskContent, 'utf8');
+          console.log(`[bridge] wrote leader/inbox/task.md`);
+          fs.renameSync(taskPath, taskAskedPath);
+          console.log(`[bridge] renamed task.md → task_asked.md`);
+        } catch (e) {
+          console.error(`[bridge] failed to write/rename task.md:`, e.message);
+          continue;
         }
       }
 
