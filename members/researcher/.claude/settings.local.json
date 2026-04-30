@@ -1,0 +1,11 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "line-harness"
+  ],
+  "permissions": {
+    "allow": [
+      "WebSearch"
+    ]
+  }
+}
