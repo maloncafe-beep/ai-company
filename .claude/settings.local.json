@@ -27,7 +27,19 @@
       "Bash(git commit -m ' *)",
       "Bash(tasklist)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "PowerShell(Get-Item *)",
+      "PowerShell(Get-ScheduledTask *)",
+      "PowerShell(Start-Process -FilePath \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge-start.bat\" -WindowStyle Minimized)",
+      "Bash(powershell.exe *)",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge.log\"\\).LastWriteTime; \\(Get-Item \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge.log\"\\).Length)",
+      "PowerShell(Get-WmiObject *)",
+      "PowerShell(Get-CimInstance *)",
+      "PowerShell(wmic process where \"name='node.exe'\" get processid,commandline 2>&1)",
+      "PowerShell(taskkill *)",
+      "PowerShell(Stop-Process *)",
+      "PowerShell(Start-Process cmd.exe -ArgumentList \"/c C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge-start.bat\" -WindowStyle Minimized; Write-Host \"bat launched\")",
+      "PowerShell(Start-Process -FilePath \"node\" -ArgumentList \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge.js\" -WorkingDirectory \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\" -WindowStyle Minimized -RedirectStandardOutput \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge.log\" -RedirectStandardError \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge-err.log\"; Write-Host \"bridge launched\")"
     ]
   },
   "enabledMcpjsonServers": [
