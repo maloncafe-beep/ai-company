@@ -7,7 +7,16 @@
       "mcp__line-harness__list_channels",
       "mcp__line-harness__list_friends",
       "Bash(rm \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\writer\\\\inbox\\\\task_done.md\")",
-      "Bash(mv \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\leader\\\\inbox\\\\task_asked.md\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\leader\\\\inbox\\\\task_done.md\")"
+      "Bash(mv \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\leader\\\\inbox\\\\task_asked.md\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\leader\\\\inbox\\\\task_done.md\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\\\\maloncafe-icon\\\\icon-v1-grid.svg\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\\\\maloncafe-icon\\\\icon-v2-dark.svg\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\\\\maloncafe-icon\\\\icon-v3-text.svg\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\\\\maloncafe-icon\\\\icon-v4-final.svg\")",
+      "Bash(node -e \"import\\('sharp'\\).then\\(m => console.log\\('sharp OK'\\)\\).catch\\(\\(\\) => console.log\\('sharp NG'\\)\\)\")",
+      "Bash(where inkscape *)",
+      "Bash(where magick *)",
+      "Bash(start *)",
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\\\\maloncafe-icon\\\\\" | Select-Object Name, LastWriteTime | Format-Table *)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -1,6 +1,12 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(start *)",
+      "mcp__line-harness__send_message"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "line-harness"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

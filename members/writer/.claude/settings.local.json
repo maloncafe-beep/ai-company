@@ -1,6 +1,12 @@
 {
+  "permissions": {
+    "allow": [
+      "PowerShell(Rename-Item *)",
+      "PowerShell(Copy-Item *)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "line-harness"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
