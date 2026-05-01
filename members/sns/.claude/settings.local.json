@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/yyasu/ai-company/x-auto-post/**)",
+      "Bash(node tools/setup-schedule.mjs)",
+      "mcp__line-harness__send_message"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "line-harness"
+  ]
+}

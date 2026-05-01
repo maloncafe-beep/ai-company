@@ -16,7 +16,8 @@
       "Bash(where inkscape *)",
       "Bash(where magick *)",
       "Bash(start *)",
-      "Bash(Get-ChildItem \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\\\\maloncafe-icon\\\\\" | Select-Object Name, LastWriteTime | Format-Table *)"
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\\\\maloncafe-icon\\\\\" | Select-Object Name, LastWriteTime | Format-Table *)",
+      "Bash(node -e ' *)"
     ]
   },
   "enableAllProjectMcpServers": true,
