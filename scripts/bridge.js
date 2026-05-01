@@ -15,6 +15,17 @@ const MEMBERS_DIR     = 'C:/Users/yyasu/ai-company/members';
 const POLL_INTERVAL   = 60 * 1000;   // ポーリング間隔（ms）
 const SPAWN_COOLDOWN  = 5 * 60 * 1000; // 同じ相手への spawn 最短間隔（ms）
 const STATE_FILE      = path.join(__dirname, '.bridge-state.json');
+const LOG_FILE        = path.join(__dirname, 'bridge.log');
+
+// ── ログ ──────────────────────────────────────────────────────
+function log(msg) {
+  const line = `${new Date().toLocaleString('ja-JP')} ${msg}\n`;
+  process.stdout.write(line);
+  try { fs.appendFileSync(LOG_FILE, line, 'utf8'); } catch {}
+}
+
+process.on('uncaughtException', e => { log(`[bridge] UNCAUGHT: ${e.message}\n${e.stack}`); process.exit(1); });
+process.on('unhandledRejection', e => { log(`[bridge] UNHANDLED REJECTION: ${e}`); });
 
 // accountId → { name, dir }
 // AI-Project 宛のメッセージは leader に routing する
@@ -63,7 +74,7 @@ function saveState() {
   try {
     fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), 'utf8');
   } catch (e) {
-    console.error('[bridge] state save failed:', e.message);
+    log(`[bridge] state save failed: ${e.message}`);
   }
 }
 
@@ -110,33 +121,33 @@ function spawnClaude(dir, prompt) {
     shell: process.platform === 'win32',
   });
 
-  child.stdout.on('data', d => process.stdout.write(`[claude/${dir}] ${d}`));
-  child.stderr.on('data', d => process.stderr.write(`[claude/${dir}] ${d}`));
-  child.on('error', e => console.error(`[bridge] spawn error (${dir}):`, e.message));
-  child.on('exit', code => console.log(`[bridge] claude/${dir} exited (code=${code})`));
+  child.stdout.on('data', d => log(`[claude/${dir}] ${String(d).trimEnd()}`));
+  child.stderr.on('data', d => log(`[claude/${dir}] ${String(d).trimEnd()}`));
+  child.on('error', e => log(`[bridge] spawn error (${dir}): ${e.message}`));
+  child.on('exit', code => log(`[bridge] claude/${dir} exited (code=${code})`));
 }
 
 // ── ポーリング ────────────────────────────────────────────────
 async function poll() {
   const now = Date.now();
-  console.log(`[bridge] poll at ${new Date(now).toLocaleString('ja-JP')}`);
+  log(`[bridge] poll at ${new Date(now).toLocaleString('ja-JP')}`);
 
   for (const [accountId, account] of Object.entries(ACCOUNTS)) {
     let res;
     try {
       res = await fetchConversations(accountId);
     } catch (e) {
-      console.error(`[bridge] ${account.name} fetch error:`, e.message);
+      log(`[bridge] ${account.name} fetch error: ${e.message}`);
       continue;
     }
 
     const items = res?.data?.items;
     if (!Array.isArray(items)) {
-      console.log(`[bridge] ${account.name}: unexpected response`);
+      log(`[bridge] ${account.name}: unexpected response`);
       continue;
     }
 
-    console.log(`[bridge] ${account.name}: ${items.length} unread`);
+    log(`[bridge] ${account.name}: ${items.length} unread`);
 
     for (const item of items) {
       const { friendId, displayName, lastIncomingAt, lastIncomingPreview } = item;
@@ -169,7 +180,7 @@ async function poll() {
         const taskPath = path.join(inboxDir, 'task.md');
         const taskAskedPath = path.join(inboxDir, 'task_asked.md');
         if (fs.existsSync(taskAskedPath)) {
-          console.log(`[bridge] task_asked.md exists, skipping spawn`);
+          log(`[bridge] task_asked.md exists, skipping spawn`);
           continue;
         }
         const taskContent =
@@ -183,11 +194,11 @@ async function poll() {
         try {
           fs.mkdirSync(inboxDir, { recursive: true });
           fs.writeFileSync(taskPath, taskContent, 'utf8');
-          console.log(`[bridge] wrote leader/inbox/task.md`);
+          log(`[bridge] wrote leader/inbox/task.md`);
           fs.renameSync(taskPath, taskAskedPath);
-          console.log(`[bridge] renamed task.md → task_asked.md`);
+          log(`[bridge] renamed task.md → task_asked.md`);
         } catch (e) {
-          console.error(`[bridge] failed to write/rename task.md:`, e.message);
+          log(`[bridge] failed to write/rename task.md: ${e.message}`);
           continue;
         }
       }
@@ -200,7 +211,7 @@ async function poll() {
         `直近メッセージ（古い順）:\n${messageText}\n\n` +
         `CLAUDE.mdのpush spawnモードに従って行動してください。`;
 
-      console.log(`[bridge] spawning claude/${account.dir} for ${displayName ?? friendId}`);
+      log(`[bridge] spawning claude/${account.dir} for ${displayName ?? friendId}`);
       state[stateKey] = new Date(now).toISOString();
       saveState();
       spawnClaude(account.dir, prompt);
@@ -210,6 +221,6 @@ async function poll() {
 
 // ── 起動 ─────────────────────────────────────────────────────
 loadState();
-console.log('[bridge] started. poll every', POLL_INTERVAL / 1000, 'sec');
+log(`[bridge] started. poll every ${POLL_INTERVAL / 1000} sec`);
 poll();
 setInterval(poll, POLL_INTERVAL);
