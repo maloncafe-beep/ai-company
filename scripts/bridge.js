@@ -20,7 +20,6 @@ const LOG_FILE        = path.join(__dirname, 'bridge.log');
 // ── ログ ──────────────────────────────────────────────────────
 function log(msg) {
   const line = `${new Date().toLocaleString('ja-JP')} ${msg}\n`;
-  process.stdout.write(line);
   try { fs.appendFileSync(LOG_FILE, line, 'utf8'); } catch {}
 }
 
