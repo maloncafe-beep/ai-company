@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@maloncafe アイコン案 比較</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: #6B8AF9;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 10px;
+      color: #444;
+      letter-spacing: 2px;
+      margin-bottom: 48px;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 1px;
+      background: #1a1f35;
+      color: #4A6CF7;
+      padding: 3px 10px;
+      border: 1px solid #2a3060;
+    }
+    .badge.new {
+      color: #22c55e;
+      border-color: #14532d;
+      background: #0a1a0a;
+    }
+    /* checkerboard for transparent bg check */
+    .checker {
+      background-image:
+        linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+        linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+        linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    }
+    .icon-wrap img {
+      width: 300px;
+      height: 300px;
+      display: block;
+      border: 1px solid #1e2035;
+    }
+    .label {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #777;
+      text-align: center;
+      max-width: 280px;
+      line-height: 1.6;
+    }
+    .label strong {
+      display: block;
+      color: #bbb;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .sizes {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .sizes img { border: 1px solid #1e2035; }
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: #1e1e1e;
+      margin: 32px auto 0;
+    }
+    .note {
+      text-align: center;
+      font-size: 10px;
+      color: #333;
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>@maloncafe — Icon Review</h1>
+  <p class="subtitle">2026-05-01 · white bg variants</p>
+
+  <div class="grid">
+
+    <!-- V1 -->
+    <div class="card">
+      <span class="badge">V1 — ベース案</span>
+      <div class="icon-wrap checker">
+        <img src="icon-v1-grid.svg" alt="v1">
+      </div>
+      <div class="label">
+        <strong>Geometric Network (テキストなし)</strong>
+        白背景 · ネットワーク + 黄金比スパイラル
+      </div>
+      <div class="sizes">
+        <img src="icon-v1-grid.svg" width="64" height="64">
+        <img src="icon-v1-grid.svg" width="40" height="40">
+      </div>
+    </div>
+
+    <!-- V4 -->
+    <div class="card">
+      <span class="badge new">★ V4 — 推奨案</span>
+      <div class="icon-wrap checker">
+        <img src="icon-v4-final.svg" alt="v4">
+      </div>
+      <div class="label">
+        <strong>Network + "Structure &gt; Intuition"</strong>
+        白背景 · 幾何学ネットワーク · テキスト入り
+      </div>
+      <div class="sizes">
+        <img src="icon-v4-final.svg" width="64" height="64">
+        <img src="icon-v4-final.svg" width="40" height="40">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+  <p class="note">下段：64px / 40px での縮小表示</p>
+</body>
+</html>
