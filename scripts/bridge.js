@@ -16,6 +16,27 @@ const POLL_INTERVAL   = 60 * 1000;   // ポーリング間隔（ms）
 const SPAWN_COOLDOWN  = 5 * 60 * 1000; // 同じ相手への spawn 最短間隔（ms）
 const STATE_FILE      = path.join(__dirname, '.bridge-state.json');
 const LOG_FILE        = path.join(__dirname, 'bridge.log');
+const PID_FILE        = path.join(__dirname, '.bridge.pid');
+
+// ── 多重起動防止 ───────────────────────────────────────────────
+(function checkSingleInstance() {
+  try {
+    if (fs.existsSync(PID_FILE)) {
+      const oldPid = parseInt(fs.readFileSync(PID_FILE, 'utf8').trim(), 10);
+      if (!isNaN(oldPid) && oldPid !== process.pid) {
+        try {
+          process.kill(oldPid, 0); // 存在チェック（シグナル0は死活確認のみ）
+          fs.appendFileSync(LOG_FILE, `${new Date().toLocaleString('ja-JP')} [bridge] already running (PID ${oldPid}), exiting.\n`);
+          process.exit(0);
+        } catch {} // プロセスが存在しない → 古いPIDファイルを無視
+      }
+    }
+  } catch {}
+  fs.writeFileSync(PID_FILE, String(process.pid), 'utf8');
+  process.on('exit', () => { try { fs.unlinkSync(PID_FILE); } catch {} });
+  process.on('SIGINT',  () => process.exit(0));
+  process.on('SIGTERM', () => process.exit(0));
+})();
 
 // ── ログ ──────────────────────────────────────────────────────
 function log(msg) {
