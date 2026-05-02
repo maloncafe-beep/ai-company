@@ -23,9 +23,23 @@
 |---------|------|
 | x-single-01-kotei.md | @maloncafe 固定ツイート（投稿依頼済み→SNS担当） |
 
+### 3. リメイク版（単体ツイート）6本
+
+| ファイル | テーマ |
+|---------|--------|
+| x-remix-20-chotto-dake.md | 「ちょっとだけ」 |
+| x-remix-21-homerareru-fuan.md | 褒められると不安 |
+| x-remix-22-sentakushi-erabenai.md | 選択肢と決断 |
+| x-remix-23-sumimasen.md | すみません |
+| x-remix-24-yaruki-machi.md | やる気待ち |
+| x-remix-25-kanpeki-byo.md | 完璧主義 |
+
+※ x-thread-10〜15 の末尾フォーマット（余分な `---` とメタデータ）も修正済み
+
 ## レビューポイント
 
 - 各スレッドのテーマ・トーンがアカウント方針と合っているか
+- リメイク版の断定度・切れ味
 - 固定ツイートの文章に問題がないか
 
 よろしくお願いします。
