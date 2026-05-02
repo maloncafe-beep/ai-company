@@ -125,6 +125,9 @@ async function main() {
     }
 
     try {
+      // スケジューラの二重投稿を防ぐため、投稿前に「処理中」へ更新
+      await updateRange(SHEET_NAME, `B${rowIndex}`, [["処理中"]]);
+
       const now = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
 
       if (isThread) {

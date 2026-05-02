@@ -75,6 +75,9 @@ async function checkAndPost() {
     console.log(`[${jstNow()}] 投稿中: ID ${id}`);
 
     try {
+      // 二重投稿を防ぐため、投稿前に「処理中」へ更新
+      await updateRange(SHEET_NAME, `B${rowIndex}`, [["処理中"]]);
+
       const parts = text.split(THREAD_SEPARATOR).map((s) => s.trim()).filter((s) => s.length > 0);
       const isThread = parts.length > 1;
 

@@ -3,7 +3,17 @@
     "allow": [
       "Read(//c/Users/yyasu/ai-company/x-auto-post/**)",
       "Bash(node tools/setup-schedule.mjs)",
-      "mcp__line-harness__send_message"
+      "mcp__line-harness__send_message",
+      "Bash(xargs grep *)",
+      "Bash(tasklist)",
+      "Bash(wmic process *)",
+      "Bash(node -e ' *)",
+      "Bash(node tools/schedule.mjs --list)",
+      "Bash(tasklist *)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Stop-Process *)",
+      "Bash(node tools/schedule.mjs)",
+      "Bash(node --input-type=module)"
     ]
   },
   "enableAllProjectMcpServers": true,
