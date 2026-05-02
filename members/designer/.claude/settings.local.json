@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(start *)",
-      "mcp__line-harness__send_message"
+      "mcp__line-harness__send_message",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\" -Recurse -Force)",
+      "Bash(Select-Object FullName, Extension, Length)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\" -Recurse | ForEach-Object { [PSCustomObject]@{ Path = $_.FullName; Extension = $_.Extension; Size = $_.Length } } | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\designer\\\\projects\" -Recurse -Directory | ForEach-Object { $_.FullName })"
     ]
   },
   "enableAllProjectMcpServers": true,
