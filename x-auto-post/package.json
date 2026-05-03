@@ -13,6 +13,7 @@
     "profile": "node profile/generate-profile.mjs",
     "profile:interactive": "node profile/generate-profile-interactive.mjs",
     "review": "node tools/review-performance.mjs",
+    "validate": "node tools/validate-posts.mjs",
     "dist": "node tools/build-dist.mjs"
   },
   "dependencies": {
