@@ -13,7 +13,12 @@
       "PowerShell(Get-Process *)",
       "PowerShell(Stop-Process *)",
       "Bash(node tools/schedule.mjs)",
-      "Bash(node --input-type=module)"
+      "Bash(node --input-type=module)",
+      "Bash(node tools/add-single-post.mjs)",
+      "Bash(node tools/update-note.mjs 46 \"リメイク版（32→46）\")",
+      "Bash(node tools/register-thread16-18.mjs)",
+      "Bash(node tools/check-schedule.mjs)",
+      "Bash(node tools/fix-schedule-47-52.mjs)"
     ]
   },
   "enableAllProjectMcpServers": true,
