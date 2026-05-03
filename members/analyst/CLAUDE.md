@@ -67,4 +67,6 @@
 3. 実作業に着手（成果物生成OK）
 4. 成果物は `projects/<案件名>/` に配置。HTML/画像は `open` で自動的に開く
 5. 完了したら `inbox/task_asked.md` を `inbox/task_done.md` にリネーム
-6. 経営者にLINEで「成果物パス：xxx で完了」と報告
+6. プロジェクトの `LOG.md` に「今日のまとめ：〇〇（1行）」を追記する（省略禁止）
+7. `git add -A && git commit` でコミット
+8. 経営者にLINEで「成果物パス：xxx で完了」と報告

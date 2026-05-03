@@ -23,7 +23,8 @@
       "Bash(rm /c/Users/yyasu/ai-company/members/designer/inbox/task_done.md)",
       "Bash(rm /c/Users/yyasu/ai-company/members/leader/inbox/task_done.md)",
       "Bash(git -C \"C:/Users/yyasu/ai-company\" add -A)",
-      "Bash(git -C \"C:/Users/yyasu/ai-company\" status --short)"
+      "Bash(git -C \"C:/Users/yyasu/ai-company\" status --short)",
+      "Bash(git *)"
     ]
   },
   "enableAllProjectMcpServers": true,
