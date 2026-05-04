@@ -24,7 +24,8 @@
       "Bash(rm /c/Users/yyasu/ai-company/members/leader/inbox/task_done.md)",
       "Bash(git -C \"C:/Users/yyasu/ai-company\" add -A)",
       "Bash(git -C \"C:/Users/yyasu/ai-company\" status --short)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(Get-ChildItem *)"
     ]
   },
   "enableAllProjectMcpServers": true,
