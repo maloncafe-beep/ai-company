@@ -88,6 +88,9 @@ Figmaテンプレート等を使って投稿を量産する。
 - **種別・元スレッドIDはWriterが指定する**。SNSは指定内容をそのまま登録する
 - リメイク版の場合、備考列に `リメイク版（元スレッドID-登録ID）` 形式で記入する
   - 例：`リメイク版（32-46）`
+- **画像プロンプト列（I列）にWriterが作成したプロンプトファイルのフルパスを記入する**
+  - 形式：`C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\<ファイル名>`
+  - Writerのファイル作成完了後にパスを記入する（先行タスク確認必須）
 - **登録後は必ずバリデーターを実行する（省略禁止）**
   ```bash
   cd ~/ai-company/x-auto-post && npm run validate

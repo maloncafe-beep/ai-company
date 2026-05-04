@@ -105,7 +105,7 @@ export async function ensureSheet(sheetName) {
 /**
  * シートの全データを読み取る（ヘッダー含む）
  */
-export async function readSheet(sheetName, range = "A:H") {
+export async function readSheet(sheetName, range = "A:I") {
   const sheets = await getSheets();
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
@@ -122,7 +122,7 @@ export async function appendRows(sheetName, rows) {
   const sheets = await getSheets();
   await sheets.spreadsheets.values.append({
     spreadsheetId: SPREADSHEET_ID,
-    range: `'${sheetName}'!A:H`,
+    range: `'${sheetName}'!A:I`,
     valueInputOption: "RAW",
     insertDataOption: "INSERT_ROWS",
     requestBody: { values: rows },
@@ -173,6 +173,7 @@ export async function addPost(text, opts = {}) {
     "", // 投稿リンク
     "", // 投稿日時
     opts.note || "",
+    opts.imagePrompt || "",
   ];
 
   await appendRows(sheetName, [row]);

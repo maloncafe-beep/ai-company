@@ -14,6 +14,7 @@
     "profile:interactive": "node profile/generate-profile-interactive.mjs",
     "review": "node tools/review-performance.mjs",
     "validate": "node tools/validate-posts.mjs",
+    "add-image-col": "node tools/add-image-prompt-column.mjs",
     "dist": "node tools/build-dist.mjs"
   },
   "dependencies": {

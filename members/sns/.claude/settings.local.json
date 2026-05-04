@@ -18,7 +18,8 @@
       "Bash(node tools/update-note.mjs 46 \"リメイク版（32→46）\")",
       "Bash(node tools/register-thread16-18.mjs)",
       "Bash(node tools/check-schedule.mjs)",
-      "Bash(node tools/fix-schedule-47-52.mjs)"
+      "Bash(node tools/fix-schedule-47-52.mjs)",
+      "PowerShell(Move-Item *)"
     ]
   },
   "enableAllProjectMcpServers": true,

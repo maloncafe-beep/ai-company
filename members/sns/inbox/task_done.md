@@ -1,33 +1,38 @@
-# タスク：スレッド16〜18・リメイク26〜28 をスプシに登録
-
-## 依頼元
-Leader（leaderレビュー承認済み）
+# タスク：スプシに「画像プロンプト」列を追加
 
 ## 背景
-現在の最終登録IDはID46（05/08 12:00）。次の投稿が途切れないよう早急に登録する。
+X投稿に漫画風挿絵を追加する運用を開始。Writerが投稿ごとに画像生成用プロンプトファイルを作成するため、
+スプシ（Google Sheets x-auto-post）にローカルファイルパスを管理する列を追加する。
+オーナーがスプシを見てパスを開き、コピーして手動で画像生成する運用。
 
 ## やること
-スプシ（x-auto-post投稿管理シート）に以下6件を登録する。
-IDはスプシの現在の最大IDを確認してから採番すること。
 
-### 登録内容
+### 1. スプシに「画像プロンプト」列を追加
+本文列の右隣に「画像プロンプト」列を追加する。
+記入内容：Writerが作成したプロンプトファイルのフルパス（Windowsパス）
 
-| # | 種別 | ファイル | テーマ | 投稿日時（案） |
-|---|------|---------|-------|-------------|
-| 1 | スレッド | `members/writer/projects/blog-001/x-thread-16-tsugikara-kiotsukeru.md` | 次から気をつける | ID46直後から順番に |
-| 2 | スレッド | `members/writer/projects/blog-001/x-thread-17-atode-yomu.md` | 後で読む | 〃 |
-| 3 | スレッド | `members/writer/projects/blog-001/x-thread-18-mousukoshidake.md` | もう少しだけ | 〃 |
-| 4 | リメイク | `members/writer/projects/blog-001/x-remix-26-tsugikara-kiotsukeru.md` | 次から気をつける | 対応スレッドの翌日12:00 |
-| 5 | リメイク | `members/writer/projects/blog-001/x-remix-27-atode-yomu.md` | 後で読む | 〃 |
-| 6 | リメイク | `members/writer/projects/blog-001/x-remix-28-mousukoshidake.md` | もう少しだけ | 〃 |
+### 2. 既存スケジュール済み投稿（ID47〜52）のパスを記入
+**Writerのファイル作成完了後**に以下のパスを記入する。
 
-## 登録ルール（確認）
-- スレッドは21:00、リメイクは翌日12:00（既存パターン踏襲）
-- リメイクの備考列：`リメイク版（元スレッドID-登録ID）` 形式で記入
-- 登録後、**リメイク26〜28のスプシIDをWriterに通知**（Writerがフロントマターの `元スレッドID` を更新するため）
+| スプシID | 投稿種別 | ファイルパス |
+|---------|---------|------------|
+| 47 | スレッド16 | `C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\x-prompt-thread-16.txt` |
+| 48 | リメイク26 | `C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\x-prompt-remix-26.txt` |
+| 49 | スレッド17 | `C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\x-prompt-thread-17.txt` |
+| 50 | リメイク27 | `C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\x-prompt-remix-27.txt` |
+| 51 | スレッド18 | `C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\x-prompt-thread-18.txt` |
+| 52 | リメイク28 | `C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\x-prompt-remix-28.txt` |
 
-## 完了後
-1. `inbox/task.md` を `inbox/task_done.md` にリネーム
-2. `projects/x-maloncafe/LOG.md` に追記
-3. `git add -A && git commit`
-4. `leader/inbox/review_request.md` を作成してレビュー依頼
+### 3. CLAUDE.md にルールを追記
+スプシ登録手順に「画像プロンプト列にファイルパスを記入する」を追加する。
+
+---
+
+## 完了条件
+- スプシに「画像プロンプト」列が追加されている
+- ID47〜52の画像プロンプトパスが記入されている
+- CLAUDE.md にルールが追記されている
+- `inbox/task.md` を `inbox/task_done.md` にリネームして完了報告
+
+## 補足
+Writerのファイル作成が先行タスク。Writerの task_done.md を確認してからパス記入に進むこと。
