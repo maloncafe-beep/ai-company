@@ -85,9 +85,14 @@ Figmaテンプレート等を使って投稿を量産する。
 5. 視認性 — 背景とテキストのコントラストが十分か
 
 ## スプシ登録ルール
-- **種別・元スレッドIDはWriterが指定する**。SNSは指定内容をそのまま登録する
+- **種別はWriterが指定する**。SNSは指定内容をそのまま登録する
 - リメイク版の場合、備考列に `リメイク版（元スレッドID-登録ID）` 形式で記入する
   - 例：`リメイク版（32-46）`
+- **スプシ登録後、Writerのファイルに投稿予定日を書き戻す（省略禁止）**
+  - スレッドファイル：`members/writer/projects/blog-001/x-thread-NN-{slug}.md`
+  - リメイクファイル：`members/writer/projects/blog-001/x-remix-NN-{slug}.md`
+  - フロントマターの `投稿予定日:` に `YYYY/MM/DD HH:MM` 形式で記入する
+  - 例：`投稿予定日: 2026/05/19 21:00`
 - **画像プロンプト列（I列）にWriterが作成したプロンプトファイルのフルパスを記入する**
   - 形式：`C:\Users\yyasu\ai-company\members\writer\projects\blog-001\image-prompts\<ファイル名>`
   - Writerのファイル作成完了後にパスを記入する（先行タスク確認必須）
