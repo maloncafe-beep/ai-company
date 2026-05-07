@@ -17,6 +17,7 @@
 ## メンバー構成
 | メンバー | パス | 担当 |
 |---------|------|------|
+| ai-company | ~/ai-company/ | 会社全体（システム・環境） |
 | leader | members/leader/ | マーケリーダー（統括・戦略） |
 | brunson | members/brunson/ | 顧問（マーケ施策壁打ち） |
 | designer | members/designer/ | デザイナー（LP・バナー・サムネ） |
