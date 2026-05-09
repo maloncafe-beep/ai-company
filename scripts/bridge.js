@@ -133,14 +133,19 @@ async function fetchRecentMessages(friendId, limit = 5) {
 }
 
 // ── claude spawn ──────────────────────────────────────────────
+// prompt は stdin で渡す（引数で渡すとシェル経由のエスケープ問題が出るため）
+// Windows では cmd.exe を直接 spawn し、shell:true は使わない（DeprecationWarning 回避）
 function spawnClaude(dir, prompt) {
   const cwd = path.join(MEMBERS_DIR, dir).replace(/\//g, '\\');
-  const child = spawn('claude', ['-p', prompt], {
+  const isWin = process.platform === 'win32';
+  const cmd  = isWin ? 'cmd.exe' : 'claude';
+  const args = isWin ? ['/d', '/s', '/c', 'claude -p'] : ['-p'];
+  const child = spawn(cmd, args, {
     cwd,
-    stdio: ['ignore', 'pipe', 'pipe'],
-    shell: process.platform === 'win32',
+    stdio: ['pipe', 'pipe', 'pipe'],
   });
 
+  child.stdin.end(prompt, 'utf8');
   child.stdout.on('data', d => log(`[claude/${dir}] ${String(d).trimEnd()}`));
   child.stderr.on('data', d => log(`[claude/${dir}] ${String(d).trimEnd()}`));
   child.on('error', e => log(`[bridge] spawn error (${dir}): ${e.message}`));
