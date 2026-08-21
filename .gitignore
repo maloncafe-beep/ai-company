@@ -21,3 +21,19 @@ temp_segments/
 
 # Netlify
 .netlify
+
+# ローカル作業フォルダ
+Design/
+LP/
+lp-gpt-public/
+note-project-claude/
+note-project-maloncafe/
+note-project-zodiacm/
+seo-article-agent/
+x-auto-post-openai/
+youtube-short-agent/
+
+# スクリプト実行時ファイル
+scripts/.bridge-state.json
+scripts/.bridge.pid
+scripts/bridge.log
