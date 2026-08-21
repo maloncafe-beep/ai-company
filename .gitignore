@@ -1,46 +1,54 @@
-# 秘密情報（必須・絶対にコミットしない）
-.env
-.env.*
-config.yaml
-.mcp.json
+# ===== ホワイトリスト方式 =====
+# デフォルト：全部無視（新しくフォルダを追加しても自動的に無視される）
+*
+.*
 
-# 一般
-node_modules/
-venv/
-__pycache__/
-.DS_Store
+# ===== 追跡するもの =====
 
-# メディア中間ファイル
+# ルートファイル
+!.gitignore
+!CLAUDE.md
+!README.md
+!FAQ-line-fullstack.md
+!SESSION-MODE-TEMPLATE.md
+
+# メンバー作業フォルダ（バイナリ・メディアは除く）
+!members/
+!members/**
 *.mp4
 *.mov
 *.MOV
-temp_frames/
-temp_segments/
 *.pdf
 *.pptx
+*.png
+*.jpg
+*.jpeg
+*.gif
 
-# Netlify
-.netlify
-
-# ローカル作業フォルダ
-Design/
-LP/
-lp-gpt-public/
-note-project-claude/
-note-project-maloncafe/
-note-project-zodiacm/
-seo-article-agent/
-x-auto-post-openai/
-youtube-short-agent/
-
-# スクリプト実行時ファイル
+# スクリプト（ランタイムファイルは除外）
+!scripts/
+!scripts/**
 scripts/.bridge-state.json
 scripts/.bridge.pid
 scripts/bridge.log
 
-# ローカル作業・練習フォルダ
-AGENTS.md
-Claude-Image/
-line-stumps/
-remotion-practice/
+# X自動投稿
+!x-auto-post/
+!x-auto-post/**
 x-auto-post/csv/
+x-auto-post/.claude/worktrees/
+
+# LINE bridge
+!line-bridge/
+!line-bridge/**
+line-bridge/server.log
+line-bridge/server-err.log
+
+# スキル
+!skill/
+!skill/**
+
+# Claude設定（settings.local は除外）
+!.claude/
+!.claude/**
+.claude/settings.local.json
