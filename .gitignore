@@ -37,3 +37,10 @@ youtube-short-agent/
 scripts/.bridge-state.json
 scripts/.bridge.pid
 scripts/bridge.log
+
+# ローカル作業・練習フォルダ
+AGENTS.md
+Claude-Image/
+line-stumps/
+remotion-practice/
+x-auto-post/csv/
