@@ -163,22 +163,33 @@ ai-proposal-prompts-v1/
 ├── check-environment.bat ................ Windows 用環境判定スクリプト
 ├── check-environment.sh ................. Mac 用環境判定スクリプト
 │
-├── prompts/ ............................ プロンプト集本体
-│   ├── prompt_proposal_11p.md ........... ⭐ 最頻出：提案書 11ページ版
-│   ├── prompt_diagnosis_10p.md ......... 診断レポート 10ページ版
-│   ├── prompt_efficiency_diagnosis.md .. 業務効率化診断プロンプト
-│   ├── prompt_proposal_short.md ........ 簡潔版：提案書（5ページ）
-│   ├── prompt_a4_flyer_corporate.md .... A4両面チラシ：企業向け版
-│   ├── prompt_a4_flyer_freelancer.md ....A4両面チラシ：フリーランス版
-│   ├── prompt_presentation_gemini.md ... Gemini 版：プレゼンテーション
-│   └── ... (全 14 種類)
+├── prompts/ ............................ プロンプト集本体（全14種類）
+│   ├── 00_INDEX_プロンプト一覧.md ........ ← まずここを読む
+│   ├── prompt_proposal_11p.md ........... ⭐ #1 提案書 11ページ版
+│   ├── prompt_diagnosis_10p.md .......... #2 診断レポート 10ページ版
+│   ├── prompt_efficiency_diagnosis.md ... #3 業務効率化診断
+│   ├── prompt_proposal_auto.md .......... #4 提案書自動生成（汎用）
+│   ├── prompt_prezen_making_gemini.md ... #5 Gemini特化版
+│   ├── gemini-code-1783929990636.html ... #6 Gemini Codeサンプル
+│   ├── prompt_slide_hearing.md .......... #7 スライド自動生成
+│   ├── prompt_a4_flyer_corporate.md ..... #8 A4チラシ：企業向け
+│   ├── prompt_a4_flyer_freelancer.md .... #8 A4チラシ：フリーランス向け
+│   ├── prompt_rpa_guide.md .............. #9 RPA導入ガイド
+│   ├── prompt_agent_template.md ......... #10 AIエージェント用テンプレ
+│   ├── prompt_issue_sheet.md ............ #11 課題整理シート
+│   ├── prompt_apply_writing.md .......... #12 応募文（記事ライティング）
+│   ├── prompt_apply_proposal.md ......... #13 応募文（提案書・AI文書系）
+│   ├── prompt_proposal_short.md ......... 簡潔版：提案書（5ページ）
+│   └── prompt_diagnosis_short.md ........ #14 診断プロンプト（簡略版）
 │
-└── samples/ ............................ 実装済み実績・使用例
+└── samples/ ............................ 出力サンプル・実績
     ├── sample_proposal_techbridge.md ... 実例 1：テック・ブリッジ社向け提案書
     ├── sample_proposal_yamato.md ....... 実例 2：ヤマト製作所向け提案書
     ├── sample_output_tanaka.html ....... 実例 3：業務効率化診断の出力例
-    ├── samples_FieldSync1.2.html ....... 実例 4：A4両面チラシ（企業向け）出力例
-    └── sample_gemini.html .............. 実例 5：Geminiでの出力例
+    ├── sample_FieldSync1.html .......... 実例 4：A4チラシ（企業向け）出力例
+    ├── sample_FieldSync2.html .......... 実例 5：A4チラシ（フリーランス向け）出力例
+    ├── sample_gemini.html .............. 実例 6：Geminiでの出力例
+    └── sample_rpa_guide.html ........... 実例 7：RPA導入ガイドの出力例
 ```
 
 ---
