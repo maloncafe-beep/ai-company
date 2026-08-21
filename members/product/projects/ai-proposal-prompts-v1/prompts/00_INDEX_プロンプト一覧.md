@@ -135,7 +135,7 @@ ChatGPT：「python-pptx コードを生成しました。このコードをCode
 - **特徴**：7ページの詳細レポート
 - **出力形式**：HTML
 - **対応AI**：Claude / Gemini
-- **ファイル**：`samples/sample_rpa_guide.html`（出力サンプル）※プロンプトファイル別途準備中
+- **ファイル**：`prompts/prompt_rpa_guide.md`（リサーチ資料をそのまま投入）/ 出力サンプル：`samples/sample_rpa_guide.html`
 
 ---
 
