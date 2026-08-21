@@ -169,6 +169,7 @@ ai-proposal-prompts-v1/
 │   ├── prompt_diagnosis_10p.md .......... #2 診断レポート 10ページ版
 │   ├── prompt_efficiency_diagnosis.md ... #3 業務効率化診断
 │   ├── prompt_proposal_auto.md .......... #4 提案書自動生成（汎用）
+│   ├── prompt_proposal_short.md ......... #4 提案書（簡潔版・5ページ）
 │   ├── prompt_prezen_making_gemini.md ... #5 Gemini特化版
 │   ├── gemini-code-1783929990636.html ... #6 Gemini Codeサンプル
 │   ├── prompt_slide_hearing.md .......... #7 スライド自動生成
@@ -179,7 +180,6 @@ ai-proposal-prompts-v1/
 │   ├── prompt_issue_sheet.md ............ #11 課題整理シート
 │   ├── prompt_apply_writing.md .......... #12 応募文（記事ライティング）
 │   ├── prompt_apply_proposal.md ......... #13 応募文（提案書・AI文書系）
-│   ├── prompt_proposal_short.md ......... 簡潔版：提案書（5ページ）
 │   └── prompt_diagnosis_short.md ........ #14 診断プロンプト（簡略版）
 │
 └── samples/ ............................ 出力サンプル・実績

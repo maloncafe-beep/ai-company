@@ -73,6 +73,7 @@
 - **出力形式**：HTML
 - **対応AI**：Claude / ChatGPT / Gemini
 - **ファイル**：`prompts/prompt_proposal_auto.md`
+- **簡潔版（5ページ）**：`prompts/prompt_proposal_short.md`（時間がないときはこちら）
 
 ---
 
