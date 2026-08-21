@@ -29,11 +29,10 @@
 
 **使い方の例**：
 ```
-営業マンA：「新規クライアント向け提案書を作ってほしい」
-ハック：「プロンプト#1を開いて、【インプット】に企業名・現状・目標・費用を埋めてClaude に送ってください」
-営業マンA：「（埋めて送信）」
-Claude：「HTML提案書が logs/PrezenAutomake/output/ に保存されました」
-営業マンA：「ブラウザで開いて Ctrl+P でPDF化」
+1. prompts/prompt_proposal_11p.md を開く
+2. 【インプット】に企業名・現状・目標・費用を埋める
+3. Claude / ChatGPT / Gemini に貼り付けて送信
+4. HTML提案書が出力される → ブラウザで Ctrl+P でPDF化
 ↓ 5分で完成！
 ```
 
@@ -49,12 +48,10 @@ Claude：「HTML提案書が logs/PrezenAutomake/output/ に保存されまし�
 
 **使い方**：
 ```
-営業マンB：「卸売業向けの診断レポートを20社分量産したい」
-ハック：「プロンプト#2を使います。【インプット】の『業種』『主な困りごと』だけでOK」
-営業マンB：「（5分で業種別15パターンを作成）」
-↓ 各業種の診断レポートが HTML で生成される
-↓ server/scripts/html_to_slides.mjs で PPTX 化
-↓ Googleスライドにアップロード → セミナーで使用！
+1. prompts/prompt_diagnosis_10p.md を開く
+2. 【インプット】の「業種」「主な困りごと」を埋める
+3. AI に貼り付けて送信 → 各業種の HTML 診断レポートが出力
+4. ブラウザで Ctrl+P → PDF / Googleスライドにコピー → セミナー資料に
 ```
 
 ---
@@ -246,8 +243,8 @@ ChatGPT：「python-pptx コードを生成しました。このコードをCode
 → **推奨フロー：**
 ```
 【ChatGPT】プロンプト #7 → python-pptx コード → Code Interpreter → PPTX ⭐ 最速
-【Claude】HTML 生成 → server/scripts/html_to_slides.mjs → PPTX
-【Gemini】JSON 出力 → python-pptx で変換
+【Claude】HTML 生成 → Googleスライドにコピペ → PPTX ダウンロード
+【Gemini】JSON 出力 → ChatGPT Code Interpreter で PPTX 変換
 ```
 
 ### Markdown で内容だけ欲しい場合 📝
@@ -259,25 +256,17 @@ ChatGPT：「python-pptx コードを生成しました。このコードをCode
 
 ---
 
-## 🔧 変換スクリプトの使用方法
+## 🔧 出力ファイルの保存・変換方法
 
-### HTML → PDF 自動化
-```bash
-node server/scripts/html_to_pdf.mjs logs/PrezenAutomake/output/ファイル名.html
-```
-前提：Node.js + Puppeteer インストール
+### HTML → PDF
+ブラウザで HTML を開き、**Ctrl+P（Mac: Cmd+P）→「PDFとして保存」** を選択。
 
-### HTML → PPTX 自動化
-```bash
-node server/scripts/html_to_slides.mjs logs/PrezenAutomake/output/ファイル名.html
-```
-前提：Node.js + python-pptx インストール
+### HTML → PPTX
+Googleスライドを開いて HTML の内容をコピペ → スライド形式で保存。
+または ChatGPT（Code Interpreter）に「この HTML を PPTX に変換して」と依頼。
 
-### PPTX → Googleスライド化 + PDF 生成
-```bash
-node server/scripts/upload_to_drive.mjs ファイル.pptx
-```
-前提：Google Drive API 設定済み
+### PPTX → Googleスライド
+Google ドライブに PPTX をアップロード → 「Googleスライドで開く」を選択。
 
 ---
 
@@ -296,8 +285,8 @@ node server/scripts/upload_to_drive.mjs ファイル.pptx
 ```
 1. 【プロンプト #2】の【インプット】を業種ごとに埋める（3分）
 2. Claude×5 並列実行（実は各1分で完了）
-3. 生成された HTML 5つを server/scripts/html_to_slides.mjs で PPTX 化（5分）
-4. Googleスライドにアップロード（5分）
+3. 生成された HTML をブラウザで Ctrl+P → PDF 化（5分）
+4. Googleスライドにコピペ or アップロード（5分）
 5. 営業チームに共有＆セミナー用に使用！
 ```
 
@@ -334,39 +323,37 @@ node server/scripts/upload_to_drive.mjs ファイル.pptx
 
 ---
 
-## 📊 プロンプト使用記録（参考）
+## 📊 プロンプト一覧（ファイル対応表）
 
-| # | 名前 | 実装日 | 実績 | 状態 |
-|---|---|---|---|---|
-| 1 | 提案書11P | 2026-07-10 | T9・T10（タナカ工務店） | ✅ 運用中 |
-| 2 | 診断レポート10P | 2026-07-10 | 複数業種テスト済み | ✅ 運用中 |
-| 3 | 業務効率化診断 | 2026-07-12 | 内部テスト | ✅ 運用中 |
-| 7 | スライド自動生成 | 2026-07-15 | 設計中 | 🔄 テスト中 |
-| 8 | A4チラシ | 2026-07-16 | T6（FieldSync） | ✅ 運用中 |
-| 9 | RPA導入ガイド | 2026-07-17 | T12 | ✅ 運用中 |
-| 10-14 | テンプレート系 | 2026-07-18 | 複数案件で使用 | ✅ 運用中 |
-
----
-
-## 🚀 次のステップ
-
-**社長（営業マン）へ：**
-- [ ] 初回は #1（提案書11P）から試す
-- [ ] 得意な AI を見つける（Claude か ChatGPT か Gemini）
-- [ ] 定期的に使う 3～5 個のプロンプトを「お気に入り」にする
-
-**企画（コトハ）へ：**
-- [ ] このプロンプト集をココナラに商品化
-- [ ] HTML 版でサンプル提供（ブラウザで体験版）
-- [ ] 「初期費用 0・AI 月額課金のみ」で販売
-
-**自動化（ハック）へ：**
-- [ ] 変換スクリプト（html_to_pdf.mjs など）の自動実行化
-- [ ] 営業マン向けデスクトップアプリ化（プロンプト入力 UI）
-- [ ] 複数業種・複数 AI の並列実行スケジューラ
+| # | 名前 | ファイル | 状態 |
+|---|---|---|---|
+| 1 | 提案書11P | prompt_proposal_11p.md | ✅ |
+| 2 | 診断レポート10P | prompt_diagnosis_10p.md | ✅ |
+| 3 | 業務効率化診断 | prompt_efficiency_diagnosis.md | ✅ |
+| 4 | 提案書自動生成 | prompt_proposal_auto.md | ✅ |
+| 5 | AI-Prezen-Making（Gemini） | prompt_prezen_making_gemini.md | ✅ |
+| 6 | Gemini版提案書 | gemini-code-1783929990636.html | ✅ |
+| 7 | スライド自動生成 | prompt_slide_hearing.md | ✅ |
+| 8 | A4チラシ（企業） | prompt_a4_flyer_corporate.md | ✅ |
+| 8 | A4チラシ（フリーランス） | prompt_a4_flyer_freelancer.md | ✅ |
+| 9 | RPA導入ガイド | prompt_rpa_guide.md | ✅ |
+| 10 | AIエージェント用テンプレ | prompt_agent_template.md | ✅ |
+| 11 | 課題整理シート | prompt_issue_sheet.md | ✅ |
+| 12 | 応募文（記事ライティング） | prompt_apply_writing.md | ✅ |
+| 13 | 応募文（提案書・AI文書系） | prompt_apply_proposal.md | ✅ |
+| 14 | 診断プロンプト（簡略版） | prompt_diagnosis_short.md | ✅ |
 
 ---
 
-**作成者**：ハック（自動化エンジニア）  
-**最後更新**：2026-07-23  
-**バージョン**：1.0
+## 🚀 はじめての方へ：次のステップ
+
+- [ ] まず **#1（提案書11P）** を Claude か ChatGPT に貼って動作確認
+- [ ] 自分がよく使う AI（Claude / ChatGPT / Gemini）を決める
+- [ ] よく使うプロンプト 3〜5本を手元にブックマークしておく
+- [ ] わからないことがあれば `zodiacm369@gmail.com` へ
+
+---
+
+**最後更新**：2026-08-21  
+**バージョン**：1.1  
+**サポート**：zodiacm369@gmail.com
