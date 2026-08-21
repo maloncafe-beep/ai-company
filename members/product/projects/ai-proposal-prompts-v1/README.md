@@ -171,7 +171,7 @@ ai-proposal-prompts-v1/
 │   ├── prompt_a4_flyer_corporate.md .... A4両面チラシ：企業向け版
 │   ├── prompt_a4_flyer_freelancer.md ....A4両面チラシ：フリーランス版
 │   ├── prompt_presentation_gemini.md ... Gemini 版：プレゼンテーション
-│   └── ... (全 7 種類)
+│   └── ... (全 14 種類)
 │
 └── samples/ ............................ 実装済み実績・使用例
     ├── sample_proposal_techbridge.md ... 実例 1：テック・ブリッジ社向け提案書

@@ -15,7 +15,7 @@
 
 ---
 
-## 📂 プロンプト一覧（全7種類）
+## 📂 プロンプト一覧（全14種類）
 
 ### グループ A：コア提案書・診断系
 
@@ -24,7 +24,7 @@
 - **特徴**：費用・スケジュール・ROI計算を含む詳細提案書
 - **出力形式**：HTML → PDF / PPTX
 - **対応AI**：Claude / ChatGPT / Gemini
-- **ファイル**：`logs/PrezenAutomake/prompt_提案書11P.md`
+- **ファイル**：`prompts/prompt_proposal_11p.md`
 - **実績**：T9・T10（タナカ工務店提案書）
 
 **使い方の例**：
@@ -44,7 +44,7 @@ Claude：「HTML提案書が logs/PrezenAutomake/output/ に保存されまし�
 - **特徴**：1920×1080px（16:9）でプレゼン形式。セミナー後の読み物・ナーチャリング資料
 - **出力形式**：HTML → PDF / PPTX
 - **対応AI**：Claude / ChatGPT / Gemini
-- **ファイル**：`logs/PrezenAutomake/prompt_診断レポート10P.md`
+- **ファイル**：`prompts/prompt_diagnosis_10p.md`
 - **実績**：実装済み・複数業種でテスト
 
 **使い方**：
@@ -64,48 +64,48 @@ Claude：「HTML提案書が logs/PrezenAutomake/output/ に保存されまし�
 - **特徴**：中小企業向けDX・業務改善診断。計算式を含む
 - **出力形式**：HTML（1ページ完結）
 - **対応AI**：Claude / ChatGPT / Gemini
-- **ファイル**：`logs/PrezenAutomake/業務効率化診断プロンプト.md`
+- **ファイル**：`prompts/prompt_efficiency_diagnosis.md`
 
 ---
 
 ### グループ B：提案書別バージョン
 
-#### #4 提案書自動生成プロンプト ⭐⭐ 簡単 🚧 **準備中（本パッケージ未収録）**
+#### #4 提案書自動生成プロンプト ⭐⭐ 簡単
 - **用途**：汎用提案書
 - **特徴**：#1 より少し簡略版
 - **出力形式**：HTML
 - **対応AI**：Claude / ChatGPT / Gemini
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_proposal_auto.md`
 
 ---
 
-#### #5 AI-Prezen-MakingPrompt ⭐⭐⭐ 中 🚧 **準備中（本パッケージ未収録）**
+#### #5 AI-Prezen-MakingPrompt ⭐⭐⭐ 中
 - **用途**：Gemini特化版（旧版）
 - **特徴**：WeasyPrint で PDF 直接生成を想定
 - **出力形式**：PDF（直接出力 or HTML）
 - **対応AI**：Gemini
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_prezen_making_gemini.md`
 - **⚠️ 注意**：Python環境が必要。HTML化への移行推奨
 
 ---
 
-#### #6 Gemini版提案書プロンプト ⭐⭐⭐ 中 🚧 **準備中（本パッケージ未収録）**
+#### #6 Gemini版提案書プロンプト ⭐⭐⭐ 中
 - **用途**：Gemini固有の最適化実装
 - **特徴**：Gemini Code Execution で直接生成
 - **出力形式**：HTML / PDF
 - **対応AI**：Gemini
-- **ファイル**：準備中
+- **ファイル**：`prompts/gemini-code-1783929990636.html`
 
 ---
 
 ### グループ C：スライド・資料系
 
-#### #7 スライド自動生成ヒアリングプロンプト ⭐⭐⭐ 難 🚧 **準備中（本パッケージ未収録）**
+#### #7 スライド自動生成ヒアリングプロンプト ⭐⭐⭐ 難
 - **用途**：5ページPowerPoint資料を対話型で自動生成
 - **特徴**：AIとの対話で構成を決定 → PPTX 自動生成
 - **出力形式**：PPTX （ChatGPT の python-pptx 実行推奨）
 - **対応AI**：**ChatGPT + Code Interpreter** 推奨
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_slide_hearing.md`
 
 **使い方**：
 ```
@@ -119,70 +119,70 @@ ChatGPT：「python-pptx コードを生成しました。このコードをCode
 
 ---
 
-#### #8 A4チラシHTMLプロンプト ⭐⭐ 簡単 🚧 **準備中（本パッケージ未収録）**
+#### #8 A4チラシHTMLプロンプト ⭐⭐ 簡単
 - **用途**：A4横（297mm×210mm）チラシを HTML で自動生成
 - **特徴**：FieldSyncチラシの実績あり
 - **出力形式**：HTML → PDF / PNG（Puppeteer）
 - **対応AI**：Claude / ChatGPT / Gemini
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_a4_flyer_corporate.md`（企業向け）/ `prompts/prompt_a4_flyer_freelancer.md`（フリーランス向け）
 
 **実績**：FieldSync チラシ（T6）で PDF / PNG 化完成
 
 ---
 
-#### #9 RPA導入ガイド＆製品比較レポート ⭐⭐ 簡単 🚧 **準備中（本パッケージ未収録）**
+#### #9 RPA導入ガイド＆製品比較レポート ⭐⭐ 簡単
 - **用途**：RPA ツール7つを比較・DX図解・AI+RPA 連携フロー
 - **特徴**：7ページの詳細レポート
 - **出力形式**：HTML
 - **対応AI**：Claude / Gemini
-- **ファイル**：準備中
+- **ファイル**：`samples/sample_rpa_guide.html`（出力サンプル）※プロンプトファイル別途準備中
 
 ---
 
 ### グループ D：テンプレート・ヒアリング系
 
-#### #10 AIエージェント用プロンプトテンプレート ⭐⭐ 中 🚧 **準備中（本パッケージ未収録）**
+#### #10 AIエージェント用プロンプトテンプレート ⭐⭐ 中
 - **用途**：マルチエージェント・並列実行時の指示文テンプレート
 - **特徴**：複数社員に同時指示する際の標準形式
 - **出力形式**：Markdown
 - **対応AI**：Claude / ChatGPT / Gemini
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_agent_template.md`
 
 ---
 
-#### #11 課題整理シート ⭐ 簡単 🚧 **準備中（本パッケージ未収録）**
+#### #11 課題整理シート ⭐ 簡単
 - **用途**：クライアント向けヒアリングシート
 - **特徴**：業務課題を構造化（営業マン→クライアント に配布）
 - **出力形式**：Markdown / PDF
 - **対応AI**：汎用テンプレート
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_issue_sheet.md`
 
 ---
 
-#### #12 応募文テンプレート（記事ライティング） ⭐ 簡単 🚧 **準備中（本パッケージ未収録）**
+#### #12 応募文テンプレート（記事ライティング） ⭐ 簡単
 - **用途**：クラウドソーシング用・ランサーズ向け応募文
 - **特徴**：記事執筆案件への標準応募文
 - **出力形式**：Markdown
 - **対応AI**：汎用テンプレート
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_apply_writing.md`
 
 ---
 
-#### #13 応募文テンプレート（提案書・AI文書系） ⭐ 簡単 🚧 **準備中（本パッケージ未収録）**
+#### #13 応募文テンプレート（提案書・AI文書系） ⭐ 簡単
 - **用途**：提案書系案件向け応募文
 - **特徴**：差別化ポイント・実績を組み込んだ営業文
 - **出力形式**：Markdown
 - **対応AI**：汎用テンプレート
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_apply_proposal.md`
 
 ---
 
-#### #14 診断プロンプト（Sindanprompt） ⭐ 簡単 🚧 **準備中（本パッケージ未収録）**
+#### #14 診断プロンプト（Sindanprompt） ⭐ 簡単
 - **用途**：簡略版診断レポート
 - **特徴**：別形式の診断生成方法・軽量版
 - **出力形式**：HTML / Markdown
 - **対応AI**：Claude / ChatGPT / Gemini
-- **ファイル**：準備中
+- **ファイル**：`prompts/prompt_diagnosis_short.md`
 
 ---
 
