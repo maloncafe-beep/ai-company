@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>営業効率化および業務改善に関する提案書</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;       /* ディープネイビー */
+            --secondary: #1e3a8a;     /* コーポレートブルー */
+            --accent: #0284c7;        /* スカイブルー */
+            --accent-light: #f0f9ff;  /* 背景用ライトブルー */
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --alert: #ef4444;
+            --success: #10b981;
+            --page-width: 297mm;      /* A4横サイズ */
+            --page-height: 210mm;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #777; color: var(--text-dark); -webkit-print-color-adjust: exact; }
+
+        .slide-container { width: var(--page-width); margin: 0 auto; }
+        
+        /* ページ（スライド）基本構造 */
+        .page {
+            width: var(--page-width);
+            height: var(--page-height);
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            padding: 25mm 30mm 20mm 30mm;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        /* ヘッダー・フッター */
+        .page-header {
+            position: absolute;
+            top: 12mm; left: 30mm; right: 30mm;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px; color: var(--text-muted); font-size: 12px;
+        }
+        .page-header .title-left { font-weight: 700; color: var(--secondary); }
+        .page-footer {
+            position: absolute;
+            bottom: 10mm; left: 30mm; right: 30mm;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px; color: var(--text-muted); font-size: 11px;
+        }
+
+        /* タイトルスタイル */
+        .slide-title {
+            font-size: 32px; font-weight: 700; color: var(--primary);
+            margin-bottom: 30px; display: flex; align-items: center; gap: 12px;
+            border-left: 8px solid var(--secondary); padding-left: 15px;
+        }
+
+        /* レイアウトツール */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .flex-grow { flex-grow: 1; }
+
+        /* コンポーネント */
+        .card { background: var(--accent-light); border-radius: 8px; padding: 25px; border: 1px solid #e0f2fe; }
+        .card-title { font-size: 20px; font-weight: 700; color: var(--secondary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        
+        /* 表（テーブル） */
+        table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
+        th { background: var(--secondary); color: white; padding: 12px 16px; font-weight: 700; text-align: left; }
+        td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); background: white; }
+        tr:nth-child(even) td { background: var(--accent-light); }
+
+        /* 1ページ目：表紙カスタム */
+        .cover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 70%, var(--accent) 100%);
+            color: white; justify-content: center; padding: 50mm 40mm;
+        }
+        .cover-sub { font-size: 24px; color: #bae6fd; font-weight: 500; margin-bottom: 15px; letter-spacing: 1px; }
+        .cover-main { font-size: 52px; font-weight: 700; line-height: 1.3; margin-bottom: 50px; border-bottom: 3px solid white; padding-bottom: 25px; }
+        .cover-meta { margin-top: auto; font-size: 18px; display: grid; grid-template-columns: 120px 1fr; gap: 10px 0; color: #e2e8f0; }
+
+        /* 視覚的グラフ要素 */
+        .bar-chart { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        .bar-row { display: flex; align-items: center; gap: 15px; }
+        .bar-label { width: 100px; font-weight: 700; font-size: 16px; }
+        .bar-container { flex-grow: 1; background: #e2e8f0; height: 30px; border-radius: 4px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; background: var(--alert); display: flex; align-items: center; padding-left: 15px; color: white; font-weight: 700; }
+        .bar-fill.success { background: var(--success); }
+
+        /* ロードマップ */
+        .roadmap { display: flex; justify-content: space-between; align-items: stretch; margin-top: 20px; }
+        .step { flex: 1; background: var(--accent-light); border: 2px solid #e0f2fe; border-radius: 8px; padding: 20px; text-align: center; }
+        .step.active { border-color: var(--secondary); background: white; box-shadow: 0 4px 12px rgba(30,58,138,0.1); }
+        .arrow { display: flex; align-items: center; font-size: 32px; color: var(--secondary); padding: 0 10px; }
+
+        @media print {
+            body { background-color: #ffffff; }
+            .page { box-shadow: none; margin-bottom: 0; width: var(--page-width); height: var(--page-height); }
+            @page { size: A4 landscape; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+
+    <!-- 1. 表紙 -->
+    <div class="page cover">
+        <div class="cover-sub">営業準備の自動化による攻めの営業スタイルへの変革</div>
+        <div class="cover-main">効率化および業務改善に関する提案書</div>
+        <div class="cover-meta">
+            <span>ご提出先</span><strong>株式会社サンプル商事 御中</strong>
+            <span>提案会社</span><strong>株式会社NextSales</strong>
+            <span>日付</span><strong>2026年7月13日</strong>
+        </div>
+    </div>
+
+    <!-- 2. アジェンダ -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社NextSales</span><span>提案書 | アジェンダ</span></div>
+        <h2 class="slide-title"><i class="ri-list-check-2"></i> 本日のアジェンダ</h2>
+        <div class="grid-2 flex-grow" style="align-content: center; max-width: 900px; margin: 0 auto; gap: 15px 40px;">
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">1. ご提案の背景（現状認識）</div>
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">5. 費用サマリー（3カ年推移）</div>
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">2. ご提案のテーマ（課題認識）</div>
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">6. 費用明細・注意事項</div>
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">3. ご提案全体像（As-Is / To-Be）</div>
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">7. スケジュール＆マイルストーン</div>
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">4. 期待される効果（ROI算出）</div>
+            <div style="font-size: 18px; padding: 12px 20px; background: var(--accent-light); border-radius: 4px;">8. 体制図および今後のロードマップ</div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>2</span></div>
+    </div>
+
+    <!-- 3. ご提案の背景 -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>1. ご提案の背景</span></div>
+        <h2 class="slide-title"><i class="ri-article-line"></i> ご提案の背景（現状認識）</h2>
+        <div class="grid-2 flex-grow">
+            <div class="card" style="background: white; border: 2px solid var(--secondary);">
+                <div class="card-title" style="color: var(--secondary);"><i class="ri-flag-line"></i> 会社としての目指す方向性</div>
+                <p style="font-size: 16px; line-height: 1.8; margin-top: 10px;">
+                    激化する市場環境において、貴社がさらなる成長を遂げるためには、既存顧客への深耕および新規顧客の開拓が不可欠です。そのためには、<strong>「無駄な社内工数を極限まで削減し、営業マンが顧客と向き合う『訪問件数・商談時間』を最大化する攻めの営業スタイル」</strong>へシフトすることが急務となっています。
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-title"><i class="ri-error-warning-line"></i> お伺いしている現状の問題</div>
+                <ul style="padding-left: 20px; font-size: 15px; line-height: 1.8;">
+                    <li style="margin-bottom: 8px;">営業マンが訪問前に顧客情報を調べる際、<strong>Excel、FileMaker、紙のノートなど複数の場所</strong>を個別に探す必要があり、情報が激しく散乱している。</li>
+                    <li style="margin-bottom: 8px;">結果として、1回あたりの顧客準備に<strong>30分もの工数</strong>を要している。</li>
+                    <li style="margin-bottom: 8px;">外出・移動中も非効率なデータアクセス環境にあり、膝や体力への負担が大きく、営業ポテンシャルをフルに発揮できていない。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>3</span></div>
+    </div>
+
+    <!-- 4. ご提案のテーマ -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>2. ご提案のテーマ</span></div>
+        <h2 class="slide-title"><i class="ri-focus-3-line"></i> ご提案のテーマ（課題認識）</h2>
+        <div style="background: var(--primary); color: white; padding: 25px; border-radius: 6px; margin-bottom: 25px;">
+            <span style="color: #60a5fa; font-weight: 700; font-size: 14px;">🌟 目指すべきあるべき姿（ゴール）</span>
+            <h3 style="font-size: 24px; margin-top: 5px;">顧客情報の一元化により、準備時間を「5分」に短縮し、圧倒的な訪問件数を担保する</h3>
+        </div>
+        <div class="card flex-grow">
+            <div class="card-title"><i class="ri-git-repository-private-line"></i> 実現するための3つの障壁・課題</div>
+            <div class="grid-3" style="margin-top: 15px;">
+                <div style="background: white; padding: 20px; border-radius: 6px; border-top: 4px solid var(--accent);">
+                    <strong style="font-size: 16px; display:block; margin-bottom:8px;">① 情報のサイロ化</strong>
+                    <p style="font-size: 13px; color: var(--text-muted);">過去のデータ遺産（FileMaker等）と現場のメモ（ノート）が紐づいておらず、検索自体に迷いが発生している。</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 6px; border-top: 4px solid var(--accent);">
+                    <strong style="font-size: 16px; display:block; margin-bottom:8px;">② モバイル対応の不足</strong>
+                    <p style="font-size: 13px; color: var(--text-muted);">移動中や出先からスムーズに必要な情報へアクセスする仕組みがなく、身体的・時間的ロスを生んでいる。</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 6px; border-top: 4px solid var(--accent);">
+                    <strong style="font-size: 16px; display:block; margin-bottom:8px;">③ 標準プロセスの不在</strong>
+                    <p style="font-size: 13px; color: var(--text-muted);">「これだけ見れば準備完了」という最小限の必須情報パッケージ（一元化された画面）が定義されていない。</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>4</span></div>
+    </div>
+
+    <!-- 5. ご提案全体像 -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>3. ご提案全体像</span></div>
+        <h2 class="slide-title"><i class="ri-shape-line"></i> ご提案全体像（解決策：As-Is / To-Be）</h2>
+        <div class="flex-grow" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="grid-2" style="background: var(--accent-light); padding: 25px; border-radius: 8px; border: 1px solid #bae6fd;">
+                <div>
+                    <strong style="color: var(--alert); font-size: 18px; display:block; margin-bottom:10px;"><i class="ri-close-circle-fill"></i> 従来の状況 (As-Is)</strong>
+                    <p style="font-size: 14px; line-height: 1.6; background: white; padding: 15px; border-radius: 6px;">
+                        Excel、FileMaker、ノートを往復。1商談あたり<strong>30分</strong>の準備時間がかかり、移動時の負担も重く、1日の訪問件数が伸び悩む構造。
+                    </p>
+                </div>
+                <div>
+                    <strong style="color: var(--success); font-size: 18px; display:block; margin-bottom:10px;"><i class="ri-checkbox-circle-fill"></i> 導入後の姿 (To-Be)</strong>
+                    <p style="font-size: 14px; line-height: 1.6; background: white; padding: 15px; border-radius: 6px; border: 1px solid var(--success);">
+                        統合データ基盤により、スマートフォンやPCからワンタップで顧客要約を瞬時に把握。準備時間はわずか<strong>5分</strong>へ。体力負荷を軽減し、即座に次なる訪問へ動ける強靭な体制。
+                    </p>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-title" style="font-size: 16px;"><i class="ri-settings-line"></i> 具体的な実施アプローチ</div>
+                <p style="font-size: 14px; color: var(--text-muted);">
+                    散在するExcel・FileMakerデータを抽出し、NextSalesの営業ダッシュボードへ統合。現場ノートの運用プロセスをデジタル入力へ統一することで、「1画面で完結する顧客情報検索」を構築します。
+                </p>
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>5</span></div>
+    </div>
+
+    <!-- 6. 期待される効果について -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>4. 期待される効果</span></div>
+        <h2 class="slide-title"><i class="ri-line-chart-line"></i> 期待される効果について（ROI）</h2>
+        <div class="grid-2 flex-grow">
+            <div class="card" style="background: white;">
+                <div class="card-title"><i class="ri-time-line"></i> 1顧客あたりの営業準備時間比較</div>
+                <div class="bar-chart">
+                    <div class="bar-row">
+                        <div class="bar-label">現状 (As-Is)</div>
+                        <div class="bar-container"><div class="bar-fill" style="width: 100%;">30分</div></div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">導入後(To-Be)</div>
+                        <div class="bar-container"><div class="bar-fill success" style="width: 16.6%;">5分</div></div>
+                    </div>
+                </div>
+                <div style="margin-top: 25px; font-weight: 700; color: var(--success); font-size: 18px;">
+                    <i class="ri-arrow-right-up-line"></i> 1回あたり25分（83.3%）の削減効果！
+                </div>
+            </div>
+            <div class="card" style="background: #f0fdf4; border: 1px dashed var(--success);">
+                <div class="card-title" style="color: var(--success);"><i class="ri-calculator-line"></i> ROI算出の根拠（営業マン1人あたり）</div>
+                <p style="font-size: 14px; line-height: 1.7;">
+                    仮に1日3件の訪問・準備を行う場合：<br>
+                    ・<strong>現状：</strong> 30分 × 3件 ＝ 90分 / 日<br>
+                    ・<strong>導入後：</strong> 5分 × 3件 ＝ 15分 / 日<br>
+                    ・<strong>効果：</strong> 1日あたり<strong>75分の余剰時間</strong>を創出。<br><br>
+                    月20日稼働換算で<strong>毎月25時間</strong>が純増。この創出された時間をすべて「新規訪問・提案活動」に充てることで、訪問件数の最大化と売上成長へダイレクトに貢献します。
+                </p>
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>6</span></div>
+    </div>
+
+    <!-- 7. 費用サマリー -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>5. 費用サマリー</span></div>
+        <h2 class="slide-title"><i class="ri-money-dollar-circle-line"></i> 費用サマリー（3カ年コスト推移）</h2>
+        <p style="font-size: 15px; margin-bottom: 20px;">導入初期費用および運用に伴う3年間の費用推移のシミュレーションです。</p>
+        <div class="grid-3 flex-grow" style="gap: 25px;">
+            <div class="card" style="background: white; border: 1px solid var(--border-color); text-align: center;">
+                <div style="font-weight: 700; color: var(--text-muted);">【1年目】</div>
+                <div style="font-size: 36px; font-weight: 700; color: var(--primary); margin: 15px 0;">¥3,900,000</div>
+                <div style="font-size: 13px; color: var(--text-muted); text-align: left; background: var(--accent-light); padding: 10px; border-radius: 4px;">
+                    初期構築: 100万円<br>月額ライセンス: 240万円<br>サポート費用: 50万円
+                </div>
+            </div>
+            <div class="card" style="background: white; border: 1px solid var(--border-color); text-align: center;">
+                <div style="font-weight: 700; color: var(--text-muted);">【2年目】</div>
+                <div style="font-size: 36px; font-weight: 700; color: var(--primary); margin: 15px 0;">¥2,900,000</div>
+                <div style="font-size: 13px; color: var(--text-muted); text-align: left; background: var(--accent-light); padding: 10px; border-radius: 4px;">
+                    初期構築: ¥0<br>月額ライセンス: 240万円<br>サポート費用: 50万円
+                </div>
+            </div>
+            <div class="card" style="background: white; border: 1px solid var(--border-color); text-align: center;">
+                <div style="font-weight: 700; color: var(--text-muted);">【3年目】</div>
+                <div style="font-size: 36px; font-weight: 700; color: var(--primary); margin: 15px 0;">¥2,900,000</div>
+                <div style="font-size: 13px; color: var(--text-muted); text-align: left; background: var(--accent-light); padding: 10px; border-radius: 4px;">
+                    初期構築: ¥0<br>月額ライセンス: 240万円<br>サポート費用: 50万円
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>7</span></div>
+    </div>
+
+    <!-- 8. 費用詳細 -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>6. 費用詳細明細</span></div>
+        <h2 class="slide-title"><i class="ri-file-list-3-line"></i> 費用詳細（御見積明細）</h2>
+        <div class="flex-grow">
+            <table>
+                <thead>
+                    <tr>
+                        <th>サービス名 / 区分</th>
+                        <th>標準価格</th>
+                        <th>ご提供価格</th>
+                        <th>数量 / 期間</th>
+                        <th>年間費用 (税抜)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>NextSales 営業情報統合データ初期構築費</strong></td>
+                        <td>¥1,200,000</td>
+                        <td><strong>¥1,000,000</strong></td>
+                        <td>1式（初回のみ）</td>
+                        <td>¥1,000,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NextSales クラウド共通ライセンス利用料</strong></td>
+                        <td>¥20,000 / 月</td>
+                        <td><strong>¥20,000 / 月</strong></td>
+                        <td>12ヶ月分</td>
+                        <td>¥2,400,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>年間運用定着・データメンテナンスサポート</strong></td>
+                        <td>¥60,000 / 年</td>
+                        <td><strong>¥500,000</strong></td>
+                        <td>1年間（更新型）</td>
+                        <td>¥500,000</td>
+                    </tr>
+                    <tr style="background: var(--primary); color: white; font-weight: 700;">
+                        <td colspan="4" style="text-align: right; background: var(--primary); color: white;">初年度合計金額 (税抜)：</td>
+                        <td style="background: var(--primary); color: white; font-size: 16px;">¥3,900,000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 20px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                <strong>【注意事項】</strong><br>
+                ※ 月額ライセンスは全社共通基本パックの想定価格です。アカウント数による変動が生じる場合は別途ご案内いたします。<br>
+                ※ サポート費用には、データ構造の軽微な変更対応、およびトラブル時のヘルプデスク対応が含まれます。
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>8</span></div>
+    </div>
+
+    <!-- 9. スケジュール -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>7. スケジュール</span></div>
+        <h2 class="slide-title"><i class="ri-calendar-event-line"></i> プロジェクトスケジュール</h2>
+        <div class="flex-grow">
+            <table style="font-size: 13px;">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">フェーズ・期間</th>
+                        <th style="width: 40%;">実施内容 / マイルストーン</th>
+                        <th style="width: 40%;">貴社ご対応事項</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>第1週（要件定義）</strong></td>
+                        <td>データ抽出設計・現状のExcel/FileMaker定義確認<br><span style="color:var(--accent); font-weight:700;">[マイルストーン：データ移行設計の確定]</span></td>
+                        <td>既存データ（Excel、FileMaker）のサンプル及びノート運用のヒアリングご協力</td>
+                    </tr>
+                    <tr>
+                        <td><strong>第2〜3週（構築期）</strong></td>
+                        <td>データ統合基盤の構築、画面UIデザイン・モバイル最適化</td>
+                        <td>検証環境へのログインテスト、操作感のフィードバック</td>
+                    </tr>
+                    <tr>
+                        <td><strong>第4週（移行・テスト）</strong></td>
+                        <td>本番データ流し込み、および接続テスト</td>
+                        <td>マスターデータ最終承認</td>
+                    </tr>
+                    <tr>
+                        <td><strong>第5週（レクチャー）</strong></td>
+                        <td>現場営業マン向け説明会の実施、運用スタート<br><span style="color:var(--success); font-weight:700;">[マイルストーン：現場運用開始・5分化の達成]</span></td>
+                        <td>全営業担当者の説明会へのアサイン、利用開始の号令</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>9</span></div>
+    </div>
+
+    <!-- 10. プロジェクト体制 -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>8. プロジェクト体制</span></div>
+        <h2 class="slide-title"><i class="ri-team-line"></i> プロジェクト推進体制</h2>
+        <div class="grid-2 flex-grow" style="align-items: center;">
+            <div class="card" style="background: white; border: 1px solid var(--border-color); height: 100%;">
+                <div class="card-title" style="color: var(--primary);"><i class="ri-building-line"></i> 貴社推進体制（株式会社サンプル商事様）</div>
+                <div style="font-size: 14px; display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                    <div style="background: var(--accent-light); padding: 12px; border-radius: 4px;">
+                        <strong>プロジェクトオーナー（営業統括役員 様）</strong><br>
+                        <span style="font-size:12px; color:var(--text-muted);">本プロジェクトの最終意思決定および定着化の推進</span>
+                    </div>
+                    <div style="background: var(--accent-light); padding: 12px; border-radius: 4px;">
+                        <strong>実務リーダー（営業推進・マネージャー 様）</strong><br>
+                        <span style="font-size:12px; color:var(--text-muted);">要件定義への同席、散在データのとりまとめ、現場連携窓口</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="background: var(--primary); color: white; height: 100%;">
+                <div class="card-title" style="color: white;"><i class="ri-customer-service-2-line"></i> 弊社伴走体制（株式会社NextSales）</div>
+                <div style="font-size: 14px; display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                    <div style="background: #1e293b; padding: 12px; border-radius: 4px;">
+                        <strong>シニアコンサルタント（1名）</strong><br>
+                        <span style="font-size:12px; color:#94a3b8;">全体の進行管理、業務フロー設計および現場定着化支援</span>
+                    </div>
+                    <div style="background: #1e293b; padding: 12px; border-radius: 4px;">
+                        <strong>データインテグレーションエンジニア（2名）</strong><br>
+                        <span style="font-size:12px; color:#94a3b8;">Excel/FileMakerからのデータクレンジング・統合画面の実装</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>10</span></div>
+    </div>
+
+    <!-- 11. 今後のさらなる活用について -->
+    <div class="page">
+        <div class="page-header"><span class="title-left">株式会社サンプル商事 御中</span><span>9. 今後のロードマップ</span></div>
+        <h2 class="slide-title"><i class="ri-route-line"></i> 今後のさらなる活用について（将来へのロードマップ）</h2>
+        <p style="font-size: 15px; margin-bottom: 20px;">情報を一元化した後、貴社が「究極の攻めの営業」を展開するための3ステップのロードマップです。</p>
+        <div class="roadmap flex-grow">
+            <div class="step active">
+                <div style="font-size: 18px; font-weight: 700; color: var(--secondary); margin-bottom: 8px;">Phase 1 (今回のご提案)</div>
+                <strong>情報一元化と自動化</strong>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: left;">
+                    散乱するExcel・FileMakerデータを統合し、検索時間を30分から5分へ。営業マンの体力負荷を低減し訪問数を増大。
+                </p>
+            </div>
+            <div class="arrow"><i class="ri-arrow-right-line"></i></div>
+            <div class="step">
+                <div style="font-size: 18px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px;">Phase 2 (拡張フェーズ)</div>
+                <strong>動的営業ナレッジの共有</strong>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: left;">
+                    出先からの「音声入力日報」等を実装し、ノートに眠っていた最新のリアルタイム顧客状況を全社で即時共有可能に。
+                </p>
+            </div>
+            <div class="arrow"><i class="ri-arrow-right-line"></i></div>
+            <div class="step">
+                <div style="font-size: 18px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px;">Phase 3 (AI活用フェーズ)</div>
+                <strong>AIによる自動提案・訪問予測</strong>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: left;">
+                    一元化されたデータをもとに、AIが「今週訪問すべき優先顧客」と「最適な提案プラン」を自動レコメンドする体制の実現。
+                </p>
+            </div>
+        </div>
+        <div class="page-footer"><span>© 2026 NextSales Inc.</span><span>11</span></div>
+    </div>
+
+</div>
+
+</body>
+</html>
