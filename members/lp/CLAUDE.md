@@ -102,6 +102,45 @@
 - 毎日23時にこのCLAUDE.mdを更新する
 - 今日の業務で得た知見・改善点を反映する
 
+---
+
+## 施策・学び（2026-08-24）
+
+### Vercel × GitHub 単一リポジトリ運用
+- `masterz-lp` リポジトリ1つに全LPをサブフォルダで収める（例：`/cafe-komorebi/`、`/ai-company/`）
+- push → Vercel 自動デプロイ（約30秒）
+- 客先案件は別リポジトリ。サンプル・試作段階は masterz-lp に集約してOK
+- フォルダ名に日付を入れない（例：`ai-company-20260723` → `ai-company`）
+
+### お問い合わせフォーム（Formspree）
+- Formspree（formspree.io）で無料アカウント登録 → フォームID取得 → `<form action="https://formspree.io/f/{ID}" method="POST">` に変更するだけで動く
+- 各フィールドに `name` 属性が必須（ないとFormspreeがラベル認識できない）
+- 必須項目には `required` を追加
+- 案件用メールは `zodiacm369@gmail.com`。`maloncafe@gmail.com` はAI開発用で使わない
+- 無料枠は月50件まで
+
+### works（ポートフォリオ）ページ運用
+- `masterz-lp.vercel.app/works/` を制作実績の一覧ページとして運用
+- 個人情報ゼロ・実績のみ掲載 → ランサーズ・クラウドワークスの自己紹介URLとして共有可能
+- LP追加のたびに `works/index.html` にカードを追加し、セクションのカウント数も更新する
+- メインLP（index.html）のポートフォリオセクションからも `./works/` へリンクを張る
+
+### モバイルフレームLP → デスクトップファーストへのリデザイン
+- スマホ幅（430px）の `.phone` ラッパーで作られたLPはデスクトップで見ると貧相
+- リデザイン時は `max-w-6xl` フルワイドに変更し、3カラムグリッドを活用する
+- Google Fonts（Inter + Noto Sans JP）を必ず追加する
+- スティッキーCTA（右下固定ボタン）は企業向けLPで有効
+
+### 画像素材
+- Higgsfield（`mcp__9c76bd74-*__generate_image`）で画像生成できる
+- ヒーロービジュアル・アバター・サービスイラストなど素材が必要な場面で積極活用する
+- フリー素材人物写真・AI生成人物イラストは引き続き禁止
+
+### CTAリンクの設計
+- サービスLP内の「相談する」CTAは、そのLP内フォームまたは masterz-lp の `#contact` に誘導
+- 「コーポレートサイト」リンクは `masterz-lp.vercel.app/` に統一
+- git submodule 問題：既存の `.git` があるフォルダを別リポジトリに追加するとsubmodule化する → `git rm --cached <folder>` → `.git` 削除 → 再add で解決
+
 
 
 ## セッション起動時（push型：LINE受信ごとに自動spawn）
