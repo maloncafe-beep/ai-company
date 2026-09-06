@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, initial-scale=1.0">
+<title>訪問販売業界向け 業務効率化・デジタル化 診断レポート</title>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #0f172a;
+    color: #334155;
+    -webkit-print-color-adjust: exact;
+  }
+  .page {
+    width: 1920px;
+    height: 1080px;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px 100px 60px 100px;
+  }
+  
+  /* Header & Footer */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+  .page-header .category {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .page-header .doc-title {
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 500;
+  }
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+    font-size: 14px;
+    color: #94a3b8;
+  }
+  .page-number {
+    font-weight: 700;
+    color: #1e293b;
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* Page Content Area */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Headings */
+  h1 { font-size: 48px; font-weight: 900; line-height: 1.2; color: #0f172a; }
+  h2 { font-size: 32px; font-weight: 700; line-height: 1.3; color: #1e293b; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+  h2 i { color: #2563eb; }
+  h3 { font-size: 22px; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
+  p { font-size: 16px; line-height: 1.7; color: #475569; }
+
+  /* Utilities Cards & Badges */
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .badge-high { background: #fef2f2; color: #ef4444; border: 1px solid #fca5a5; }
+  .badge-med { background: #fffbeeb; color: #d97706; border: 1px solid #fde68a; }
+  .badge-easy { background: #f0fdf4; color: #16a34a; border: 1px solid #86efac; }
+  .badge-blue { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+
+  .card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .card-highlight {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+  }
+
+  /* Page 1 Specific */
+  .cover-page {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 120px;
+  }
+  .cover-badge {
+    background: rgba(37, 99, 235, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  .cover-title {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.15;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  .cover-sub {
+    font-size: 28px;
+    color: #94a3b8;
+    margin-bottom: 60px;
+    font-weight: 400;
+  }
+  .cover-meta {
+    border-top: 1px solid #334155;
+    padding-top: 40px;
+    width: 100%;
+    display: flex;
+    gap: 60px;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 6px; }
+  .meta-item .label { font-size: 14px; color: #64748b; }
+  .meta-item .value { font-size: 20px; font-weight: 700; color: #f8fafc; }
+
+  /* Grids Layout */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+  .grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+  .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th {
+    background: #1e293b;
+    color: #ffffff;
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 15px;
+    color: #334155;
+  }
+  tr:nth-child(even) { background: #f8fafc; }
+
+  /* ROI Box */
+  .roi-box {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 2px solid #93c5fd;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 20px;
+  }
+  .roi-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .roi-formula {
+    font-family: monospace;
+    font-size: 16px;
+    background: #ffffff;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid #bfdbfe;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+  }
+  .roi-result {
+    font-size: 24px;
+    font-weight: 900;
+    color: #1e40af;
+  }
+
+  /* Workflow Step Box */
+  .wf-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .wf-step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #ffffff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border-left: 5px solid #2563eb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  }
+  .wf-num {
+    width: 36px;
+    height: 36px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* Q&A Accordion style visual */
+  .qa-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .qa-q {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 16px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .qa-q span { color: #2563eb; font-weight: 900; }
+  .qa-a { font-size: 14px; color: #475569; padding-left: 28px; }
+
+</style>
+</head>
+<body>
+
+  <!-- PAGE 1: COVER -->
+  <div class="page cover-page">
+    <div>
+      <div class="cover-badge"><i class="ri-pulse-line"></i> 業務効率化・DX診断レポート</div>
+      <div class="cover-title">訪問販売営業の「紙・属人化」脱却<br>生産性向上＆管理自動化レポート</div>
+      <div class="cover-sub">アナログ脱却から始める 訪問販売業のための現場変革プログラミング</div>
+    </div>
+    <div class="cover-meta">
+      <div class="meta-item">
+        <span class="label">対象企業様</span>
+        <span class="value">訪問販売事業者 様</span>
+      </div>
+      <div class="meta-item">
+        <span class="label">診断対象テーマ</span>
+        <span class="value">営業報告書バラツキ・進捗不可視・ナレッジ未還元</span>
+      </div>
+      <div class="meta-item">
+        <span class="label">作成日</span>
+        <span class="value">2026年9月6日</span>
+      </div>
+      <div class="meta-item">
+        <span class="label">作成機関</span>
+        <span class="value">DX・業務改善経営コンサルティング事業部</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: SUMMARY -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-dashboard-line"></i> EXECUTIVE SUMMARY</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-search-eye-line"></i> 診断サマリー：現状のボトルネックと改善可能性</h2>
+      <div class="grid-2" style="margin-bottom: 30px;">
+        <div class="card" style="border-top: 4px solid #ef4444;">
+          <h3><i class="ri-error-warning-line" style="color:#ef4444;"></i> 貴社の現在の主要ボトルネック TOP3</h3>
+          <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+            <div style="background:#fff; padding:15px; border-radius:8px; border-left:4px solid #ef4444;">
+              <strong style="color:#1e293b;">1. 報告書フォーマットの乱立と集計コスト</strong>
+              <p style="font-size:14px; margin-top:4px;">紙・LINE・メモ帳など報告様式がバラバラ。管理者による手入力転記と再確認に毎日莫大な時間が消費されています。</p>
+            </div>
+            <div style="background:#fff; padding:15px; border-radius:8px; border-left:4px solid #f59e0b;">
+              <strong style="color:#1e293b;">2. 訪問現場の「リアルタイム進捗」のブラックボックス化</strong>
+              <p style="font-size:14px; margin-top:4px;">誰がどのエリアでどんな商談をしているか帰社まで把握できず、適切なフォローや即時指導が不可能です。</p>
+            </div>
+            <div style="background:#fff; padding:15px; border-radius:8px; border-left:4px solid #f59e0b;">
+              <strong style="color:#1e293b;">3. 顧客の声・断り理由の放置と無策な再訪問</strong>
+              <p style="font-size:14px; margin-top:4px;">「なぜ断られたか」「いつ再アプローチすべきか」の情報が共有されず、訪問リストの精度が低下し続けています。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 4px solid #2563eb;">
+          <h3><i class="ri-rocket-line" style="color:#2563eb;"></i> 優先度の高い効率化テーマ TOP3</h3>
+          <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+            <div style="background:#fff; padding:15px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong style="color:#1e293b;">テーマ①：モバイル入力＆標準フォーマット化</strong>
+                <p style="font-size:13px; color:#64748b; margin-top:2px;">スマートフォンでタップのみで即時完了する日報システム導入</p>
+              </div>
+              <span class="badge badge-easy">難易度：低 / 即効性：高</span>
+            </div>
+            <div style="background:#fff; padding:15px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong style="color:#1e293b;">テーマ②：リアルタイム位置・進捗トラッキングダッシュボード</strong>
+                <p style="font-size:13px; color:#64748b; margin-top:2px;">マップ連動で各営業マンの訪問ステータスを可視化</p>
+              </div>
+              <span class="badge badge-med">難易度：中 / 効果：大</span>
+            </div>
+            <div style="background:#fff; padding:15px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong style="color:#1e293b;">テーマ③：顧客フィードバックデータベース＆自動分析</strong>
+                <p style="font-size:13px; color:#64748b; margin-top:2px;">失注理由・次回接点時期のデータ化と自動リマインド通知</p>
+              </div>
+              <span class="badge badge-high">難易度：中 / 効果：極大</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roi-box" style="margin-top:0;">
+        <div class="roi-title"><i class="ri-calculator-line"></i> 期待される全社での年間削減効果シミュレーション（営業10名想定）</div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px; align-items:center;">
+          <div class="roi-formula">
+            【報告書作成・転記削減】営業10名 × 30分/日 × 20日 ＝ 100時間/月<br>
+            【管理者集計・状況確認】管理者2名 × 45分/日 × 20日 ＝ 30時間/月<br>
+            【合計削減時間】130時間/月 × 12ヶ月 ＝ 年間 1,560 時間削減
+          </div>
+          <div style="text-align:right;">
+            <span style="font-size:14px; color:#475569;">想定人件費抑制額（時給2,500円換算）</span>
+            <div class="roi-result">年間 3,900,000 円 の削減</div>
+            <span style="font-size:12px; color:#64748b;">※さらに商談数の増加による売上向上効果が加算されます</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 2 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 3: INDUSTRY BACKGROUND -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-global-line"></i> INDUSTRY TRENDS</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-line-chart-line"></i> 訪問販売業界の背景とデジタル化トレンド</h2>
+      
+      <div class="card card-highlight" style="margin-bottom:30px; background:#fff1f2; border-color:#fecdd3;">
+        <h3 style="color:#9f1239;"><i class="ri-alarm-warning-fill" style="color:#e11d48;"></i> 「まだ紙の日報と電話確認で消耗しますか？」業界の常識破壊</h3>
+        <p style="color:#881337; font-size:16px;">
+          従来の訪問販売では、「夕方事務所に戻って1時間かけて紙の報告書を書く」「管理者が夜遅くまでエクセルに入力し直す」ことが当たり前でした。しかし、人手不足と人件費高騰が進む現在、**「移動中・直帰時のスマホ数十秒入力」**への移行が業界標準です。報告の遅れは顧客の熱量を逃す最大の失注原因となっています。
+        </p>
+      </div>
+
+      <div style="margin-bottom:30px;">
+        <h3><i class="ri-route-line"></i> 訪問販売デジタル化ロードマップ（3ステップ）</h3>
+        <div class="grid-3" style="margin-top:15px;">
+          <div class="card" style="border-top:4px solid #94a3b8;">
+            <div style="font-size:14px; color:#64748b; font-weight:700;">STEP 1：現場の負荷ゼロ化</div>
+            <h4 style="font-size:18px; margin:8px 0; color:#1e293b;">モバイル報告の一体化</h4>
+            <p style="font-size:14px;">手書きやテキスト箇条書きを完全廃止。選択式スマホUIにより訪問直後に現地で報告を完了させ、事務所への移動時間を削減。</p>
+          </div>
+          <div class="card" style="border-top:4px solid #2563eb;">
+            <div style="font-size:14px; color:#2563eb; font-weight:700;">STEP 2：管理のリアルタイム化</div>
+            <h4 style="font-size:18px; margin:8px 0; color:#1e293b;">進捗の地図可視化</h4>
+            <p style="font-size:14px;">誰がどの地域のどのステータス（不在・交渉中・成約・見送り）にいるかをリアルタイムマップで可視化し、適切な指示を実施。</p>
+          </div>
+          <div class="card" style="border-top:4px solid #10b981;">
+            <div style="font-size:14px; color:#10b981; font-weight:700;">STEP 3：資産化・再アプローチ</div>
+            <h4 style="font-size:18px; margin:8px 0; color:#1e293b;">断り理由のデータマーケ化</h4>
+            <p style="font-size:14px;">不成立の理由（価格・時期・他社）と次回提案時期をデータベース化。数ヶ月後の「見込み顧客自動リマインド」で再訪問精度を向上。</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3><i class="ri-key-2-line"></i> 今すぐチェックすべき業界特化キーワード</h3>
+        <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:10px;">
+          <span class="badge badge-blue" style="font-size:15px; padding:10px 18px;"><i class="ri-price-tag-3-line"></i> モバイルSFA（営業支援）</span>
+          <span class="badge badge-blue" style="font-size:15px; padding:10px 18px;"><i class="ri-price-tag-3-line"></i> エリアマーケティングGIS</span>
+          <span class="badge badge-blue" style="font-size:15px; padding:10px 18px;"><i class="ri-price-tag-3-line"></i> 音声入力型日報アプリ</span>
+          <span class="badge badge-blue" style="font-size:15px; padding:10px 18px;"><i class="ri-price-tag-3-line"></i> 訪問履歴マップ共有</span>
+          <span class="badge badge-blue" style="font-size:15px; padding:10px 18px;"><i class="ri-price-tag-3-line"></i> 失注顧客自動追客CRM</span>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 3 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 4: MATRIX TABLE -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-table-line"></i> PROCESS MAPPING</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-list-check-2"></i> 業務別 効率化対応表（手作業 vs デジタル）</h2>
+      <p style="margin-bottom:20px;">訪問販売における業務プロセスの現状と、デジタル化による劇的改善ポイントの一覧です。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%;">対象業務</th>
+            <th style="width: 25%;">現在の手作業・運用</th>
+            <th style="width: 25%;">発生している無駄・リスク</th>
+            <th style="width: 25%;">導入すべきデジタル施策</th>
+            <th style="width: 10%;">優先度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>営業報告（日報）</strong></td>
+            <td>各自が手書き用紙・LINE・個人のメモ等で作成し提出。</td>
+            <td>書式がバラバラで比較不能。集計時に管理者がエクセルへ再入力（二重手入力）。</td>
+            <td>スマートフォン専用SFAフォーム（選択式タグ＋音声入力）</td>
+            <td><span class="badge badge-high">最優先</span></td>
+          </tr>
+          <tr>
+            <td><strong>進捗・行動管理</strong></td>
+            <td>夕方の帰社後ミーティングや電話確認で口頭で状況報告。</td>
+            <td>リアルタイムで誰がどこにいるかわからず、日中のフォローや指導が不可能。</td>
+            <td>マップ連動型リアルタイム位置・ステータス共有ボード</td>
+            <td><span class="badge badge-high">最優先</span></td>
+          </tr>
+          <tr>
+            <td><strong>顧客情報の還元</strong></td>
+            <td>断られた理由や反応が個人の記憶のみに残る（属人化）。</td>
+            <td>同じ失敗を繰り返す。引き継ぎができずエリア移動時に顧客情報がリセット。</td>
+            <td>顧客・ピンポイント訪問履歴データベース（クラウドCRM）</td>
+            <td><span class="badge badge-med">優先</span></td>
+          </tr>
+          <tr>
+            <td><strong>再訪問リスト作成</strong></td>
+            <td>「来月また来て」と言われた記憶を各自の手帳で管理。</td>
+            <td>見込み顧客の追いかけ漏れ、最適な再訪タイミングの失念による失注。</td>
+            <td>次回接点予定自動リマインド＆訪問ルート自動生成</td>
+            <td><span class="badge badge-med">優先</span></td>
+          </tr>
+          <tr>
+            <td><strong>契約・重要書類作成</strong></td>
+            <td>現場で手書き契約書を作成し、後日事務所で原本をスキャン・保管。</td>
+            <td>記載漏れや誤字での再訪問、紙書類の紛失リスクや保管スペースの圧迫。</td>
+            <td>タブレット電子契約システム＋クラウド保管サービス</td>
+            <td><span class="badge badge-easy">検討</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:25px; padding:18px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px;">
+        <strong style="color:#166534;"><i class="ri-lightbulb-line"></i> 着手ポイントのアドバイス</strong>
+        <p style="color:#15803d; font-size:14px; margin-top:5px;">
+          まずは現場負荷が最も高く、改善効果がその日から実感できる**「営業報告のスマホ一元化」**からスタートすることをおすすめします。現場の「ラクになった」という成功体験が次のステップへの円滑な移行を可能にします。
+        </p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 4 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 5: SOLUTION 1 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-git-commit-line"></i> SOLUTION 01</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-smartphone-line"></i> 具体的な効率化施策①：スマホ完結型 フォーマット統一報告</h2>
+      
+      <div class="grid-2-1" style="margin-bottom:20px;">
+        <div class="card">
+          <h3>施策概要と推奨ツール</h3>
+          <p>
+            スマートフォンで「1タップ選択（不在・検討・成約・拒絶など）」と「音声入力」を組み合わせ、訪問終了後30秒で報告が完結するクラウドSFA・日報ツール（例：Cybozu kintone, UPWARD, SmartSFAなど）を導入します。
+          </p>
+          
+          <div style="margin-top:15px; padding:12px; background:#fff; border-radius:6px; border:1px solid #cbd5e1;">
+            <strong style="font-size:14px; color:#1e293b;">ターゲット業務（ペルソナ：現場営業パーソン）</strong>
+            <p style="font-size:13px; color:#64748b; margin-top:4px;">
+              外回り中の移動時間や訪問直後の車内で作成。事務処理のための夕方の無駄な帰社をゼロにします。
+            </p>
+          </div>
+        </div>
+
+        <div class="card card-highlight">
+          <h3>Why This Solution?</h3>
+          <ul style="list-style-type: disc; padding-left:20px; font-size:14px; color:#0369a1; display:flex; flex-direction:column; gap:8px;">
+            <li>記述式の文章入力を排除し「項目選択」にするため、書式のバラつきが根本から消滅。</li>
+            <li>入力データは即座にデータベースへ集計されるため、管理者の手入力転記が完全不要化。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <h3><i class="ri-arrow-right-circle-line"></i> 具体的ワークフロー（Before / After 比較）</h3>
+        <div class="grid-2">
+          <div style="background:#fef2f2; padding:18px; border-radius:8px; border:1px solid #fecdd3;">
+            <strong style="color:#991b1b;"><i class="ri-close-circle-line"></i> Before（現在のアナログ運用）</strong>
+            <ol style="font-size:13px; color:#7f1d1d; margin-left:18px; margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+              <li>紙の報告用紙に手書き、またはLINEで個別のフォーマットで送信。</li>
+              <li>夕方事務所へ戻り、紙の山を提出。あるいは夜間にLINEを連続送信。</li>
+              <li>管理者がエクセルに目視で転記・集計（入力ミスの発生・深夜残業）。</li>
+            </ol>
+          </div>
+          <div style="background:#f0fdf4; padding:18px; border-radius:8px; border:1px solid #bbf7d0;">
+            <strong style="color:#166534;"><i class="ri-checkbox-circle-line"></i> After（デジタル導入後）</strong>
+            <ol style="font-size:13px; color:#14532d; margin-left:18px; margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+              <li>訪問直後、スマホアプリでボタン選択＋音声補足（所要時間30秒）。</li>
+              <li>データはリアルタイムでクラウドの集計ダッシュボードへ直接送信。</li>
+              <li>現場はそのまま直帰可能。管理者の転記作業はゼロ（完全自動化）。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="roi-box" style="margin-top:0;">
+        <div class="roi-title"><i class="ri-calculator-line"></i> ROIシミュレーション（時間・コスト削減）</div>
+        <div class="roi-formula">
+          【報告作成】20分削減/日/人 × 10名 ＝ 200分（3.33時間）/日<br>
+          【管理者転記】45分削減/日 × 2名 ＝ 90分（1.5時間）/日<br>
+          【合計削減効果】4.83時間/日 × 20日 ＝ 月 96.6 時間削減（年間 約1,160時間削減）
+        </div>
+      </div>
+
+      <div style="margin-top:15px;">
+        <div class="qa-card">
+          <div class="qa-q"><span>Q.</span> スマホ操作が苦手な年配営業マンが反発・抵抗しませんか？</div>
+          <div class="qa-a">キーボード入力を不要にし、「選択ボタンのタップ」と「音声入力機能」で統一します。紙に文字を書くよりも物理的に圧倒的に楽になるため、1週間の試行期間でほぼ全員が定着します。</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 5 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 6: SOLUTION 2 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-git-commit-line"></i> SOLUTION 02</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-map-pin-2-line"></i> 具体的な効率化施策②：リアルタイム進捗の可視化ダッシュボード</h2>
+      
+      <div class="grid-2-1" style="margin-bottom:20px;">
+        <div class="card">
+          <h3>施策概要と推奨ツール</h3>
+          <p>
+            地図情報システム（GIS）と連携したSFAマップツール（例：Geocoding連携ツール、UPWARD, Salesforce Maps等）を活用。訪問先のピンの色が状況に応じてリアルタイムに変化し、営業メンバー全員の現在地と商談進捗を画面上で一元把握します。
+          </p>
+          <div style="margin-top:15px; padding:12px; background:#fff; border-radius:6px; border:1px solid #cbd5e1;">
+            <strong style="font-size:14px; color:#1e293b;">ターゲット業務（ペルソナ：営業管理者・リーダー）</strong>
+            <p style="font-size:13px; color:#64748b; margin-top:4px;">
+              「今誰がどこで困っているか」「エリアのピン留め漏れはないか」を画面上で監視し、即座の電話指示や現地フォロー体制を構築。
+            </p>
+          </div>
+        </div>
+
+        <div class="card card-highlight">
+          <h3>Why This Solution?</h3>
+          <ul style="list-style-type: disc; padding-left:20px; font-size:14px; color:#0369a1; display:flex; flex-direction:column; gap:8px;">
+            <li>「今どうなっている？」の進捗確認電話・LINEのやり取りが激減。</li>
+            <li>近くで難しい商談が発生した際、近隣にいる先輩・上司が即座に合流・バックアップ可能。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <h3><i class="ri-arrow-right-circle-line"></i> 具体的ワークフロー（Before / After 比較）</h3>
+        <div class="grid-2">
+          <div style="background:#fef2f2; padding:18px; border-radius:8px; border:1px solid #fecdd3;">
+            <strong style="color:#991b1b;"><i class="ri-close-circle-line"></i> Before（現在のアナログ運用）</strong>
+            <ol style="font-size:13px; color:#7f1d1d; margin-left:18px; margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+              <li>訪問中の現場状況は完全なブラックボックス。</li>
+              <li>管理者は進捗確認のため、営業マンへ頻繁に電話をかける（商談中断のリスク）。</li>
+              <li>訪問効率が悪く、近隣にいるのに別々の営業マンが重複訪問するミスが発生。</li>
+            </ol>
+          </div>
+          <div style="background:#f0fdf4; padding:18px; border-radius:8px; border:1px solid #bbf7d0;">
+            <strong style="color:#166534;"><i class="ri-checkbox-circle-line"></i> After（デジタル導入後）</strong>
+            <ol style="font-size:13px; color:#14532d; margin-left:18px; margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+              <li>管理画面の地図上で、ピン（未訪問・不在・商談中・成約）の色が自動更新。</li>
+              <li>確認電話は不要になり、営業マンは接客に集中できる。</li>
+              <li>効率的なピン配分とルート指示により、1日あたりの訪問件数が1.2倍〜1.5倍に増加。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="roi-box" style="margin-top:0;">
+        <div class="roi-title"><i class="ri-calculator-line"></i> ROIシミュレーション（生産性・移動効率化）</div>
+        <div class="roi-formula">
+          【確認電話対応の削減】15分/日 × 10名 ＝ 2.5時間/日<br>
+          【移動ルート最適化による訪問増加】1人あたり+2件/日 × 10名 ＝ 全社で20件/日の訪問機会創出<br>
+          【効果】無駄なやり取り時間を削減しつつ、営業機会を月間400件増加させる売上直結効果。
+        </div>
+      </div>
+
+      <div style="margin-top:15px;">
+        <div class="qa-card">
+          <div class="qa-q"><span>Q.</span> 「常に監視されている」と営業マンが心理的抵抗を感じませんか？</div>
+          <div class="qa-a">監視目的ではなく「トラブル時の即時助け合い」「無駄な報告電話を減らして早く直帰させるため」という目的を徹底説明します。実際に電話確認が減ることで営業側の満足度は高まります。</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 6 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 7: SOLUTION 3 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-git-commit-line"></i> SOLUTION 03</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-feedback-line"></i> 具体的な効率化施策③：顧客フィードバックデータベース＆自動リマインド</h2>
+      
+      <div class="grid-2-1" style="margin-bottom:20px;">
+        <div class="card">
+          <h3>施策概要と推奨ツール</h3>
+          <p>
+            商談時に得られた「断り理由（価格高・時期尚早・他社契約中等）」や「家族の反応」をタグ付け蓄積。時期が来たら自動で担当者のスマホに再訪問通知を出すクラウド顧客管理・CRM（例：HubSpot, Zoho CRM, kintone等）を導入します。
+          </p>
+          <div style="margin-top:15px; padding:12px; background:#fff; border-radius:6px; border:1px solid #cbd5e1;">
+            <strong style="font-size:14px; color:#1e293b;">ターゲット業務（ペルソナ：全営業担当＆マーケティング担当）</strong>
+            <p style="font-size:13px; color:#64748b; margin-top:4px;">
+              一度断られた顧客情報を使い捨てず、企業の「永続的な資産」としてマーケティングに再利用。
+            </p>
+          </div>
+        </div>
+
+        <div class="card card-highlight">
+          <h3>Why This Solution?</h3>
+          <ul style="list-style-type: disc; padding-left:20px; font-size:14px; color:#0369a1; display:flex; flex-direction:column; gap:8px;">
+            <li>訪問販売の平均成約率は数%。「残りの90%以上の不成立顧客」を次回案件へ育成できる。</li>
+            <li>担当者が退職しても、過去の経緯や断り理由が完璧に引き継がれる。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <h3><i class="ri-arrow-right-circle-line"></i> 具体的ワークフロー（Before / After 比較）</h3>
+        <div class="grid-2">
+          <div style="background:#fef2f2; padding:18px; border-radius:8px; border:1px solid #fecdd3;">
+            <strong style="color:#991b1b;"><i class="ri-close-circle-line"></i> Before（現在のアナログ運用）</strong>
+            <ol style="font-size:13px; color:#7f1d1d; margin-left:18px; margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+              <li>成約しなかった顧客の情報は報告書に書かれず捨てられる（完全流出）。</li>
+              <li>「半年後に来て」と言われても手帳に書くだけで忘れ去られる。</li>
+              <li>担当替えの際、過去に断られた家へ再び無策で訪問しクレーム化。</li>
+            </ol>
+          </div>
+          <div style="background:#f0fdf4; padding:18px; border-radius:8px; border:1px solid #bbf7d0;">
+            <strong style="color:#166534;"><i class="ri-checkbox-circle-line"></i> After（デジタル導入後）</strong>
+            <ol style="font-size:13px; color:#14532d; margin-left:18px; margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+              <li>「時期尚早（3ヶ月後）」のタグを登録しておくと、90日後に自動通知。</li>
+              <li>「前回〇〇で検討中とおっしゃっていた件ですが」とピンポイントで再アプローチ。</li>
+              <li>蓄積された断り理由を分析し、トークスクリプトの改善や新商品開発へ反映。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="roi-box" style="margin-top:0;">
+        <div class="roi-title"><i class="ri-calculator-line"></i> ROIシミュレーション（再訪問による成約率向上）</div>
+        <div class="roi-formula">
+          【見込み客の放置防止】月間100件の「時期尚早・見送り」顧客をデータベース化<br>
+          【再訪問からの成約】自動リマインドにより毎月20件へ再アプローチ → うち2件が成約<br>
+          【年間効果】新規飛込に比べ圧倒的に高確率な成約が年間24件上乗せ創出。
+        </div>
+      </div>
+
+      <div style="margin-top:15px;">
+        <div class="qa-card">
+          <div class="qa-q"><span>Q.</span> 入力項目が増えて現場の入力負担が増えませんか？</div>
+          <div class="qa-a">自由記述ではなく「価格」「時期」「競合」「家族反対」などの選択タグ形式にします。ワンタップで選択できるため、入力時間は数秒しか増えません。</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 7 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 8: TOOL SELECTION & PITFALLS -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-options-line"></i> TOOL SELECTION & LANDMINES</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-shield-cross-line"></i> ツールの選び方マトリクスと導入時の注意点</h2>
+      
+      <div style="margin-bottom:25px;">
+        <h3>ツール選定比較マトリクス表</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 20%;">ツールタイプ</th>
+              <th style="width: 25%;">特徴・強み</th>
+              <th style="width: 20%;">コスト感</th>
+              <th style="width: 20%;">運用のしやすさ</th>
+              <th style="width: 15%;">訪問販売への適正</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ノーコード型SFA<br>(kintone / Plazio等)</strong></td>
+              <td>自社の自社独自の報告項目やフローに合わせて画面を自由作成可能。</td>
+              <td>低〜中<br>(月千円〜/ID)</td>
+              <td>高<br>(自社で改修可能)</td>
+              <td><span class="badge badge-high">最適（おすすめ）</span></td>
+            </tr>
+            <tr>
+              <td><strong>訪問販売特化型GIS/SFA<br>(UPWARD / MapSFA等)</strong></td>
+              <td>地図連動機能が標準搭載。現在地周辺の顧客や履歴がすぐ見れる。</td>
+              <td>中〜高<br>(月数千円/ID)</td>
+              <td>極めて高い<br>(現場向け)</td>
+              <td><span class="badge badge-high">最適（おすすめ）</span></td>
+            </tr>
+            <tr>
+              <td><strong>大手高機能CRM/SFA<br>(Salesforce等)</strong></td>
+              <td>高度な分析や他システム連携が無限に可能。拡張性が非常に高い。</td>
+              <td>高<br>(月1万円〜/ID)</td>
+              <td>難<br>(専任コンサル要)</td>
+              <td><span class="badge badge-med">規模による</span></td>
+            </tr>
+            <tr>
+              <td><strong>汎用チャットツールのみ<br>(LINE WORKS等)</strong></td>
+              <td>導入が容易で導入コストも非常に低い。誰でも使える。</td>
+              <td>極低</td>
+              <td>高（ただし集計不可）</td>
+              <td><span class="badge badge-easy">不十分（限界あり）</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3><i class="ri-error-warning-fill" style="color:#dc2626;"></i> 導入時に失敗する「地雷ツール・失敗パターン」の見分け方</h3>
+        <div class="grid-2" style="margin-top:15px;">
+          <div class="card" style="background:#fff5f5; border-color:#feb2b2;">
+            <strong style="color:#9b1c1c; font-size:16px;"><i class="ri-close-line"></i> 地雷1：PC操作を前提とした多機能SFA</strong>
+            <p style="font-size:13px; color:#7f1d1d; margin-top:5px;">
+              画面に細かな入力項目が数十個あるツール。車内や歩行中にスマホで入力する訪問販売の現場では入力自体が放棄され、完全に形骸化します。
+            </p>
+          </div>
+          <div class="card" style="background:#fff5f5; border-color:#feb2b2;">
+            <strong style="color:#9b1c1c; font-size:16px;"><i class="ri-close-line"></i> 地雷2：通信環境に弱いウェブブラウザ専用ツール</strong>
+            <p style="font-size:13px; color:#7f1d1d; margin-top:5px;">
+              訪問エリア（山間部や建物陰）で電波が悪いと動かないツール。オフラインキャッシュ機能やアプリ版がないと現場ストレスが爆発します。
+            </p>
+          </div>
+          <div class="card" style="background:#fff5f5; border-color:#feb2b2;">
+            <strong style="color:#9b1c1c; font-size:16px;"><i class="ri-close-line"></i> 地雷3：管理者目線だけで選んだ「入力項目多すぎ」設計</strong>
+            <p style="font-size:13px; color:#7f1d1d; margin-top:5px;">
+              経営層や管理者が「アレも分析したい」と入力項目を増やしすぎること。現場は「業務が増えた」と感じ、適当な選択肢を選んでデータが汚染されます。
+            </p>
+          </div>
+          <div class="card" style="background:#fff5f5; border-color:#feb2b2;">
+            <strong style="color:#9b1c1c; font-size:16px;"><i class="ri-close-line"></i> 地雷4：伴走サポートのない「ツール売り切り」ベンダー</strong>
+            <p style="font-size:13px; color:#7f1d1d; margin-top:5px;">
+              契約後、初期設定や現場定着のフォローをしてくれないベンダー。ITリテラシーに不安がある場合、9割の確率で設定段階で頓挫します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 8 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 9: ACTION PLAN -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-flag-line"></i> ACTION PLAN</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-roadmap-line"></i> 業務改善 段階的アクションプラン</h2>
+      <p style="margin-bottom:25px;">無理なく定着させるため、ステップバイステップで推進する3段階のロードマップです。</p>
+
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <!-- STEP 1 -->
+        <div class="card" style="border-left:8px solid #2563eb;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span class="badge badge-blue" style="font-size:15px;">【初級】 今すぐ（今週中）にできること</span>
+            <span style="font-size:14px; font-weight:700; color:#2563eb;">準備・現状整理フェーズ</span>
+          </div>
+          <div class="grid-3" style="margin-top:10px;">
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>1. 現在の報告様式の一覧化</strong>
+              <p style="font-size:13px; margin-top:4px;">LINE、紙、口頭など全メンバーの報告パターンを洗い出す。</p>
+            </div>
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>2. 必須入力項目の厳選（5項目以内）</strong>
+              <p style="font-size:13px; margin-top:4px;">「これだけ分かれば十分」という最小限の報告項目を決める。</p>
+            </div>
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>3. 推進リーダー1名の選定</strong>
+              <p style="font-size:13px; margin-top:4px;">現場で最もスマホ操作が得意な若い営業マンを味方につける。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="card" style="border-left:8px solid #d97706;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span class="badge badge-med" style="font-size:15px;">【中級】 1ヶ月以内に準備・検証すること</span>
+            <span style="font-size:14px; font-weight:700; color:#d97706;">スモールテスト・検証フェーズ</span>
+          </div>
+          <div class="grid-3" style="margin-top:10px;">
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>1. 無料トライアルの導入・設定</strong>
+              <p style="font-size:13px; margin-top:4px;">スマホSFAの無料体験を申し込み、選択式入力画面を作成。</p>
+            </div>
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>2. チーム限定（2〜3名）で先行テスト</strong>
+              <p style="font-size:13px; margin-top:4px;">一部のエリアチームで1週間実際に使ってもらいフィードバック収集。</p>
+            </div>
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>3. 入力操作マニュアル（1枚）作成</strong>
+              <p style="font-size:13px; margin-top:4px;">文字ではなく「画面キャプチャ＋矢印」だけの簡単な手順書を用意。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="card" style="border-left:8px solid #16a34a;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span class="badge badge-easy" style="font-size:15px;">【上級】 3ヶ月後に定着を目指すこと</span>
+            <span style="font-size:14px; font-weight:700; color:#16a34a;">全社展開・仕組み定着フェーズ</span>
+          </div>
+          <div class="grid-3" style="margin-top:10px;">
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>1. 全営業メンバーへの解禁・完全移行</strong>
+              <p style="font-size:13px; margin-top:4px;">旧来の紙・LINE報告を公式に全面廃止し、退路を断つ。</p>
+            </div>
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>2. 朝礼・ミーティングでの画面共有</strong>
+              <p style="font-size:13px; margin-top:4px;">収集されたリアルタイムマップを見ながら成果発表や助言を実施。</p>
+            </div>
+            <div style="background:#fff; padding:12px; border-radius:6px;">
+              <strong>3. 蓄積データの月次レビュー開始</strong>
+              <p style="font-size:13px; margin-top:4px;">「断り理由」の集計結果から営業スクリプトの改善サイクルを回す。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 9 / 10</span>
+    </div>
+  </div>
+
+  <!-- PAGE 10: NEXT STEP & SUPPORT -->
+  <div class="page">
+    <div class="page-header">
+      <div class="category"><i class="ri-hand-heart-line"></i> NEXT STEPS</div>
+      <div class="doc-title">訪問販売向け 業務効率化診断レポート</div>
+    </div>
+    <div class="content">
+      <h2><i class="ri-flight-takeoff-line"></i> ネクストステップ・伴走支援のご案内</h2>
+      
+      <div class="card card-highlight" style="margin-bottom:25px; text-align:center; padding:30px;">
+        <h3 style="font-size:26px; color:#0369a1; margin-bottom:10px;">経営者様・営業リーダー様へのエール</h3>
+        <p style="font-size:18px; color:#0c4a6e; max-width:1400px; margin:0 auto; line-height:1.6;">
+          訪問販売は「人間味溢れる対面コミュニケーション」こそが最大にして最強の強みです。<br>
+          デジタル化の本当の目的は、営業マンをロボットにすることではありません。**無駄な事務作業や移動のストレスを取り払い、お客様と向き合う熱量と時間を最大化すること**にあります。現場が変われば、劇的に成果が変わります。
+        </p>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:30px;">
+        <div class="card">
+          <h3><i class="ri-user-user-line" style="color:#2563eb;"></i> 「自社」でやるべきこと</h3>
+          <ul style="list-style-type: check; margin-left:20px; font-size:15px; color:#334155; display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+            <li><strong>経営陣の強い意志表示：</strong>「現場を楽にするためにデジタルへ移行する」という基本方針の発信。</li>
+            <li><strong>業務ルールの見直し：</strong>「報告は帰社後ではなく現場直後」という営業ルールの再定義。</li>
+            <li><strong>現場の抵抗のケア：</strong>慣れない操作に対するサポート体制と、肯定的な評価文化の醸成。</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="ri-customer-service-2-line" style="color:#10b981;"></i> 「専門コンサルタント」へ頼るべきこと</h3>
+          <ul style="list-style-type: check; margin-left:20px; font-size:15px; color:#334155; display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+            <li><strong>自社に最適なツール選定：</strong>予算と現場リテラシーに合った失敗しないシステム選定。</li>
+            <li><strong>画面設計・入力フォーム構築：</strong>現場が迷わず入力できるUI/UXの初期設定代行。</li>
+            <li><strong>定着化研修・ワークショップ：</strong>現場営業マン向けのハンズオン説明会の実施と伴走支援。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA Box -->
+      <div style="background:linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding:35px; border-radius:12px; color:#fff; text-align:center;">
+        <h3 style="color:#fff; font-size:24px; margin-bottom:10px;">【無料】自社専用 訪問販売DX個別相談・デモ画面作成のご案内</h3>
+        <p style="color:#94a3b8; font-size:15px; margin-bottom:20px;">
+          貴社の現在の報告書フォーマットをお送りいただくだけで、実際のスマホ入力画面の試作サンプルを無料で作成いたします。
+        </p>
+        <div style="display:flex; justify-content:center; gap:20px;">
+          <div style="background:#2563eb; color:#fff; padding:15px 40px; border-radius:30px; font-weight:700; font-size:18px; cursor:pointer; display:inline-flex; align-items:center; gap:10px;">
+            <i class="ri-calendar-check-line"></i> 無料個別相談・試作デモを申し込む
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>訪問販売向け 業務効率化診断レポート</span>
+      <span class="page-number">Page 10 / 10</span>
+    </div>
+  </div>
+
+</body>
+</html>
