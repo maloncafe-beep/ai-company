@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\members\\\\video\\\\projects\\\\katsu\\\\003\\\\assets\\\\bg.png\" \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\remotion-practice\\\\shorts-pipeline-v3\\\\input\\\\bg.png\")"
+    ]
+  }
+}

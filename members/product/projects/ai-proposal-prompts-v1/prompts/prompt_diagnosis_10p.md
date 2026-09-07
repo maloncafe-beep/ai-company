@@ -29,7 +29,7 @@
 | CSS | `<style>`タグ内にすべて記載（モダンで洗練されたビジネスデザイン） |
 | アイコン | Remixicon（CDN読み込み可） |
 | フォント | Noto Sans JP（Google Fonts CDN読み込み可） |
-| ページ幅 | 1920px |
+| ページ幅 | 1920px |(A4で直接印刷の場合: width: 297mm, height: 210mm)
 | ページ高さ | 各1080px（プレゼン画面・16:9想定） |
 | 総ページ数 | 10ページ |
 | 印刷最適化 | `@media print` および `@page { size: A4 landscape; margin: 0; }` を必ず含める |
