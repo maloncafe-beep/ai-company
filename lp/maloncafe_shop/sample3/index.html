@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — AI活用・業務改善 資料サンプル</title>
+<style>
+  :root {
+    --bg: #0F1923;
+    --card-bg: #1C2B3A;
+    --border: #243447;
+    --navy: #0A3D7C;
+    --blue: #0095D9;
+    --amber: #F7A800;
+    --text: #E2EBF5;
+    --muted: #6B8CAE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .header-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-size: 28px; font-weight: 800; color: var(--text);
+    margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+  header p {
+    font-size: 14px; color: var(--muted); line-height: 1.6;
+    max-width: 520px; margin: 0 auto;
+  }
+
+  /* ── Section ── */
+  .section { max-width: 960px; margin: 0 auto 56px; }
+  .section-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--amber);
+    border-left: 3px solid var(--amber);
+    padding-left: 10px; margin-bottom: 20px;
+  }
+
+  /* ── Grid ── */
+  .grid { display: grid; gap: 20px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── Card ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    border-color: var(--blue);
+  }
+  .card-thumb {
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    background: #243447;
+  }
+  .card-thumb.portrait  { aspect-ratio: 210/297; }
+  .card-thumb.landscape { aspect-ratio: 16/9; }
+
+  .card-body {
+    padding: 14px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+  }
+  .card-label {
+    font-size: 12px; font-weight: 700; color: var(--text);
+    line-height: 1.35;
+  }
+  .card-sub {
+    font-size: 10px; color: var(--muted); margin-top: 2px;
+  }
+  .card-badge {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.08em;
+    padding: 3px 9px; border-radius: 20px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-blue  { background: var(--blue);  color: #fff; }
+  .badge-amber { background: var(--amber); color: #1C2B3A; }
+  .badge-gray  { background: #243447; color: var(--muted); }
+
+  /* ── PDF badge overlay ── */
+  .thumb-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .thumb-wrap .pdf-tag {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    padding: 3px 8px; border-radius: 4px;
+  }
+  .thumb-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0, 149, 217, 0);
+    transition: background 0.2s;
+  }
+  .card:hover .thumb-wrap::after {
+    background: rgba(0, 149, 217, 0.08);
+  }
+
+  @media (max-width: 600px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-eyebrow">Portfolio</div>
+  <h1>AI活用・業務改善 資料サンプル</h1>
+  <p>社内研修・ガイドライン策定など、AI導入支援に関わる資料を制作します。<br>目的・対象読者に合わせた構成と内容で、すぐ使えるドキュメントをお届けします。</p>
+</header>
+
+<!-- 社内研修・配布資料 -->
+<div class="section">
+  <div class="section-title">社内研修・配布資料</div>
+  <div class="grid grid-2">
+
+    <!-- 生成AI活用ガイドライン -->
+    <a class="card" href="生成AI活用ガイドライン.pdf" target="_blank">
+      <div class="thumb-wrap">
+        <img class="card-thumb portrait" src="thumb1.png" alt="生成AI活用ガイドライン">
+        <span class="pdf-tag">PDF</span>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-label">生成AI 活用ガイドライン</div>
+          <div class="card-sub">初心者向け社内配布資料 / A4縦 / PDF納品</div>
+        </div>
+        <span class="card-badge badge-blue">GUIDE</span>
+      </div>
+    </a>
+
+    <!-- AI活用研修プログラム -->
+    <a class="card" href="AI活用研修プログラム.pdf" target="_blank">
+      <div class="thumb-wrap">
+        <img class="card-thumb landscape" src="thumb2.png" alt="AI活用研修プログラム">
+        <span class="pdf-tag">PDF</span>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-label">AI活用 研修プログラム</div>
+          <div class="card-sub">社内推進用 全3回カリキュラム / A4横 / PDF納品</div>
+        </div>
+        <span class="card-badge badge-amber">TRAINING</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>

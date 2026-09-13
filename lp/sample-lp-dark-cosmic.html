@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Orbit Sample LP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: oklch(0.16 0.04 285);
+        --bg-soft: oklch(0.22 0.05 290);
+        --card: oklch(0.26 0.05 286 / 0.6);
+        --card-strong: oklch(0.3 0.07 290 / 0.78);
+        --border: oklch(0.72 0.08 290 / 0.18);
+        --text: oklch(0.97 0.01 286);
+        --muted: oklch(0.8 0.03 286);
+        --accent: oklch(0.74 0.25 320);
+        --accent-2: oklch(0.78 0.17 220);
+        --accent-3: oklch(0.86 0.12 160);
+        --shadow: 0 0 24px color-mix(in oklab, var(--accent) 55%, transparent),
+          0 0 56px color-mix(in oklab, var(--accent-2) 28%, transparent);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Noto Sans JP", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, color-mix(in oklab, var(--accent) 22%, transparent), transparent 30%),
+          radial-gradient(circle at 80% 20%, color-mix(in oklab, var(--accent-2) 24%, transparent), transparent 24%),
+          linear-gradient(180deg, oklch(0.18 0.05 286), oklch(0.13 0.03 286));
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page-shell {
+        position: relative;
+        overflow: hidden;
+      }
+
+      #particles {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.85;
+      }
+
+      .ambient {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(80px);
+        opacity: 0.32;
+        animation: float-slow 7s ease-in-out infinite;
+      }
+
+      .orb.one {
+        width: 320px;
+        height: 320px;
+        background: color-mix(in oklab, var(--accent) 75%, transparent);
+        top: 8%;
+        left: -8%;
+      }
+
+      .orb.two {
+        width: 360px;
+        height: 360px;
+        background: color-mix(in oklab, var(--accent-2) 75%, transparent);
+        top: 12%;
+        right: -8%;
+        animation-delay: -2s;
+      }
+
+      .orb.three {
+        width: 260px;
+        height: 260px;
+        background: color-mix(in oklab, var(--accent-3) 65%, transparent);
+        bottom: 12%;
+        left: 48%;
+        animation-delay: -4s;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .glass-card {
+        background: linear-gradient(180deg, color-mix(in oklab, var(--card) 85%, transparent), color-mix(in oklab, var(--bg-soft) 90%, transparent));
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border);
+        box-shadow: inset 0 1px 0 color-mix(in oklab, white 18%, transparent), 0 24px 80px rgba(10, 7, 30, 0.32);
+      }
+
+      .neon-glow {
+        box-shadow:
+          0 0 12px color-mix(in oklab, var(--accent) 50%, transparent),
+          0 0 36px color-mix(in oklab, var(--accent) 35%, transparent),
+          0 0 72px color-mix(in oklab, var(--accent-2) 20%, transparent);
+      }
+
+      .neon-text-glow {
+        text-shadow:
+          0 0 18px color-mix(in oklab, var(--accent) 55%, transparent),
+          0 0 36px color-mix(in oklab, var(--accent-2) 32%, transparent);
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, var(--accent-3), var(--accent-2), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .section {
+        padding: 96px 0;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(18px);
+        background: color-mix(in oklab, var(--bg) 70%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 16px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 700;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 72%, transparent), color-mix(in oklab, var(--accent-2) 72%, transparent));
+        border: 1px solid color-mix(in oklab, white 20%, transparent);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .cta-button,
+      .secondary-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      }
+
+      .cta-button:hover,
+      .secondary-button:hover {
+        transform: translateY(-2px);
+      }
+
+      .cta-button {
+        color: white;
+        background: linear-gradient(135deg, var(--accent-2), var(--accent));
+        border: 1px solid color-mix(in oklab, white 16%, transparent);
+        box-shadow: var(--shadow);
+        animation: pulse-glow 3s ease-in-out infinite;
+      }
+
+      .secondary-button {
+        border: 1px solid var(--border);
+        color: var(--text);
+        background: color-mix(in oklab, var(--card) 75%, transparent);
+      }
+
+      .hero {
+        min-height: calc(100vh - 75px);
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 48px;
+        padding: 68px 0 40px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        margin-bottom: 20px;
+        color: var(--accent-3);
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: clamp(42px, 7vw, 76px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-lead {
+        margin: 0 0 28px;
+        color: var(--muted);
+        font-size: clamp(18px, 2.2vw, 22px);
+        line-height: 1.85;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+
+      .hero-metrics {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .metric {
+        padding: 14px 18px;
+        border-radius: 20px;
+        min-width: 160px;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 4px;
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 560px;
+        display: grid;
+        place-items: center;
+      }
+
+      .hero-planet {
+        position: relative;
+        width: min(100%, 440px);
+        aspect-ratio: 1 / 1.1;
+        border-radius: 42px;
+        overflow: hidden;
+        padding: 24px;
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .hero-planet::before {
+        content: "";
+        position: absolute;
+        inset: 24px;
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 30% 30%, color-mix(in oklab, white 22%, transparent), transparent 22%),
+          radial-gradient(circle at 65% 35%, color-mix(in oklab, var(--accent-3) 55%, transparent), transparent 18%),
+          radial-gradient(circle at 50% 55%, color-mix(in oklab, var(--accent) 70%, transparent), transparent 38%),
+          linear-gradient(180deg, oklch(0.27 0.05 280), oklch(0.18 0.03 280));
+        border: 1px solid color-mix(in oklab, white 14%, transparent);
+        box-shadow: inset 0 0 80px rgba(255, 255, 255, 0.05), 0 40px 120px rgba(12, 10, 30, 0.45);
+      }
+
+      .hero-planet::after {
+        content: "";
+        position: absolute;
+        inset: 64px 44px 120px;
+        border-radius: 999px;
+        background: radial-gradient(circle, color-mix(in oklab, var(--accent-2) 55%, transparent), transparent 62%);
+        filter: blur(16px);
+      }
+
+      .planet-copy {
+        position: absolute;
+        inset: auto 32px 28px 32px;
+        border-radius: 24px;
+        padding: 18px 20px;
+      }
+
+      .planet-copy strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 22px;
+      }
+
+      .floating-card {
+        position: absolute;
+        padding: 16px 18px;
+        border-radius: 20px;
+        max-width: 220px;
+        animation: float-slow 6s ease-in-out infinite;
+      }
+
+      .floating-card.top {
+        top: 34px;
+        right: -8px;
+      }
+
+      .floating-card.bottom {
+        left: -6px;
+        bottom: 70px;
+        animation-delay: -2s;
+      }
+
+      .section-heading {
+        margin-bottom: 28px;
+      }
+
+      .section-heading p {
+        color: var(--muted);
+        margin: 8px 0 0;
+      }
+
+      .grid-3,
+      .grid-2,
+      .grid-pricing {
+        display: grid;
+        gap: 18px;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card {
+        border-radius: 28px;
+        padding: 24px;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .label {
+        display: inline-flex;
+        margin-bottom: 14px;
+        font-size: 13px;
+        color: var(--accent-3);
+        letter-spacing: 0.08em;
+      }
+
+      .pricing-wrap {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 20px;
+      }
+
+      .price-main {
+        padding: 30px;
+        border-radius: 32px;
+      }
+
+      .price-main .old {
+        color: var(--muted);
+        text-decoration: line-through;
+      }
+
+      .price-main .now {
+        font-size: clamp(40px, 7vw, 68px);
+        font-weight: 900;
+        margin: 14px 0 10px;
+      }
+
+      .comparison {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 16px;
+        font-size: 14px;
+      }
+
+      .comparison th,
+      .comparison td {
+        padding: 12px 10px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+      }
+
+      .faq-item + .faq-item {
+        margin-top: 14px;
+      }
+
+      .faq-q {
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .final-cta {
+        padding: 38px;
+        border-radius: 36px;
+        background:
+          radial-gradient(circle at 20% 20%, color-mix(in oklab, var(--accent-2) 50%, transparent), transparent 28%),
+          radial-gradient(circle at 80% 30%, color-mix(in oklab, var(--accent) 45%, transparent), transparent 26%),
+          linear-gradient(135deg, oklch(0.26 0.06 280), oklch(0.2 0.04 300));
+        border: 1px solid color-mix(in oklab, white 14%, transparent);
+        box-shadow: 0 40px 120px rgba(12, 10, 30, 0.34);
+      }
+
+      footer {
+        padding: 28px 0 56px;
+        color: var(--muted);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(8px);
+        animation: fade-up 1s ease forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+
+      .delay-2 {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      @keyframes float-slow {
+        0%, 100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-8px) rotate(1.4deg);
+        }
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% {
+          box-shadow: var(--shadow);
+        }
+        50% {
+          box-shadow:
+            0 0 26px color-mix(in oklab, var(--accent) 68%, transparent),
+            0 0 82px color-mix(in oklab, var(--accent-2) 28%, transparent);
+        }
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 960px) {
+        .hero,
+        .pricing-wrap,
+        .grid-3,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+        }
+
+        .nav-links {
+          order: 3;
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .hero-visual {
+          min-height: 420px;
+        }
+
+        .floating-card.top {
+          right: 8px;
+        }
+
+        .floating-card.bottom {
+          left: 8px;
+          bottom: 34px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .section {
+          padding: 72px 0;
+        }
+
+        .container {
+          width: min(100% - 20px, 1120px);
+        }
+
+        .hero {
+          padding-top: 40px;
+        }
+
+        .hero-planet {
+          width: 100%;
+        }
+
+        .planet-copy,
+        .floating-card {
+          position: relative;
+          inset: auto;
+          margin-top: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="ambient" aria-hidden="true">
+      <div class="orb one"></div>
+      <div class="orb two"></div>
+      <div class="orb three"></div>
+    </div>
+    <div class="page-shell">
+      <header>
+        <div class="container nav">
+          <div class="brand">
+            <div class="brand-mark">N</div>
+            <div>
+              <div>Nova Orbit</div>
+              <small style="color: var(--muted)">AI時代の共創コミュニティ</small>
+            </div>
+          </div>
+          <nav class="nav-links">
+            <a href="#problems">悩み</a>
+            <a href="#reasons">選ばれる理由</a>
+            <a href="#service">内容</a>
+            <a href="#pricing">価格</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+          <a class="cta-button" href="#pricing">先行参加する</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="container hero">
+          <div class="fade-in delay-1">
+            <div class="eyebrow glass-card">
+              0期メンバー募集開始
+            </div>
+            <h1>
+              ひとりで抱えない。
+              <span class="gradient-text neon-text-glow">AIで挑戦を加速する場所</span>
+            </h1>
+            <p class="hero-lead">
+              学ぶだけで終わらない。相談できる、試せる、形にできる。
+              副業も発信もサービス作りも、次の一歩を前に進めるための実践コミュニティです。
+            </p>
+            <div class="hero-actions">
+              <a class="cta-button" href="#pricing">今すぐ参加する</a>
+              <a class="secondary-button glass-card" href="#service">詳しく見る</a>
+            </div>
+            <div class="hero-metrics">
+              <div class="metric glass-card">
+                <strong>月額 ¥980</strong>
+                先行価格でスタート
+              </div>
+              <div class="metric glass-card">
+                <strong>週3回</strong>
+                実践コンテンツ配信
+              </div>
+              <div class="metric glass-card">
+                <strong>24h</strong>
+                仲間と相談し放題
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual fade-in delay-2">
+            <div class="hero-planet glass-card neon-glow">
+              <div class="planet-copy glass-card">
+                <strong>Build with momentum</strong>
+                思いつきで終わらない、実行が続く場をイメージしたサンプルビジュアルです。
+              </div>
+            </div>
+            <div class="floating-card top glass-card neon-glow">
+              <div class="label">FEATURE 01</div>
+              壁打ちから実装まで、仲間と一緒に前進
+            </div>
+            <div class="floating-card bottom glass-card">
+              <div class="label">FEATURE 02</div>
+              AI活用、発信、副業づくりを横断サポート
+            </div>
+          </div>
+        </section>
+
+        <section id="problems" class="section">
+          <div class="container">
+            <div class="section-heading">
+              <h2>こんなお悩みありませんか？</h2>
+              <p>手は動かしたいのに、ひとりだと止まりやすい人に向けた導入セクションです。</p>
+            </div>
+            <div class="grid-3">
+              <article class="card glass-card">
+                <div class="label">CASE 01</div>
+                <h3>何から始めるべきか毎回迷う</h3>
+                <p>情報は多いのに、今の自分に必要な順番が見えず、学習だけで時間が過ぎてしまう。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">CASE 02</div>
+                <h3>作っても見てもらえず自信が続かない</h3>
+                <p>アイデアや制作物に対して、気軽にフィードバックをもらえる場がない。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">CASE 03</div>
+                <h3>副業や発信を実践に落とし込めない</h3>
+                <p>ノウハウは理解したつもりでも、日々の行動に変換できず止まってしまう。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="reasons" class="section">
+          <div class="container">
+            <div class="section-heading">
+              <h2>Nova Orbitが選ばれる理由</h2>
+              <p>ここでは、ビジュアルの強さと内容の整理感が両立するカード構成を見せています。</p>
+            </div>
+            <div class="grid-2">
+              <article class="card glass-card">
+                <div class="label">01</div>
+                <h3>毎週の実践テーマで迷わない</h3>
+                <p>その週にやることが見えるから、学ぶだけで終わらず、小さく前進し続けられます。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">02</div>
+                <h3>壁打ちしやすい空気感</h3>
+                <p>初心者の質問も共有しやすく、発信やサービス案をそのまま投げられる設計です。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">03</div>
+                <h3>AI活用を実務に寄せて学べる</h3>
+                <p>単発のツール紹介ではなく、企画、制作、改善までを通して活用イメージが持てます。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">04</div>
+                <h3>ひとりで続かない人向けの導線</h3>
+                <p>仲間の進捗が見えることで、やる気に頼り切らず、自然と手が動く状態をつくります。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="service" class="section">
+          <div class="container">
+            <div class="section-heading">
+              <h2>Nova Orbitで届くもの</h2>
+              <p>提供内容はカードを増減しやすい構成にしてあり、そのまま実案件へ流用しやすくしています。</p>
+            </div>
+            <div class="grid-2">
+              <article class="card glass-card">
+                <div class="label">CONTENT 01</div>
+                <h3>実践テーマ配信</h3>
+                <p>今週取り組むべきテーマや活用例をまとめて受け取れます。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">CONTENT 02</div>
+                <h3>壁打ちコミュニティ</h3>
+                <p>アイデア段階でも投稿しやすく、次に何をすると良いかが見えます。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">CONTENT 03</div>
+                <h3>テンプレート共有</h3>
+                <p>企画、発信、LP、提案書など、実践で使えるひな形を蓄積していきます。</p>
+              </article>
+              <article class="card glass-card">
+                <div class="label">CONTENT 04</div>
+                <h3>振り返りと改善の機会</h3>
+                <p>作ったあとに終わらず、継続改善まで伴走することを前提にしています。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" class="section">
+          <div class="container pricing-wrap">
+            <div class="price-main glass-card neon-glow">
+              <div class="label">OPENING OFFER</div>
+              <h2>0期メンバー限定 特別価格</h2>
+              <div class="old">通常価格 月額 ¥4,980</div>
+              <div class="now gradient-text">月額 ¥980</div>
+              <p>先行参加メンバーは、コミュニティの立ち上げ期価格で継続できます。</p>
+              <a class="cta-button" href="#final-cta" style="margin-top: 14px">先行参加枠を確認する</a>
+
+              <table class="comparison">
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>一般的な学習サービス</th>
+                    <th>Nova Orbit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>学び方</td>
+                    <td>視聴中心</td>
+                    <td>実践と相談が中心</td>
+                  </tr>
+                  <tr>
+                    <td>継続支援</td>
+                    <td>個人任せ</td>
+                    <td>仲間と伴走</td>
+                  </tr>
+                  <tr>
+                    <td>活用領域</td>
+                    <td>単一テーマ</td>
+                    <td>副業・発信・制作を横断</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <aside class="card glass-card">
+              <div class="label">MEMO</div>
+              <h3>このサンプルで見たいポイント</h3>
+              <p>色の世界観、ガラス表現、ネオングロー、ヒーローのインパクト、価格周りの訴求密度を確認しやすい構成です。</p>
+              <p>方向性だけ見たい段階なので、画像を使わず抽象ビジュアルで雰囲気を成立させています。</p>
+            </aside>
+          </div>
+        </section>
+
+        <section id="faq" class="section">
+          <div class="container">
+            <div class="section-heading">
+              <h2>よくある質問</h2>
+              <p>今回は見本なので、FAQも読みやすさ重視のカード型で仮置きしています。</p>
+            </div>
+            <div class="faq-item card glass-card">
+              <div class="faq-q">Q. 初心者でも参加できますか？</div>
+              <div>A. はい。手を動かし始めたばかりの方でも、相談しながら進められる設計を想定しています。</div>
+            </div>
+            <div class="faq-item card glass-card">
+              <div class="faq-q">Q. どんなテーマを扱いますか？</div>
+              <div>A. AI活用、副業づくり、発信、LP制作など、実践に直結するテーマを横断的に扱う想定です。</div>
+            </div>
+            <div class="faq-item card glass-card">
+              <div class="faq-q">Q. このページは実案件用の完成版ですか？</div>
+              <div>A. いいえ。デザイン方向性を確認するためのサンプルで、文言や導線は後から本番仕様に合わせて調整できます。</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="final-cta" class="section">
+          <div class="container">
+            <div class="final-cta">
+              <div class="label">FINAL CTA</div>
+              <h2>
+                挑戦を続けられる場所を、
+                <span class="gradient-text">いまのうちに確保する。</span>
+              </h2>
+              <p style="color: var(--muted); max-width: 720px">
+                このサンプルの方向性が近ければ、次は実サービスの文言と導線を流し込んで本番用に仕上げられます。
+              </p>
+              <div class="hero-actions" style="margin-top: 22px; margin-bottom: 0">
+                <a class="cta-button" href="#top">この方向で進める</a>
+                <a class="secondary-button glass-card" href="#problems">もう一度全体を見る</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="container">
+          © 2026 Nova Orbit Sample. Design direction preview only.
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("particles");
+      const context = canvas.getContext("2d");
+      const particleCount = window.innerWidth < 640 ? 44 : 72;
+      let particles = [];
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = Array.from({ length: particleCount }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.8 + 0.4,
+          alpha: Math.random() * 0.7 + 0.2,
+          speed: Math.random() * 0.015 + 0.004,
+        }));
+      }
+
+      function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((particle, index) => {
+          const pulse = Math.sin(Date.now() * particle.speed + index) * 0.25 + particle.alpha;
+          context.beginPath();
+          context.fillStyle = `rgba(255, 255, 255, ${Math.max(0.08, pulse)})`;
+          context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          context.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+
+      resizeCanvas();
+      draw();
+      window.addEventListener("resize", resizeCanvas);
+    </script>
+  </body>
+</html>

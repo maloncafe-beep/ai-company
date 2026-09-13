@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.zip
+node_modules/
+dist/
+build/
+inbox/
+outputs/
+lp-gpt-output/
+screenshots/

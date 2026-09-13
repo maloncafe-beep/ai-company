@@ -1,0 +1,26 @@
+{
+  "name": "travel-reels",
+  "version": "1.0.0",
+  "description": "Travel reel videos for Instagram / Facebook — photo + video + AI generated",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@remotion/cli": "4.0.509",
+    "remotion": "4.0.509",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.509",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "npx remotion render TravelVideo",
+    "build": "remotion bundle"
+  },
+  "sideEffects": ["*.css"]
+}

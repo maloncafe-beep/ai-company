@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>バックオフィスのAI自動化入門</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #111;
+      font-family: "Yu Gothic", "YuGothic", "BIZ UDPGothic", "Meiryo", sans-serif;
+    }
+
+    .banner {
+      position: relative;
+      width: 1280px;
+      height: 670px;
+      overflow: hidden;
+      color: #17212b;
+      background:
+        radial-gradient(circle at 78% 22%, rgba(119, 214, 198, 0.26), transparent 24%),
+        radial-gradient(circle at 22% 82%, rgba(242, 178, 74, 0.25), transparent 28%),
+        linear-gradient(135deg, #f5efe3 0%, #e7dac7 38%, #cbd6d2 100%);
+    }
+
+    .banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.18) 52%, rgba(26, 41, 54, 0.1)),
+        repeating-linear-gradient(0deg, rgba(25, 33, 42, 0.035) 0 1px, transparent 1px 7px);
+      mix-blend-mode: soft-light;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37, 55, 68, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 55, 68, 0.08) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(90deg, transparent, #000 28%, #000 78%, transparent);
+      opacity: 0.55;
+    }
+
+    .content {
+      position: absolute;
+      left: 82px;
+      top: 118px;
+      width: 680px;
+      z-index: 3;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 26px;
+      color: #315563;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 54px;
+      height: 6px;
+      border-radius: 99px;
+      background: #f0a63a;
+      box-shadow: 70px 0 0 #64b6ac;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 72px;
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: 0;
+      color: #17212b;
+      text-wrap: balance;
+      text-shadow: 0 3px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .subtitle {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 13px 18px 15px;
+      border-left: 8px solid #e99a2f;
+      background: rgba(255, 255, 255, 0.52);
+      color: #2d4650;
+      font-size: 34px;
+      line-height: 1.36;
+      font-weight: 800;
+      letter-spacing: 0;
+      box-shadow: 0 18px 40px rgba(53, 69, 79, 0.12);
+    }
+
+    .visual {
+      position: absolute;
+      right: 70px;
+      top: 82px;
+      width: 420px;
+      height: 506px;
+      z-index: 2;
+    }
+
+    .panel {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.74);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 22px 50px rgba(26, 39, 48, 0.16);
+      backdrop-filter: blur(3px);
+    }
+
+    .panel.large {
+      right: 0;
+      top: 0;
+      width: 330px;
+      height: 220px;
+      padding: 28px 28px 22px;
+    }
+
+    .panel.small {
+      left: 0;
+      bottom: 20px;
+      width: 255px;
+      height: 176px;
+      padding: 24px;
+      background: rgba(23, 33, 43, 0.82);
+      border-color: rgba(128, 202, 190, 0.42);
+    }
+
+    .panel.mid {
+      right: 34px;
+      bottom: 0;
+      width: 245px;
+      height: 176px;
+      padding: 22px;
+      background: rgba(255, 248, 235, 0.76);
+    }
+
+    .row {
+      height: 12px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+      background: rgba(49, 85, 99, 0.2);
+    }
+
+    .row:nth-child(1) {
+      width: 84%;
+      background: #315563;
+    }
+
+    .row:nth-child(2) {
+      width: 66%;
+    }
+
+    .row:nth-child(3) {
+      width: 92%;
+    }
+
+    .row:nth-child(4) {
+      width: 54%;
+      background: rgba(240, 166, 58, 0.55);
+    }
+
+    .chip {
+      position: absolute;
+      right: 28px;
+      bottom: 22px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      background: #f0a63a;
+      color: #17212b;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .node {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #64b6ac;
+      box-shadow: 0 16px 38px rgba(32, 104, 101, 0.3);
+    }
+
+    .node::after {
+      content: "AI";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .node.one {
+      left: 76px;
+      top: 212px;
+    }
+
+    .node.two {
+      right: 82px;
+      top: 288px;
+      width: 58px;
+      height: 58px;
+      background: #315563;
+    }
+
+    .node.two::after {
+      content: "";
+      width: 24px;
+      height: 24px;
+      border: 5px solid #f0a63a;
+      border-left-color: transparent;
+      border-radius: 50%;
+    }
+
+    .line {
+      position: absolute;
+      left: 142px;
+      top: 245px;
+      width: 200px;
+      height: 90px;
+      border-top: 6px solid rgba(49, 85, 99, 0.38);
+      border-right: 6px solid rgba(49, 85, 99, 0.38);
+      border-radius: 0 30px 0 0;
+    }
+
+    .mini-title {
+      width: 110px;
+      height: 12px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.78);
+      margin-bottom: 22px;
+    }
+
+    .dark-row {
+      height: 10px;
+      width: 100%;
+      margin-bottom: 13px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .dark-row:nth-child(3) {
+      width: 74%;
+    }
+
+    .dark-row:nth-child(4) {
+      width: 58%;
+      background: rgba(100, 182, 172, 0.72);
+    }
+
+    .spark {
+      position: absolute;
+      width: 92px;
+      height: 92px;
+      right: -12px;
+      bottom: 148px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(240, 166, 58, 0.92), rgba(255, 231, 177, 0.5));
+      transform: rotate(12deg);
+      opacity: 0.95;
+      box-shadow: 0 18px 36px rgba(240, 166, 58, 0.28);
+    }
+
+    .spark::before,
+    .spark::after {
+      content: "";
+      position: absolute;
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 99px;
+    }
+
+    .spark::before {
+      width: 44px;
+      height: 8px;
+      left: 24px;
+      top: 42px;
+    }
+
+    .spark::after {
+      width: 8px;
+      height: 44px;
+      left: 42px;
+      top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <main class="banner">
+    <div class="grid"></div>
+    <section class="content" aria-label="記事タイトル">
+      <div class="eyebrow">BACK OFFICE × AI AUTOMATION</div>
+      <h1>バックオフィスの<br>AI自動化入門</h1>
+      <div class="subtitle">小さく始めて<br>業務効率を上げる方法</div>
+    </section>
+    <section class="visual" aria-hidden="true">
+      <div class="panel large">
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="chip">SMALL START</div>
+      </div>
+      <div class="node one"></div>
+      <div class="line"></div>
+      <div class="node two"></div>
+      <div class="panel small">
+        <div class="mini-title"></div>
+        <div class="dark-row"></div>
+        <div class="dark-row"></div>
+        <div class="dark-row"></div>
+      </div>
+      <div class="panel mid">
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+      </div>
+      <div class="spark"></div>
+    </section>
+  </main>
+</body>
+</html>

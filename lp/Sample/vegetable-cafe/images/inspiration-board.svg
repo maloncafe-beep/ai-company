@@ -1,0 +1,45 @@
+<svg width="1400" height="920" viewBox="0 0 1400 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="920" rx="48" fill="#090D17"/>
+  <rect x="48" y="48" width="1304" height="824" rx="36" fill="#101833"/>
+  <rect x="92" y="92" width="390" height="340" rx="28" fill="url(#cardA)"/>
+  <rect x="506" y="92" width="356" height="220" rx="28" fill="url(#cardB)"/>
+  <rect x="886" y="92" width="422" height="320" rx="28" fill="url(#cardC)"/>
+  <rect x="506" y="336" width="356" height="214" rx="28" fill="url(#cardD)"/>
+  <rect x="92" y="456" width="390" height="360" rx="28" fill="url(#cardE)"/>
+  <rect x="886" y="436" width="422" height="380" rx="28" fill="url(#cardF)"/>
+  <rect x="506" y="574" width="356" height="242" rx="28" fill="#151E35" stroke="rgba(255,255,255,0.14)"/>
+  <rect x="538" y="612" width="180" height="24" rx="12" fill="rgba(255,255,255,0.75)"/>
+  <rect x="538" y="652" width="256" height="16" rx="8" fill="rgba(255,255,255,0.3)"/>
+  <rect x="538" y="682" width="218" height="16" rx="8" fill="rgba(255,255,255,0.2)"/>
+  <rect x="538" y="732" width="140" height="40" rx="20" fill="url(#pill)"/>
+  <defs>
+    <linearGradient id="cardA" x1="92" y1="92" x2="482" y2="432" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#162447"/>
+      <stop offset="1" stop-color="#1A1F39"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="506" y1="92" x2="862" y2="312" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#66E3FF"/>
+      <stop offset="1" stop-color="#1A2745"/>
+    </linearGradient>
+    <linearGradient id="cardC" x1="886" y1="92" x2="1308" y2="412" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B965FF"/>
+      <stop offset="1" stop-color="#18243F"/>
+    </linearGradient>
+    <linearGradient id="cardD" x1="506" y1="336" x2="862" y2="550" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7CF7D4"/>
+      <stop offset="1" stop-color="#101833"/>
+    </linearGradient>
+    <linearGradient id="cardE" x1="92" y1="456" x2="482" y2="816" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1F39"/>
+      <stop offset="1" stop-color="#182A43"/>
+    </linearGradient>
+    <linearGradient id="cardF" x1="886" y1="436" x2="1308" y2="816" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2742"/>
+      <stop offset="1" stop-color="#101833"/>
+    </linearGradient>
+    <linearGradient id="pill" x1="538" y1="752" x2="678" y2="752" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#66E3FF"/>
+      <stop offset="1" stop-color="#B965FF"/>
+    </linearGradient>
+  </defs>
+</svg>

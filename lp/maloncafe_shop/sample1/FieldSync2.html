@@ -1,0 +1,459 @@
+
+<title>FieldSync A4チラシ</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #CBD5E1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1123px;
+    background: #fff;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: #0A3D7C;
+    padding: 18px 28px 16px;
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: #0095D9;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 22px; height: 22px; }
+  .logo-text {
+    font-size: 22px; font-weight: 800; color: #fff;
+    letter-spacing: 0.01em;
+  }
+  .logo-sub {
+    font-size: 11px; color: #90C4E8; font-weight: 400;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .header-title {
+    font-size: 19px; font-weight: 700; color: #fff;
+    line-height: 1.35; letter-spacing: 0.01em;
+  }
+  .header-title span { color: #0095D9; }
+
+  /* ── Highlight bar ── */
+  .highlight-bar {
+    background: #F7A800;
+    padding: 9px 28px;
+    font-size: 12.5px; font-weight: 700; color: #1C2B3A;
+    text-align: center; letter-spacing: 0.02em;
+  }
+
+  /* ── Compare table ── */
+  .compare-wrap {
+    padding: 14px 20px 10px;
+    flex: 1;
+  }
+
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    table-layout: fixed;
+  }
+
+  table.compare thead th {
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    border-bottom: 2px solid #0A3D7C;
+    vertical-align: bottom;
+  }
+  table.compare thead th:first-child {
+    text-align: left;
+    width: 110px;
+  }
+  table.compare thead th.th-fieldsync {
+    background: #0A3D7C;
+    color: #fff;
+    border-radius: 6px 6px 0 0;
+  }
+  table.compare thead th.th-other {
+    color: #4A5568;
+    font-size: 11.5px;
+  }
+
+  table.compare tbody tr:nth-child(odd) { background: #F0F7FD; }
+  table.compare tbody tr:nth-child(even) { background: #fff; }
+
+  table.compare tbody td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #D9E8F5;
+    vertical-align: top;
+    line-height: 1.45;
+    color: #1C2B3A;
+  }
+  table.compare tbody td:first-child {
+    font-weight: 700;
+    font-size: 12px;
+    color: #0A3D7C;
+    padding-left: 4px;
+  }
+  table.compare tbody td .row-desc {
+    font-weight: 400; font-size: 10px; color: #64748B; display: block; margin-top: 2px; line-height: 1.4;
+  }
+  table.compare tbody td.col-fieldsync {
+    background: #EBF4FD;
+    border-left: 2px solid #0095D9;
+    border-right: 2px solid #0095D9;
+  }
+  table.compare tbody tr:last-child td.col-fieldsync {
+    border-bottom: 2px solid #0095D9;
+  }
+
+  .sym {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    font-size: 13px; font-weight: 900; margin-bottom: 3px;
+    flex-shrink: 0;
+  }
+  .sym-great { background: #D1FAE5; color: #065F46; }
+  .sym-good  { background: #DBEAFE; color: #1E40AF; }
+  .sym-fair  { background: #FEF3C7; color: #92400E; }
+  .sym-poor  { background: #F1F5F9; color: #94A3B8; }
+
+  .cell-inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; }
+  .cell-text { font-size: 10px; color: #374151; line-height: 1.35; }
+
+  /* ── Footnote ── */
+  .footnote {
+    padding: 4px 20px 6px;
+    font-size: 9.5px; color: #94A3B8;
+  }
+
+  /* ── Testimonial ── */
+  .testimonial {
+    margin: 0 20px 12px;
+    background: #F0F7FD;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .testimonial-text { flex: 1; }
+  .testimonial-quote {
+    font-size: 13.5px; font-weight: 700; color: #0A3D7C;
+    line-height: 1.5; margin-bottom: 8px;
+    border-left: 3px solid #0095D9;
+    padding-left: 10px;
+  }
+  .testimonial-body {
+    font-size: 10.5px; color: #374151; line-height: 1.6;
+  }
+  .testimonial-photo {
+    width: 80px; flex-shrink: 0;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .photo-placeholder {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, #BFDBFE 0%, #93C5FD 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .photo-company { font-size: 9px; color: #64748B; text-align: center; line-height: 1.3; }
+
+  /* ── CTA Footer ── */
+  .cta-footer {
+    background: #0A3D7C;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-badge {
+    background: #F7A800;
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 90px;
+  }
+  .cta-badge-main { font-size: 16px; font-weight: 900; color: #1C2B3A; line-height: 1.1; }
+  .cta-badge-sub  { font-size: 10px; font-weight: 700; color: #1C2B3A; }
+  .cta-text { flex: 1; }
+  .cta-headline { font-size: 12.5px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .cta-desc { font-size: 10.5px; color: #90C4E8; line-height: 1.45; }
+  .cta-url {
+    background: #0095D9;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 11px; font-weight: 700; color: #fff;
+    white-space: nowrap;
+    align-self: center;
+  }
+  .cta-company {
+    font-size: 9px; color: #64748B;
+    padding: 6px 24px;
+    background: #081F40;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cta-company-name { color: #90C4E8; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; width: 100%; min-height: 0; }
+  }
+</style>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <path d="M8 21h8M12 17v4"/>
+          <path d="M7 8h10M7 11h6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">FieldSync</div>
+        <div class="logo-sub">Cloud Field Management</div>
+      </div>
+    </div>
+    <div class="header-title">
+      FieldSync と <span>Excel管理・専門システム・スクラッチ開発</span> をかんたん比較
+    </div>
+  </div>
+
+  <!-- Highlight bar -->
+  <div class="highlight-bar">
+    FieldSyncは「バラバラなデータ・システム」をひとつにつなぎ、現場が今日から使える状態をつくるのが特長
+  </div>
+
+  <!-- Comparison table -->
+  <div class="compare-wrap">
+    <table class="compare">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="th-fieldsync">FieldSync</th>
+          <th class="th-other">Excel・<br>社内ツール管理</th>
+          <th class="th-other">専門<br>システム</th>
+          <th class="th-other">スクラッチ<br>開発</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            機能性
+            <span class="row-desc">現場に必要な機能が揃っているか</span>
+          </td>
+          <td class="col-fieldsync">
+            <div class="cell-inner">
+              <span class="sym sym-great">◎</span>
+              <span class="cell-text">日報・点検・進捗管理・アラートをすべてカバー。外部システムとのAPI連携も対応</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-fair">△</span>
+              <span class="cell-text">ツールごとにデータが分散。集計・共有に手間がかかる</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-good">○</span>
+              <span class="cell-text">特定業務に特化。他業務への横展開はできないことが多い</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-great">◎</span>
+              <span class="cell-text">自社に必要な機能を自由に設計できる</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            拡張性
+            <span class="row-desc">業務が変わったとき対応できるか</span>
+          </td>
+          <td class="col-fieldsync">
+            <div class="cell-inner">
+              <span class="sym sym-great">◎</span>
+              <span class="cell-text">管理画面から設定変更で即対応。追加費用・開発期間なしで業務変化に追従</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-fair">△</span>
+              <span class="cell-text">ファイルが増えるほど管理が煩雑に。属人化が進みやすい</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-fair">△</span>
+              <span class="cell-text">仕様変更のたびにベンダー対応が必要。コスト・期間がかかる</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-good">○</span>
+              <span class="cell-text">自社で開発できれば自由だが、エンジニアリソースが必要</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            使いやすさ
+            <span class="row-desc">現場スタッフが無理なく使えるか</span>
+          </td>
+          <td class="col-fieldsync">
+            <div class="cell-inner">
+              <span class="sym sym-great">◎</span>
+              <span class="cell-text">スマートフォン・タブレット対応。ITに不慣れな現場でも直感的に使える画面設計</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-fair">△</span>
+              <span class="cell-text">ファイルの場所・バージョンが人によってバラバラ。最新版がわからない問題が頻発</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-fair">△</span>
+              <span class="cell-text">操作が複雑なものが多く、研修コストが高くなりやすい</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-good">○</span>
+              <span class="cell-text">自社仕様で設計できる反面、UI品質は開発力に依存する</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            導入スピード・<br>コスト
+            <span class="row-desc">いつ・いくらで使い始められるか</span>
+          </td>
+          <td class="col-fieldsync">
+            <div class="cell-inner">
+              <span class="sym sym-great">◎</span>
+              <span class="cell-text">初期設定＋研修込みで最短2〜4週間で稼働。初期費用50万円〜、月額15万円〜</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-good">○</span>
+              <span class="cell-text">追加コストは少ないが、設計・整備に社内工数がかかる。品質にばらつきが出やすい</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-fair">△</span>
+              <span class="cell-text">数ヶ月〜1年の導入期間が一般的。ライセンス費用も高額になりやすい</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-poor">×</span>
+              <span class="cell-text">要件定義から稼働まで半年〜数年。開発・インフラコストも別途かかる</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            変更スピード・<br>コスト
+            <span class="row-desc">使いながら改善できるか</span>
+          </td>
+          <td class="col-fieldsync">
+            <div class="cell-inner">
+              <span class="sym sym-great">◎</span>
+              <span class="cell-text">現場のフィードバックを管理画面で即反映。追加開発なし・コストなしで改善を回せる</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-fair">△</span>
+              <span class="cell-text">担当者が変わるとメンテナンスできなくなるリスクが高い</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-poor">×</span>
+              <span class="cell-text">仕様変更のたびにベンダーへの追加発注が必要。変更コストが積み上がる</span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-inner">
+              <span class="sym sym-poor">×</span>
+              <span class="cell-text">システム変更のたびに設計・開発・テストが発生。時間とコストが継続的にかかる</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footnote -->
+  <div class="footnote">
+    ※スクラッチ開発とは既存のものを一切流用せずまったく新規に開発すること（出典 IT用語辞典）
+  </div>
+
+  <!-- Testimonial -->
+  <div class="testimonial">
+    <div class="testimonial-text">
+      <div class="testimonial-quote">
+        情報システム部門に頼らなくても、現場の私たちで設定・改善できる。<br>
+        導入後4ヶ月で日報集計の工数が月30時間以上削減できました。
+      </div>
+      <div class="testimonial-body">
+        もともと日報はExcelと社内チャットが混在していて、集計のたびに担当者が手作業でまとめていました。FieldSyncに切り替えてから、入力はスマートフォンで完結し、集計はダッシュボードで自動表示されます。操作が直感的なので、ベテランスタッフも抵抗なく使い始めてくれました。いまではFieldSyncなしで現場が回らない状態になっています。
+      </div>
+    </div>
+    <div class="testimonial-photo">
+      <div class="photo-placeholder">👷</div>
+      <div class="photo-company">株式会社<br>ヤマト製作所<br>製造管理部</div>
+    </div>
+  </div>
+
+  <!-- CTA Footer -->
+  <div class="cta-footer">
+    <div class="cta-badge">
+      <div class="cta-badge-main">30日間</div>
+      <div class="cta-badge-sub">無料トライアル</div>
+    </div>
+    <div class="cta-text">
+      <div class="cta-headline">まずはお試しください！</div>
+      <div class="cta-desc">30日間無料でFieldSyncのすべての機能をご利用いただけます。<br>設定サポート付きなので、導入初日から現場で使い始められます。</div>
+    </div>
+    <div class="cta-url">fieldsync.example.com/trial</div>
+  </div>
+  <div class="cta-company">
+    <div>
+      <span class="cta-company-name">株式会社テックブリッジ</span>　〒100-0005 東京都千代田区丸の内1-1-1　https://techbridge.example.com/
+    </div>
+    <div>お問い合わせ：sales@techbridge.example.com</div>
+  </div>
+
+</div>

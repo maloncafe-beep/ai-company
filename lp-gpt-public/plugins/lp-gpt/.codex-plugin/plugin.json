@@ -1,0 +1,22 @@
+{
+  "name": "lp-gpt",
+  "version": "0.1.0",
+  "description": "商品情報と参考デザインから、スマホ向けランディングページの構成、コピー、画像、HTMLを制作するCodexプラグイン。",
+  "author": {
+    "name": "LP-GPT Project"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "LP-GPT",
+    "shortDescription": "商品情報からスマホ向けLP画像とHTMLを制作",
+    "longDescription": "商品、サービス、セミナー、キャンペーンの情報を整理し、LP構成とコピーを作成したうえで、スマホ向けの画像スライスと機能するHTMLを制作します。実案件データ、認証情報、外部通知連携は同梱していません。",
+    "developerName": "LP-GPT Project",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "商品情報を整理して、スマホ向けLPを一式作ってください。",
+      "添付した参考画像の雰囲気で、このオファーのLPを作ってください。",
+      "既存のLP構成から、画像スライスと機能するHTMLを作ってください。"
+    ]
+  }
+}

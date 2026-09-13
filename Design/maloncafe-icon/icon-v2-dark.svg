@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bgdark" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#1a1f35"/>
+      <stop offset="100%" stop-color="#0a0d1a"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4A6CF7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4A6CF7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgdark)"/>
+
+  <!-- Glow center -->
+  <rect width="400" height="400" fill="url(#glow)"/>
+
+  <!-- Fine grid -->
+  <g stroke="#ffffff" stroke-width="0.3" opacity="0.06">
+    <line x1="50" y1="0" x2="50" y2="400"/>
+    <line x1="100" y1="0" x2="100" y2="400"/>
+    <line x1="150" y1="0" x2="150" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="250" y1="0" x2="250" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+    <line x1="350" y1="0" x2="350" y2="400"/>
+    <line x1="0" y1="50" x2="400" y2="50"/>
+    <line x1="0" y1="100" x2="400" y2="100"/>
+    <line x1="0" y1="150" x2="400" y2="150"/>
+    <line x1="0" y1="200" x2="400" y2="200"/>
+    <line x1="0" y1="250" x2="400" y2="250"/>
+    <line x1="0" y1="300" x2="400" y2="300"/>
+    <line x1="0" y1="350" x2="400" y2="350"/>
+  </g>
+
+  <!-- Outer ring -->
+  <circle cx="200" cy="200" r="155" fill="none" stroke="#4A6CF7" stroke-width="0.8" opacity="0.2"/>
+  <circle cx="200" cy="200" r="130" fill="none" stroke="#4A6CF7" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- Diagonal structural lines -->
+  <g stroke="#6B8AF9" stroke-width="0.8" opacity="0.2">
+    <line x1="200" y1="45" x2="355" y2="200"/>
+    <line x1="355" y1="200" x2="200" y2="355"/>
+    <line x1="200" y1="355" x2="45" y2="200"/>
+    <line x1="45" y1="200" x2="200" y2="45"/>
+  </g>
+
+  <!-- Inner hexagon -->
+  <polygon
+    points="200,110 270,155 270,245 200,290 130,245 130,155"
+    fill="none" stroke="#4A6CF7" stroke-width="1" opacity="0.25"/>
+
+  <!-- Inner triangle -->
+  <polygon
+    points="200,140 255,230 145,230"
+    fill="none" stroke="#6B8AF9" stroke-width="1" opacity="0.2"/>
+
+  <!-- Phi / ratio indicator lines -->
+  <g stroke="#8899FF" stroke-width="0.6" opacity="0.3">
+    <line x1="200" y1="80" x2="200" y2="320"/>
+    <line x1="80" y1="200" x2="320" y2="200"/>
+  </g>
+
+  <!-- Center circle -->
+  <circle cx="200" cy="200" r="18" fill="none" stroke="#4A6CF7" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="200" cy="200" r="6" fill="#4A6CF7" opacity="0.9"/>
+  <circle cx="200" cy="200" r="35" fill="none" stroke="#4A6CF7" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Corner accent marks -->
+  <g stroke="#4A6CF7" stroke-width="1" opacity="0.3">
+    <line x1="30" y1="30" x2="55" y2="30"/>
+    <line x1="30" y1="30" x2="30" y2="55"/>
+    <line x1="370" y1="30" x2="345" y2="30"/>
+    <line x1="370" y1="30" x2="370" y2="55"/>
+    <line x1="30" y1="370" x2="55" y2="370"/>
+    <line x1="30" y1="370" x2="30" y2="345"/>
+    <line x1="370" y1="370" x2="345" y2="370"/>
+    <line x1="370" y1="370" x2="370" y2="345"/>
+  </g>
+</svg>

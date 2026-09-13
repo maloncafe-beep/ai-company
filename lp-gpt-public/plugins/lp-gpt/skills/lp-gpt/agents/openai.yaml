@@ -1,0 +1,4 @@
+interface:
+  display_name: "LP-GPT"
+  short_description: "商品情報からスマホ向けLP画像とHTMLを設計・生成します"
+  default_prompt: "$lp-gpt を使って、商品情報からスマホ向けLPを作ってください。"

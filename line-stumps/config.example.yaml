@@ -1,0 +1,43 @@
+# LINEスタンプ自動生成 設定例
+# コピーして config.yaml にリネームし、編集してください
+
+# スタンプの基本情報（Creators Market 提出用）
+stamp:
+  title: "わたしのスタンプ"        # 40文字以内
+  description: "日常で使えるスタンプです"  # 160文字以内
+  creator_name: "作者名"           # 50文字以内
+  copyright: "© 2025 作者名"       # 50文字以内
+
+# 生成するスタンプの枚数（8, 16, 24, 32, 40 のいずれか）
+sticker_count: 16
+
+# キャラクター・スタイルの説明（AI画像生成のプロンプトに使います）
+character:
+  name: "くまさん"
+  description: "丸くて可愛い茶色いクマのキャラクター、シンプルな線画風"
+
+# 生成する表情・フレーズのリスト（sticker_count と数を合わせる）
+# 日本語でよく使うスタンプの例
+expressions:
+  - "ありがとう"
+  - "おつかれさま"
+  - "了解"
+  - "いいね"
+  - "泣いている"
+  - "笑っている"
+  - "怒っている"
+  - "びっくり"
+  - "おはよう"
+  - "おやすみ"
+  - "がんばれ"
+  - "かわいい"
+  - "やったー"
+  - "ごめんね"
+  - "おめでとう"
+  - "バイバイ"
+
+# 画像生成の方法: "placeholder" | "openai" | "local"
+# placeholder: テスト用の単色画像を生成（API不要）
+# openai: DALL-E 3 を使用（OPENAI_API_KEY が必要）
+# local: 後から追加予定（Stable Diffusion など）
+generator: placeholder

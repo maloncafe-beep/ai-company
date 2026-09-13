@@ -1,0 +1,6 @@
+{
+  "title": "サンプル旅行",
+  "bgm": "common/bgm/calm.mp3",
+  "duration_per_photo": 4,
+  "style": "standard"
+}
