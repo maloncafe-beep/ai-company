@@ -25,13 +25,7 @@
       "Bash(git -C \"C:/Users/yyasu/ai-company\" add -A)",
       "Bash(git -C \"C:/Users/yyasu/ai-company\" status --short)",
       "Bash(git *)",
-      "Bash(Get-ChildItem *)",
-      "Bash(claude -p)",
-      "Bash(node --check C:/Users/yyasu/ai-company/scripts/bridge.js)",
-      "PowerShell(Stop-Process *)",
-      "PowerShell(if \\(Test-Path \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge-err.log\"\\) { $size = \\(Get-Item \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge-err.log\"\\).Length; \"bridge-err.log size: $size bytes\"; if \\($size -gt 0\\) { Get-Content \"C:\\\\Users\\\\yyasu\\\\ai-company\\\\scripts\\\\bridge-err.log\" -Tail 10 } } else { \"bridge-err.log なし\" })",
-      "mcp__line-harness__list_conversations",
-      "mcp__line-harness__get_conversation"
+      "Bash(Get-ChildItem *)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -19,9 +19,7 @@
       "Bash(node tools/register-thread16-18.mjs)",
       "Bash(node tools/check-schedule.mjs)",
       "Bash(node tools/fix-schedule-47-52.mjs)",
-      "PowerShell(Move-Item *)",
-      "Bash(git add *)",
-      "Bash(git commit *)"
+      "PowerShell(Move-Item *)"
     ]
   },
   "enableAllProjectMcpServers": true,

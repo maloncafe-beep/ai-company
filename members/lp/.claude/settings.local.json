@@ -1,19 +1,6 @@
 {
-  "permissions": {
-    "allow": [
-      "mcp__claude-in-chrome__navigate",
-      "mcp__claude-in-chrome__computer",
-      "Bash(npx --yes serve -p 5501 \"C:/Users/yyasu/ai-company/LP/maloncafe_shop\")",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5501/portfolio.html)",
-      "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git push *)",
-      "mcp__claude-in-chrome__javascript_tool",
-      "mcp__claude-in-chrome__resize_window"
-    ]
-  },
-  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "line-harness"
-  ]
+  ],
+  "enableAllProjectMcpServers": true
 }
