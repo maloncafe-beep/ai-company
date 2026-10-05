@@ -24,3 +24,7 @@ temp_segments/
 
 # ローカル管理：LINEスタンプ手動制作物
 line-stumps/
+
+# Suno BGM audio (back up elsewhere)
+*.mp3
+*.wav
