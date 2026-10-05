@@ -41,3 +41,11 @@ note.comには本文と別立ての「販売ページ」は存在しない。貼
 
 ## LOG更新
 `products/YYYYMMDD-案件スラッグ/LOG.md` に公開日・結果（初速の閲覧数・購入数など分かる範囲の数字）を追記する。数字が出揃うタイミングで振り返りを追記してよい。
+
+## コミット提案（2026-10-05追加・重要）
+商品が1本「公開済み」（note投稿・SNS告知まで完了）になった時点で、`note-project-claude/note-project/`の変更をgitコミットするよう経営者に提案する。これは`note-project-claude`が一度未コミットのまま他セッションの再構成で消失した事故（2026-10-05）の再発防止策。
+手順：
+1. `cd C:\Users\yyasu\ai-company && git status --short note-project-claude/note-project/` で変更点を確認
+2. 経営者に「〇〇の公開が完了したのでコミットしますか？」と確認する（git操作は毎回確認してから実行する既存ルールに従う）
+3. 承諾を得たら `git add note-project-claude/note-project/` → `git commit`（`.claude/worktrees`は含めない）。push はしない（明示指示があるまで）
+
