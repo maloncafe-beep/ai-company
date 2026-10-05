@@ -1,23 +1,58 @@
-# 秘密情報（必須・絶対にコミットしない）
-.env
-.env.*
-config.yaml
-.mcp.json
+# ===== ホワイトリスト方式 =====
+# デフォルト：全部無視（新しくフォルダを追加しても自動的に無視される）
+*
+.*
 
-# 一般
-node_modules/
-venv/
-__pycache__/
-.DS_Store
+# ===== 追跡するもの =====
 
-# メディア中間ファイル
+# ルートファイル
+!.gitignore
+!CLAUDE.md
+!README.md
+!FAQ-line-fullstack.md
+!SESSION-MODE-TEMPLATE.md
+
+# メンバー作業フォルダ（バイナリ・メディアは除く）
+!members/
+!members/**
+# product: ローカル保管のみ（git対象外）
+members/product/projects/ai-proposal-prompts-v1.zip
+members/product/projects/ai-proposal-prompts-v1/prompts/prompt_short.md
+members/product/projects/プロンプト販売strategy.md
 *.mp4
 *.mov
 *.MOV
-temp_frames/
-temp_segments/
 *.pdf
 *.pptx
+*.png
+*.jpg
+*.jpeg
+*.gif
 
-# Netlify
-.netlify
+# スクリプト（ランタイムファイルは除外）
+!scripts/
+!scripts/**
+scripts/.bridge-state.json
+scripts/.bridge.pid
+scripts/bridge.log
+
+# X自動投稿
+!x-auto-post/
+!x-auto-post/**
+x-auto-post/csv/
+x-auto-post/.claude/worktrees/
+
+# LINE bridge
+!line-bridge/
+!line-bridge/**
+line-bridge/server.log
+line-bridge/server-err.log
+
+# スキル
+!skill/
+!skill/**
+
+# Claude設定（settings.local は除外）
+!.claude/
+!.claude/**
+.claude/settings.local.json
