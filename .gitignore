@@ -56,3 +56,7 @@ line-bridge/server-err.log
 !.claude/
 !.claude/**
 .claude/settings.local.json
+
+# Suno BGM audio (back up elsewhere)
+*.mp3
+*.wav
