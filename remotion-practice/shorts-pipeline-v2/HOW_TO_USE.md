@@ -6,7 +6,8 @@
 |---|---|---|
 | スライド構成 | 1WAV = 1画像切替 | 1画像 × 複数セグメント（WAV） |
 | ファイル命名 | `001.wav` / `001.txt` | `001a.wav` / `001a.txt` / `001b.wav` / `001b.txt` |
-| イラスト入力 | `input/illustrations/` | `public/illustrations/` に直接置く |
+| イラスト入力 | `input/illustrations/` | `input/illustrations/`（同じ。自動でpublicにコピー） |
+| タイトル画面 | なし | 冒頭に独立1枚（`int_*.wav` + `int_000.txt`） |
 | テキスト強調 | なし | `[[テキスト]]` で囲むとオレンジ色になる |
 | 動画の尺 | 約30秒（12スライド） | 約60〜80秒（5スライド×2セグメント） |
 
@@ -17,38 +18,68 @@
 ```
 shorts-pipeline-v2/
   input/
+    temp/
+      Voicebox.txt  ← 台本一括ファイル（npm run split の入力）
     slides/
-      001a.wav      ← VOICEBOXで書き出したWAV（雑学テーマ）
-      001a.txt      ← 字幕テキスト（雑学テーマ）
-      001b.wav      ← VOICEBOXで書き出したWAV（詳細説明）
-      001b.txt      ← 字幕テキスト（詳細説明）
-      002a.wav
-      002a.txt
-      ...
-  public/
+      int_青山龍星…….wav ← タイトル画面の音声（VOICEBOX出力名のままOK）
+      int_000.txt   ← タイトル画面の字幕（splitが自動生成）
+      out_青山龍星…….wav ← アウトロ（コメント誘導）の音声
+      out.txt       ← アウトロの字幕（splitが自動生成）
+      001a_青山龍星…….wav ← VOICEBOXで書き出したWAV（雑学テーマ）
+      001a.txt      ← 字幕テキスト（splitが自動生成）
+      001b_青山龍星…….wav ← 詳細説明
+      001b.txt
+      002a.wav / 002a.txt ...
     illustrations/
-      001.png       ← 001スライドに使う画像（直接ここに置く）
+      000.png       ← タイトル画面用（省略可。なければ最初の画像）
+      999.png       ← アウトロ画面用（省略可。なければ最後の画像）
+      001.png       ← 001スライドに使う画像
       002.png
       ...
+  public/
     bgm/
       bgm.mp3       ← BGM（省略可）
+    ※ illustrations/ と slides/ は npm run go で自動コピー（触らない）
 ```
 
 ---
 
 ## 手順
 
+### 0. 台本を分割する（npm run split）
+
+`input/temp/Voicebox.txt` に `プレフィックス,テキスト` を1行1エントリで書く：
+
+```
+int,タイトルのテキスト
+001a,雑学テーマのテキスト
+001b,詳細説明のテキスト
+002a,次のテーマ…
+out,コメント誘導のテキスト
+```
+
+```bash
+npm run split
+```
+
+→ `input/slides/` に `int_000.txt`、`001a.txt`、`001b.txt` … が自動生成される。
+（`int` の行は `int_000.txt` になる。先頭のBOMは自動で除去）
+
 ### 1. ファイルを置く
 
-**音声・テキスト** → `input/slides/` に置く
-- WAVファイル：`001a.wav`、`001b.wav`、`002a.wav`、`002b.wav` … の命名規則
-- TXTファイル：対応するWAVと同じプレフィックス（`001a.txt`、`001b.txt` …）
+**音声** → `input/slides/` に置く
+- タイトル：`int_青山龍星…….wav`（`int_` で始まるWAV）
+- アウトロ：`out_青山龍星…….wav`（`out_` で始まるWAV、TXTは `out.txt`。最後に独立1枚）
+- 本編：`001a_…….wav`、`001b_…….wav`、`002a_…….wav` … の命名規則
+- WAVファイル名が長くても先頭の `001a`（タイトルは `int_000`）部分だけでTXTを検索するので問題なし
 - TXTは**1ファイル1行**（改行を入れると後半が別スライドに混入するバグのもと）
-- WAVファイル名が長くても先頭の `001a` 部分だけでTXTを検索するので問題なし
 
-**イラスト** → `public/illustrations/` に直接置く
+**イラスト** → `input/illustrations/` に置く
 - `001.png`、`002.png` … のように番号で命名
 - スライド番号と画像番号が対応する（001a・001b → `001.png`）
+- タイトル画面は `000.png`（なければ最初の画像）
+- `npm run go` 実行時に `public/illustrations/` へ自動コピーされる
+- `input/illustrations/` がない場合のみ `public/illustrations/` を直接読む
 
 **BGM** → `public/bgm/bgm.mp3` に置く（なくても動く）
 
@@ -116,6 +147,7 @@ npm run dev       # Remotion Studio でプレビュー
 | `BGM_FADE_FRAMES` | `60` | BGMフェードのフレーム数 |
 | 強調色 | `#E53500` | `[[]]` テキストの色 |
 | 通常テキスト色 | `#111111` | 黒（アウトラインなし） |
+| テキスト影 | `2px 2px 3px rgba(0,0,0,0.25)` | 右下だけの薄い影 |
 | イラスト位置 | `top: 33.33%` | 上1/3を空けて下2/3に表示 |
 
 ---

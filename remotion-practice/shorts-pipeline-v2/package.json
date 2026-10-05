@@ -24,6 +24,7 @@
   },
   "type": "module",
   "scripts": {
+    "split": "node split.js",
     "prepare": "node prepare.js",
     "go": "node prepare.js && npx remotion render ShortsVideo",
     "dev": "remotion studio",

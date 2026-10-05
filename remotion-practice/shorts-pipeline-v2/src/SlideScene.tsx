@@ -315,7 +315,7 @@ export const ShortsScene: React.FC = () => {
           top: 0,
           left: 0,
           right: 0,
-          padding: "220px 42px 0",
+          padding: "324px 42px 0",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -336,6 +336,7 @@ export const ShortsScene: React.FC = () => {
                 color: "#111111",
                 lineHeight: 1.45,
                 letterSpacing: "0.02em",
+                textShadow: "2px 2px 3px rgba(0,0,0,0.25)",
               }}
             >
               {parseChunks(line).map((chunk, j) => (
