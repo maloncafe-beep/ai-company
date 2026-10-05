@@ -1,69 +1,31 @@
-# note記事量産プロジェクト（Claude版）
+# Note-AI自動化工場
 
-Maloncafe / AI-Companyとしてのnote記事をAIで量産するプロジェクト。
-Cursorプロジェクト（note-project-sample）からの引き継ぎ版。
+市場起点で有料note商品を企画・執筆・生成する工場。仕様は [`Note-AI自動化_ClaudeCode実行仕様書.md`](Note-AI自動化_ClaudeCode実行仕様書.md) が正。前提条件は [`config/project-brief.md`](config/project-brief.md) を参照。
 
-## プロジェクト構造
+## 2026-10-05の経緯（重要）
+このフォルダは`.gitignore`対象かつ、別プロジェクト（`note-project-zodiacm`、Codex/Cursor向け）のセッションからも並行して触られることがあり、一度`.claude/skills/phase1〜7`・`products/`が消失した（`SESSION_RECOVERY_2026-10-01_to_05.md`参照）。経営者の判断で、このフォルダは**Claude Code向けの工場（企画〜公開まで一気通貫）として復元・継続**する。`research/`・`archive/`・`research-topic`スキルは別セッションが追加したもので、競合しない範囲でそのまま残している。
+
+## フォルダ構成
 
 ```
-.
-├── .claude/
-│   └── skills/
-│       ├── generate-article-idea/  ← ネタ生成
-│       ├── write-note-article/     ← 記事執筆
-│       ├── research-topic/         ← リサーチ
-│       └── polish-article/         ← 推敲
+note-project/
+├── README.md
 ├── config/
-│   ├── author-profile.md           ← プロフィール・文体設定
-│   ├── company-philosophy.md       ← 哲学リファレンス
-│   └── writing-style-guide.md      ← ライティングスタイルガイド
-├── ideas/
-│   └── idea-pool.md                ← アイデアストック
-├── research/                       ← リサーチメモ
-├── templates/
-│   ├── experience-review.md        ← TYPE A: 体験レビュー型
-│   ├── philosophy.md               ← TYPE B: 哲学・思想型
-│   ├── company-story.md            ← TYPE C: 会社ストーリー型
-│   └── vision-product.md           ← TYPE D: ビジョン・プロダクト型
-├── articles/
-│   ├── drafts/                     ← 下書き
-│   ├── review/                     ← レビュー中
-│   └── published/                  ← 公開済み
-└── README.md
+│   ├── project-brief.md       ← 前提条件（アカウント・収益モデル・実行境界・一次資料の場所）
+│   └── writing-style-guide.md
+├── .claude/skills/            ← フェーズ1〜7＋research-topic（他セッション追加分）
+├── products/                  ← 1案件=1フォルダ。INDEX.mdで一覧管理
+├── research/                  ← 他セッション追加分のリサーチメモ
+├── archive/                   ← 旧MALO資産（他セッションが整理）
+├── assets/banner_bases/       ← バナー背景画像の置き場（任意）
+└── scripts/make_note_banner.py ← バナー生成（Pillow、無料・即時）
 ```
 
-## 4つの記事タイプ
+## フェーズの流れ
+1. テーマ決定（市場起点） → 2. 市場調査 → 3. 商品設計図 → 4. コンテンツ生成 → 5. バナー生成 → 6. 人によるレビュー（必須） → 7. 投稿・告知
 
-| タイプ | テンプレート | スキ数目安 |
-|--------|------------|-----------|
-| 体験レビュー型 | experience-review.md | 55スキ参考 |
-| 哲学・思想型 | philosophy.md | 94スキ参考 |
-| 会社ストーリー型 | company-story.md | 18スキ参考 |
-| ビジョン・プロダクト型 | vision-product.md | 175スキ参考 |
+フェーズ6を経ずにフェーズ7へ進んではならない。経営者の実作業はnote投稿・X投稿のみ。
 
-## 使い方
-
-### 「ネタ考えて」
-→ generate-article-ideaスキルで6フレームワーク（哲学バズーカ法、体験ファースト法、業界ぶった切り法、会社の裏側法、人生ストーリー法、AI×哲学法）でアイデア生成。
-
-### 「○○について調べて」
-→ research-topicスキルでWeb検索＋哲学との接続ポイントを含めたリサーチメモ生成。
-
-### 「記事書いて」
-→ write-note-articleスキルでスタイルガイド準拠の記事生成。
-
-### 「推敲して」
-→ polish-articleスキルでスタイル再現度・哲学接続・バズ度を多角的にチェック。
-
-## ファイル管理ルール
-
-- 下書き: `articles/drafts/YYYYMMDD-タイトル.md`
-- レビュー中: `articles/review/`
-- 公開済み: `articles/published/`
-- リサーチメモ: `research/YYYYMMDD-テーマ名.md`
-- アイデア: `ideas/idea-pool.md`
-
-## 絶対に禁止する操作
-
-- ファイル・フォルダの削除
-- ユーザーへの確認なしに既存ファイルを大幅に変更すること
+## 外部連携
+- SNS告知：`x-auto-post`（別プロジェクト、`@maloncafe`アカウント共有、手動トリガー）
+- バナー：Pillowローカル生成（AI画像生成は使わない）

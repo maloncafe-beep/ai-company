@@ -54,3 +54,22 @@
 
 ### 未完成・保留
 - 施策の実施はこれから。実施時に変更前後の数字を追記する。
+
+### 補足（2026-10-05 経営者指摘）
+- 「評価制度を入れても…」(9/9)は、経営者がChatGPTと共同で作った記事。Claude工場の成果物ではない。Claude製記事の評価材料に混ぜない。タイトル・バナー変更の可否は経営者判断。
+- Claude工場で作った記事は「40代の転職準備は…」(9/30)と「部下への評価面談が…」(10/4)の2本のみ。他6本はChatGPT等の別方法。
+- Claude製2本の数字：40代転職 60imp/5PV(8.3%)、評価面談 15imp/1PV(6.7%、公開1日)。他6本合計は575imp/15PV(2.6%)。
+
+## 2026-10-05 プロジェクト整理（旧コンセプトの退避）
+- コンセプトを確定：読者＝職場で迷う会社員／正論と異論を並べ結論は押し付けない／当面は無料記事中心。README.md に反映。
+- 旧資産を `archive/` へ移動（削除なし）：旧templates、旧ideas、旧research（婚活・スタートアップ・AIで答えを出さない方法等）、旧README・旧プロフィール・旧哲学。
+- `research/METHOD.md` を新設：需要確認→正論→異論（反対側の一次データ）→異論への反論→未解決→暫定の見立て。
+- config/author-profile.md のターゲット読者、config/company-philosophy.md（核のみ）を更新。research-topic と generate-article-idea スキルの冒頭に「現行はMETHOD.md」の注意書きを追加。
+- 未対応：スキル本体は旧コンセプト（哲学接続・6フレームワーク）の記述が残る。articles/ の旧記事は移動していない。
+
+### 追補（同日・経営者の指示で全面整理）
+- このフォルダは経営者が記事を作る場所ではないため、旧スキル（generate-article-idea / write-note-article / polish-article）、writing-style-guide、旧記事（articles/）を `archive/` へ移動。
+- research-topic スキルを METHOD.md 準拠に書き換え。README を「リサーチ専用」に更新。
+- 残したもの：research-topic、phase5-thumbnail、バナー関連（scripts/・config/banner-style.json）、author-profile、company-philosophy（核のみ）。
+- 工場で使わないものを archive/ へ移動：config/author-profile.md、config/company-philosophy.md（旧Maloncafe文体・哲学）。archive/ の削除は経営者が手動で行う。
+- 注意：経営者の過去出力に、評価面談記事の成果物パス `note-project/products/20261004-hyoka-mendan-ai/`（本文・販売ページ・特典・SNS告知・`05-thumbnail/banner-01.png`）が記載されていた。2026-10-05時点でこのパスは存在せず、git履歴にも無い（未コミットのまま消えた、または別の場所に移動した可能性）。バナー関連（scripts/・config/banner-style.json・phase5-thumbnail）は、この流れで使われた可能性が高いため archive に移さない。
