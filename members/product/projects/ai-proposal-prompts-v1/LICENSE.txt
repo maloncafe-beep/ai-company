@@ -1,0 +1,228 @@
+================================================================================
+提案書・企画書 AI 自動作成プロンプト集 100+
+ライセンス・利用規約 (License & Terms of Use)
+================================================================================
+
+製品：ai-proposal-prompts v1
+バージョン：1.0.0
+発行日：2026-07-23
+言語：Japanese / English
+
+================================================================================
+【日本語版】ライセンス・利用規約
+================================================================================
+
+## 1. ライセンスの種類
+
+本製品は「非商用・個人利用ライセンス」の下で配布されています。
+
+## 2. 許可される利用
+
+以下のいずれかの利用は **許可** されています：
+
+✅ 個人利用
+  - 個人の営業資料作成
+  - フリーランスの業務効率化
+  - 社内学習・自己啓発
+
+✅ 法人利用（社内のみ）
+  - 会社の営業マンが社内資料作成用に使用
+  - 部門内での利用
+  - 社員研修での使用
+
+✅ クライアント向け納品（業務委託時）
+  - フリーランス：クライアント向けの提案書作成代行
+  - 企業営業マン：顧客へのコンサル・提案
+  - 受託制作：本プロンプトを使用した成果物の納品（売上計上 OK）
+
+✅ 対応 AI での利用
+  - ChatGPT（OpenAI）
+  - Claude（Anthropic）
+  - Google Gemini
+  - その他の LLM（事前相談推奨）
+
+## 3. 禁止される利用
+
+> ※ 以下の禁止事項は **本製品をご購入いただいたユーザー** への制限です。販売元による公式販売チャネル（note・Booth等）での提供はこの限りではありません。
+
+以下のいずれかの利用は **禁止** されています：
+
+❌ 再販売・商品化
+  - 本プロンプト集そのものを再販売
+  - コース・教材として販売
+  - 許可を得ずそのままココナラなどでの掲載「このプロンプト集を使ってください」という形式での販売
+  - （※ 本プロンプトから生成された資料の納品は OK）
+
+❌ 他社への配布・共有
+  - 他の営業マン・チームへの勝手な配布
+  - 外部の業者への譲渡
+  - 社外秘情報として扱う
+
+❌ 改変後の再販売
+  - プロンプトを修正・改善して販売
+  - 自社ブランドのプロンプト集として販売
+
+❌ ソースコードの抽出・解析
+  - プロンプトの内部構造を逆コンパイル
+  - アルゴリズムの抽出・模倣
+
+## 4. 免責事項
+
+本製品を使用したことによる以下の責任は負いません：
+
+- AI出力の精度不足・エラー
+- クライアント納品後のトラブル
+- 著作権・知的財産権の侵害（ユーザーの責任）
+- データ漏洩・個人情報保護法違反（ユーザーの責任）
+- 商談不成立・契約キャンセル
+
+**ユーザーの責任**
+
+本プロンプト集から生成した資料の内容・品質に対する最終責任はユーザーにあります。
+クライアント納品前に必ず人間が確認・修正してください。
+
+## 5. 条件付き例外（相談推奨）
+
+以下のようなケースについては、事前相談のうえ許可する場合があります：
+
+- 大規模組織での社内導入
+- 教育機関での利用
+- 営利企業以外（NPO など）での活用
+- 複数チーム・拠点での運用
+
+## 6. 利用規約違反時の対応
+
+本ライセンスに違反する利用が判明した場合：
+
+1. 警告通知を送付
+2. 一定期間内の改善を要求
+3. 改善されない場合、利用中止と損害賠償請求
+
+## 7. ライセンスの解釈
+
+不明な点については、以下の優先順で判断します：
+
+1. 本ファイル（LICENSE.txt）の記載
+2. README.md の記載
+3. 社長の判断
+
+グレーゾーンについては、**販売元に事前確認** してください。
+
+## 8. 改版・更新
+
+本ライセンスは予告なく改版される場合があります。
+新バージョン使用時は、最新の LICENSE.txt を確認してください。
+
+================================================================================
+【English Version】License & Terms of Use
+================================================================================
+
+## 1. License Type
+
+This product is distributed under "Non-Commercial Personal Use License."
+
+## 2. Permitted Uses
+
+The following uses are **PERMITTED**:
+
+✅ Personal Use
+  - Personal sales document creation
+  - Freelancer work efficiency improvement
+  - Internal learning and self-development
+
+✅ Corporate Use (Internal Only)
+  - Company salespeople creating internal sales materials
+  - Departmental use
+  - Employee training
+
+✅ Client Delivery (Contract Work)
+  - Freelancers: proposal creation for clients
+  - Corporate salespeople: consulting and proposals for customers
+  - Contract work: delivery of content generated using this prompt (revenue OK)
+
+✅ Use with Supported AIs
+  - ChatGPT (OpenAI)
+  - Claude (Anthropic)
+  - Google Gemini
+  - Other LLMs (consultation recommended)
+
+## 3. Prohibited Uses
+
+> ※ The following restrictions apply to **users who purchased this product**. Official sales through the publisher's channels (note, Booth, etc.) are not subject to these restrictions.
+
+The following uses are **PROHIBITED**:
+
+❌ Resale / Commercialization
+  - Reselling the prompt collection itself
+  - Selling as a course or educational material
+  - Selling on platforms like Fiverr/Upwork as "use this prompt collection"
+  (※ Selling deliverables generated FROM the prompts is OK)
+
+❌ Distribution to Third Parties
+  - Sharing with other salespeople or teams without permission
+  - Transfer to external contractors
+  - Treating as confidential company information
+
+❌ Resale of Modified Versions
+  - Modifying and reselling prompts
+  - Rebranding as proprietary prompts
+
+❌ Source Code Extraction
+  - Reverse engineering prompt internals
+  - Extracting and replicating algorithms
+
+## 4. Disclaimer
+
+We take no responsibility for:
+
+- Accuracy or errors in AI outputs
+- Issues after client delivery
+- Copyright/IP infringement (user's responsibility)
+- Data breaches or privacy violations (user's responsibility)
+- Failed deals or contract cancellations
+
+**User Responsibility**
+
+The user bears final responsibility for the content and quality of deliverables.
+Human review and modification before client delivery is mandatory.
+
+## 5. Conditional Exceptions (Consultation Recommended)
+
+We may grant exceptions for:
+
+- Large-scale organizational deployment
+- Educational institutions
+- Non-profit organizations
+- Multi-team or multi-location operations
+
+## 6. Breach Response
+
+If license violations are discovered:
+
+1. Warning notification sent
+2. Remediation period required
+3. Failure to remediate: cease and desist + damages claim
+
+## 7. Interpretation
+
+Ambiguities shall be resolved in this order:
+
+1. LICENSE.txt
+2. README.md
+3. Publisher discretion
+
+For gray areas, **contact the publisher beforehand**.
+
+## 8. Updates
+
+This license may be updated without notice.
+Check the latest LICENSE.txt when using new versions.
+
+================================================================================
+連絡先 / Contact
+================================================================================
+
+ご質問・相談：
+メール：zodiacm369@gmail.com
+
+================================================================================

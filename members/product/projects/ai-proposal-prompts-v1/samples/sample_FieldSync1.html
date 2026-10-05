@@ -1,0 +1,483 @@
+
+<title>FieldSync 製品紹介チラシ（表面）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #CBD5E1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1123px;
+    background: #fff;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: #0A3D7C;
+    padding: 26px 28px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -40px; bottom: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(0,149,217,0.15);
+    pointer-events: none;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: #0095D9;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-mark svg { width: 22px; height: 22px; }
+  .logo-text  { font-size: 23px; font-weight: 800; color: #fff; letter-spacing: 0.01em; }
+  .logo-sub   { font-size: 10px; color: #90C4E8; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 400; }
+  .hero-badge {
+    background: #F7A800;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 11px; font-weight: 800; color: #1C2B3A;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .hero-catch {
+    font-size: 24px; font-weight: 900; color: #fff;
+    line-height: 1.3; letter-spacing: 0.01em;
+    margin-bottom: 8px;
+  }
+  .hero-catch em {
+    font-style: normal;
+    color: #F7A800;
+  }
+  .hero-sub {
+    font-size: 12.5px; color: #B8D9F0; line-height: 1.6;
+    max-width: 540px;
+  }
+
+  /* ── Problem strip ── */
+  .problem-strip {
+    background: #F0F7FD;
+    border-left: 4px solid #0095D9;
+    margin: 0 20px;
+    padding: 10px 16px;
+    margin-top: 14px;
+  }
+  .problem-strip-title {
+    font-size: 11px; font-weight: 700; color: #0A3D7C;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .problem-items {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .problem-chip {
+    background: #fff;
+    border: 1px solid #C7DFF5;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 11px; color: #1C2B3A;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .problem-chip::before {
+    content: '😓';
+    font-size: 13px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 10px; font-weight: 700; color: #0095D9;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  /* ── Features ── */
+  .features-wrap {
+    padding: 14px 20px 0;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .feature-card {
+    background: #F8FBFF;
+    border: 1px solid #D9E8F5;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .feature-icon {
+    width: 40px; height: 40px;
+    background: #0A3D7C;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .feature-icon svg { width: 22px; height: 22px; }
+  .feature-title {
+    font-size: 12.5px; font-weight: 700; color: #0A3D7C;
+    margin-bottom: 4px;
+  }
+  .feature-desc {
+    font-size: 10.5px; color: #374151; line-height: 1.55;
+  }
+
+  /* ── Before/After ── */
+  .ba-wrap {
+    padding: 12px 20px 0;
+  }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr;
+    gap: 0;
+    align-items: center;
+  }
+  .ba-col {
+    background: #F8FBFF;
+    border: 1px solid #D9E8F5;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .ba-col.after {
+    background: #EBF4FD;
+    border-color: #0095D9;
+  }
+  .ba-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .ba-label.before { color: #94A3B8; }
+  .ba-label.after  { color: #0095D9; }
+  .ba-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: 10.5px; color: #374151; line-height: 1.4;
+  }
+  .ba-item .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    margin-top: 4px; flex-shrink: 0;
+  }
+  .ba-col .dot { background: #CBD5E1; }
+  .ba-col.after .dot { background: #0095D9; }
+  .ba-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #F7A800;
+    font-weight: 900;
+  }
+
+  /* ── Target ── */
+  .target-wrap {
+    padding: 12px 20px 0;
+  }
+  .target-grid {
+    display: flex;
+    gap: 8px;
+  }
+  .target-card {
+    flex: 1;
+    background: #0A3D7C;
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .target-icon { font-size: 20px; margin-bottom: 4px; }
+  .target-title { font-size: 11px; font-weight: 700; color: #F7A800; margin-bottom: 3px; }
+  .target-desc  { font-size: 10px; color: #B8D9F0; line-height: 1.45; }
+
+  /* ── Numbers ── */
+  .numbers-wrap {
+    padding: 12px 20px 0;
+  }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .number-card {
+    background: #F0F7FD;
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 3px solid #0095D9;
+  }
+  .number-big {
+    font-size: 28px; font-weight: 900; color: #0A3D7C;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .number-big span { font-size: 14px; font-weight: 700; }
+  .number-label { font-size: 10px; color: #374151; margin-top: 4px; line-height: 1.35; }
+
+  /* ── CTA Footer ── */
+  .cta-footer {
+    background: #0A3D7C;
+    padding: 14px 24px;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-badge {
+    background: #F7A800;
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 90px;
+  }
+  .cta-badge-main { font-size: 16px; font-weight: 900; color: #1C2B3A; line-height: 1.1; }
+  .cta-badge-sub  { font-size: 10px; font-weight: 700; color: #1C2B3A; }
+  .cta-text { flex: 1; }
+  .cta-headline { font-size: 12.5px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .cta-desc { font-size: 10.5px; color: #90C4E8; line-height: 1.45; }
+  .cta-url {
+    background: #0095D9;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 11px; font-weight: 700; color: #fff;
+    white-space: nowrap;
+    align-self: center;
+  }
+  .cta-company {
+    font-size: 9px; color: #64748B;
+    padding: 6px 24px;
+    background: #081F40;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cta-company-name { color: #90C4E8; font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; width: 100%; min-height: 0; }
+  }
+</style>
+
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-top">
+      <div class="logo-row">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+            <path d="M7 8h10M7 11h6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-text">FieldSync</div>
+          <div class="logo-sub">Cloud Field Management</div>
+        </div>
+      </div>
+      <div class="hero-badge">クラウド現場管理システム</div>
+    </div>
+    <div class="hero-catch">
+      バラバラな現場データを、<em>ひとつにつなぐ。</em><br>
+      今日から動ける現場管理へ。
+    </div>
+    <div class="hero-sub">
+      Excel・紙・社内システムが乱立し、集計・共有・判断に時間がかかっている現場のために。<br>
+      FieldSyncは、ITに不慣れなスタッフでも使える画面設計で、最短2週間で稼働します。
+    </div>
+  </div>
+
+  <!-- Problem strip -->
+  <div class="problem-strip">
+    <div class="problem-strip-title">こんな課題、ありませんか？</div>
+    <div class="problem-items">
+      <div class="problem-chip">Excelファイルが増えて管理できない</div>
+      <div class="problem-chip">日報の集計に毎日2〜3時間かかる</div>
+      <div class="problem-chip">現場の状況がリアルタイムでわからない</div>
+      <div class="problem-chip">ツールがバラバラで情報が一元化されていない</div>
+      <div class="problem-chip">担当者が変わるとメンテナンスできなくなる</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features-wrap">
+    <div class="section-label" style="margin-top:12px;">主な機能</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <path d="M9 7h6M9 11h6M9 15h4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">モバイル日報・点検入力</div>
+          <div class="feature-desc">スマートフォン・タブレットから現場でその場に記録。紙の帳票と同じ画面で、違和感なく移行できます。</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">リアルタイム進捗ダッシュボード</div>
+          <div class="feature-desc">管理者は事務所にいながら、現場の進捗・異常をひと目で把握。集計は自動、月次レポートはボタン一つ。</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">アラート・通知機能</div>
+          <div class="feature-desc">異常値・未入力・期限切れを管理者に即時通知。問題が小さいうちに対応できる仕組みをつくります。</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            <path d="M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.49"/>
+            <path d="M7.76 7.76a6 6 0 0 0 0 8.49"/>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">外部システム連携・API対応</div>
+          <div class="feature-desc">既存の基幹システム・ERP・Excelとデータ連携。ゼロからやり直さず、今ある仕組みを活かして拡張できます。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Before / After -->
+  <div class="ba-wrap">
+    <div class="section-label" style="margin-top:12px;">導入前後のイメージ（作業日報の場合）</div>
+    <div class="ba-grid">
+      <div class="ba-col">
+        <div class="ba-label before">Before 導入前</div>
+        <div class="ba-item"><span class="dot"></span>手書きで日報記入（10〜15分）</div>
+        <div class="ba-item"><span class="dot"></span>事務所へ持参 or 翌朝提出</div>
+        <div class="ba-item"><span class="dot"></span>担当者が手入力・集計（毎日2時間）</div>
+        <div class="ba-item"><span class="dot"></span>月末集計に丸1日かかる</div>
+        <div class="ba-item"><span class="dot"></span>紛失・転記ミスが定期的に発生</div>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-col after">
+        <div class="ba-label after">After 導入後</div>
+        <div class="ba-item"><span class="dot"></span>スマートフォンで入力・送信（3分）</div>
+        <div class="ba-item"><span class="dot"></span>リアルタイムでダッシュボードに反映</div>
+        <div class="ba-item"><span class="dot"></span>集計は自動——担当者の作業ゼロ</div>
+        <div class="ba-item"><span class="dot"></span>月次レポートはボタン一つで出力</div>
+        <div class="ba-item"><span class="dot"></span>データはクラウドに自動バックアップ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Numbers -->
+  <div class="numbers-wrap">
+    <div class="section-label" style="margin-top:12px;">導入効果の目安（50名規模の製造業の場合）</div>
+    <div class="numbers-grid">
+      <div class="number-card">
+        <div class="number-big">83<span>%</span></div>
+        <div class="number-label">日報集計工数の削減率<br>（月60時間 → 約10時間）</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big">2<span>週間</span></div>
+        <div class="number-label">最短稼働までの期間<br>（初期設定・研修込み）</div>
+      </div>
+      <div class="number-card">
+        <div class="number-big">90<span>%</span></div>
+        <div class="number-label">点検記録の検索時間削減<br>（月20時間 → 約2時間）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Target -->
+  <div class="target-wrap">
+    <div class="section-label" style="margin-top:12px;">こんな会社に選ばれています</div>
+    <div class="target-grid">
+      <div class="target-card">
+        <div class="target-icon">🏭</div>
+        <div class="target-title">製造業</div>
+        <div class="target-desc">設備点検・日報・品質記録のデジタル化。現場50〜500名規模で実績多数。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-icon">🏗️</div>
+        <div class="target-title">建設・設備工事</div>
+        <div class="target-desc">施工日報・安全点検・進捗報告をモバイルで完結。現場とオフィスをリアルタイム連携。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-icon">🚛</div>
+        <div class="target-title">物流・運輸</div>
+        <div class="target-desc">配送日報・車両点検・ドライバー管理をひとつに。GPS連携・アラートで安全管理も強化。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-icon">🏢</div>
+        <div class="target-title">施設管理・警備</div>
+        <div class="target-desc">巡回記録・設備保全・インシデント報告を標準化。複数拠点をクラウドで一元管理。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Footer -->
+  <div class="cta-footer" style="margin-top:14px;">
+    <div class="cta-badge">
+      <div class="cta-badge-main">30日間</div>
+      <div class="cta-badge-sub">無料トライアル</div>
+    </div>
+    <div class="cta-text">
+      <div class="cta-headline">まずはお試しください！</div>
+      <div class="cta-desc">30日間無料でFieldSyncのすべての機能をご利用いただけます。<br>設定サポート付きなので、導入初日から現場で使い始められます。</div>
+    </div>
+    <div class="cta-url">fieldsync.example.com/trial</div>
+  </div>
+  <div class="cta-company">
+    <div>
+      <span class="cta-company-name">株式会社テックブリッジ</span>　〒100-0005 東京都千代田区丸の内1-1-1　https://techbridge.example.com/
+    </div>
+    <div>お問い合わせ：sales@techbridge.example.com</div>
+  </div>
+
+</div>
