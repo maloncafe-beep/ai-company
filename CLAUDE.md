@@ -58,3 +58,21 @@
 - 作業直後 or 一区切りごとに追記
 - 日付セクションごとに時系列で残す
 - 「なぜ」「何を」「どうなったか」を1行ずつでOK
+
+## ブランチ・worktree整理手順（ごみ掃除）
+Claude Codeがセッションごとに `claude/…` ブランチとworktreeを作るため、増えたら整理する。コマンドはPowerShell用、`~/ai-company` で実行。
+
+1. 現状確認（何も消えない）
+   `git worktree list; git branch -a`
+2. 未統合ブランチの確認
+   `git branch --no-merged main`
+   - 何も出なければ全部 `main` に入っている → 手順3へ
+   - ブランチ名が出たら、その内容は `main` にない。残すか捨てるか決める（迷ったらそのブランチだけ残す）
+3. worktree削除（`--force` なし。未保存の変更があれば止まる）
+   `git worktree prune; git worktree list --porcelain | Select-String '^worktree ' | ForEach-Object { $_.Line.Substring(9) } | Select-Object -Skip 1 | ForEach-Object { git worktree remove $_ }`
+4. 統合済みブランチだけ削除（ローカル＋GitHub。`-d` なので未統合は拒否される）
+   `git branch --merged main --format='%(refname:short)' | Where-Object { $_ -ne 'main' } | ForEach-Object { git branch -d $_; git push origin --delete $_ }`
+5. 確認（`main` だけ残れば完了）
+   `git worktree list; git branch -a`
+
+- スクリプト化しない（全消しの事故防止）。毎回手順2の確認が最重要
