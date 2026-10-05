@@ -21,3 +21,7 @@
 
 ## 2026-10-05 復旧の補足
 - バナー（banner-01.png）はPillowスクリプトで再生成済み。スクリプト・configが完全復元されているため元と同一のものが再現できた
+
+## 2026-10-05（続き2）
+- やったこと：経営者がnote.comから公開済み記事の全文とバナー画像をダウンロードし、ローカルに保存
+- 結果：本文を`article-body-published-verified.md`として保存。バナーはPillow再生成版（banner-01.png）とnote.com実物（banner-01-verified.webp）が完全一致することを確認

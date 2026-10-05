@@ -11,3 +11,7 @@ products/フォルダが一時的にディスクから消失し、会話コン�
 
 ## 2026-10-05 復旧の補足
 - バナー画像（thumbnail-A.png / thumbnail-B.png）はHiggsfield（Nano Banana）でのAI画像生成だったため、テキストからの再生成は不可。必要なら再度Higgsfieldで生成し直す
+
+## 2026-10-05（続き）
+- やったこと：経営者がnote.comから公開済み記事の全文とバナー画像をダウンロードし、ローカルに保存
+- 結果：本文は会話コンテキストからの復元版とほぼ完全一致を確認（`article-body-published-verified.md`として保存）。バナー（Higgsfield生成、再生成不可だった）も`thumbnail-A.webp`として回収完了
