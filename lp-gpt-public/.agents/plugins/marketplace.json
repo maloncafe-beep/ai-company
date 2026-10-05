@@ -1,0 +1,20 @@
+{
+  "name": "lp-gpt-public",
+  "interface": {
+    "displayName": "LP-GPT Public"
+  },
+  "plugins": [
+    {
+      "name": "lp-gpt",
+      "source": {
+        "source": "local",
+        "path": "./plugins/lp-gpt"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

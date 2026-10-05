@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image2 Mobile LP Builder"
+  short_description: "Build Image2-style mobile LPs"
+  default_prompt: "Use $image2-mobile-lp-builder to turn my fixed LP outline and reference eyecatch into generated mobile LP image slices and functional HTML."

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — 営業資料・提案書サンプル</title>
+<style>
+  :root {
+    --bg: #0F1923;
+    --card-bg: #1C2B3A;
+    --border: #243447;
+    --navy: #0A3D7C;
+    --blue: #0095D9;
+    --amber: #F7A800;
+    --text: #E2EBF5;
+    --muted: #6B8CAE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .header-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-size: 28px; font-weight: 800; color: var(--text);
+    margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+  header p {
+    font-size: 14px; color: var(--muted); line-height: 1.6;
+    max-width: 520px; margin: 0 auto;
+  }
+
+  /* ── Section ── */
+  .section { max-width: 960px; margin: 0 auto 56px; }
+  .section-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--amber);
+    border-left: 3px solid var(--amber);
+    padding-left: 10px; margin-bottom: 20px;
+  }
+
+  /* ── Grid ── */
+  .grid {
+    display: grid;
+    gap: 20px;
+  }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+  /* ── Card ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    border-color: var(--blue);
+  }
+  .card-thumb {
+    width: 100%; aspect-ratio: 794/1123;
+    object-fit: cover; object-position: top;
+    display: block;
+    background: #243447;
+  }
+  .card-thumb.landscape {
+    aspect-ratio: 16/9;
+  }
+  .card-body {
+    padding: 14px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+  }
+  .card-label {
+    font-size: 12px; font-weight: 700; color: var(--text);
+    line-height: 1.35;
+  }
+  .card-sub {
+    font-size: 10px; color: var(--muted); margin-top: 2px;
+  }
+  .card-badge {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.08em;
+    padding: 3px 9px; border-radius: 20px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-blue  { background: var(--blue);  color: #fff; }
+  .badge-amber { background: var(--amber); color: #1C2B3A; }
+  .badge-navy  { background: var(--navy);  color: #fff; }
+  .badge-gray  { background: #243447; color: var(--muted); }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 999;
+    align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-height: 90vh; max-width: 90vw;
+    border-radius: 8px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+  }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none;
+    color: #fff; font-size: 32px; cursor: pointer; opacity: 0.7;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ── Set Card ── */
+  .set-card { cursor: default; }
+  .set-thumbs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .set-thumb-wrap {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .set-thumb-wrap:first-child { border-right: 1px solid var(--border); }
+  .set-thumb-wrap img { display: block; width: 100%; }
+  .thumb-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    padding: 10px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+  .set-thumb-wrap:hover .thumb-overlay { background: rgba(0,149,217,0.08); }
+  .set-thumb-wrap:hover img { opacity: 0.9; }
+
+  /* ── Lightbox open button ── */
+  .lightbox-open-btn {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    background: var(--blue); color: #fff;
+    border: none; border-radius: 6px;
+    padding: 10px 24px; font-size: 13px; font-weight: 700;
+    cursor: pointer; white-space: nowrap;
+    text-decoration: none; display: inline-block;
+  }
+  .lightbox-open-btn:hover { background: #007bb5; }
+
+  @media (max-width: 600px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-eyebrow">Portfolio</div>
+  <h1>営業資料・提案書 制作サンプル</h1>
+  <p>提案書・A4パンフレット・LPなど、用途に合わせた資料を制作します。<br>AIを活用した高速制作・量産対応可能です。</p>
+</header>
+
+<!-- A4パンフレット -->
+<div class="section">
+  <div class="section-title">A4パンフレット（表裏セット）</div>
+  <div class="grid">
+    <div class="card set-card">
+      <div class="set-thumbs">
+        <div class="set-thumb-wrap" onclick="openLightbox('FieldSync1.png', 'FieldSync1.html')">
+          <img class="card-thumb" src="FieldSync1.png" alt="FieldSync A4チラシ 表面">
+          <div class="thumb-overlay"><span class="card-badge badge-blue">FRONT</span></div>
+        </div>
+        <div class="set-thumb-wrap" onclick="openLightbox('FieldSync2.png', 'FieldSync2.html')">
+          <img class="card-thumb" src="FieldSync2.png" alt="FieldSync A4チラシ 裏面">
+          <div class="thumb-overlay"><span class="card-badge badge-amber">BACK</span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-label">FieldSync — 営業チラシ 表裏セット</div>
+          <div class="card-sub">A4縦 2枚組 / 製品紹介 + 比較表 / 印刷対応 / HTML納品</div>
+        </div>
+        <span class="card-badge badge-gray">2P SET</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="">
+  <a id="lightbox-btn" class="lightbox-open-btn" href="#" target="_blank" onclick="event.stopPropagation()">HTMLで開く ↗</a>
+</div>
+
+<script>
+  function openLightbox(src, htmlSrc) {
+    document.getElementById('lightbox-img').src = src;
+    const btn = document.getElementById('lightbox-btn');
+    if (htmlSrc) { btn.href = htmlSrc; btn.style.display = 'inline-block'; }
+    else { btn.style.display = 'none'; }
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>

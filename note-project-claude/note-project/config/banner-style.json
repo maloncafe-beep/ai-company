@@ -1,0 +1,33 @@
+{
+  "canvas": { "width": 1280, "height": 670 },
+  "colors": {
+    "bg_left": [240, 238, 230],
+    "bg_right": [214, 222, 218],
+    "glow_sage": [104, 132, 129],
+    "glow_terracotta": [189, 116, 83],
+    "dark": [36, 48, 51],
+    "muted": [90, 105, 104],
+    "accent_terracotta": [178, 91, 67],
+    "accent_sage": [113, 137, 132],
+    "accent_gold": [176, 141, 65],
+    "panel_dark": [66, 83, 86],
+    "card_cream": [255, 253, 247],
+    "card_dark": [37, 45, 47],
+    "text_on_dark": [244, 238, 228],
+    "avatar_colors": [[178, 91, 67], [95, 112, 112], [108, 83, 66]]
+  },
+  "fonts": {
+    "candidates_bold": [
+      "C:/Windows/Fonts/YuGothB.ttc",
+      "C:/Windows/Fonts/BIZ-UDGothicB.ttc",
+      "C:/Windows/Fonts/meiryob.ttc",
+      "C:/Windows/Fonts/msgothic.ttc"
+    ],
+    "candidates_regular": [
+      "C:/Windows/Fonts/YuGothM.ttc",
+      "C:/Windows/Fonts/BIZ-UDGothicR.ttc",
+      "C:/Windows/Fonts/meiryo.ttc",
+      "C:/Windows/Fonts/msgothic.ttc"
+    ]
+  }
+}

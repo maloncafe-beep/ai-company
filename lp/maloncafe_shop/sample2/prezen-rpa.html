@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中小企業向け RPA導入ガイド＋製品比較レポート</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: A4 landscape; margin: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #e8eaf0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 297mm;
+    height: 210mm;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    page-break-after: always;
+    margin: 0 auto 8mm;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; }
+  }
+
+  /* ===== 共通 ===== */
+  .page-header-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10mm;
+    background: #1a2e5a;
+    display: flex;
+    align-items: center;
+    padding: 0 8mm;
+    justify-content: space-between;
+  }
+  .page-header-bar .brand {
+    font-size: 10pt;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .page-header-bar .page-num {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.6);
+  }
+  .page-footer-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 8mm;
+    background: #f4f5f8;
+    display: flex;
+    align-items: center;
+    padding: 0 8mm;
+    justify-content: space-between;
+  }
+  .page-footer-bar span {
+    font-size: 10pt;
+    color: #999;
+  }
+
+  /* ===== PAGE 1: 表紙 ===== */
+  .cover {
+    background: linear-gradient(135deg, #1a2e5a 0%, #0f1e3d 60%, #1a2e5a 100%);
+  }
+  .cover-accent-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4mm;
+    background: linear-gradient(90deg, #f97316, #fb923c);
+  }
+  .cover-accent-left {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 2mm;
+    background: linear-gradient(180deg, #f97316, #fb923c);
+  }
+  .cover-content {
+    position: absolute;
+    top: 10mm; left: 22mm; right: 20mm; bottom: 8mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(249,115,22,0.15);
+    border: 1px solid rgba(249,115,22,0.4);
+    color: #fb923c;
+    font-size: 11pt;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 5mm;
+    width: fit-content;
+  }
+  .cover-title {
+    font-size: 30pt;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 3mm;
+    letter-spacing: -0.01em;
+  }
+  .cover-title span {
+    color: #fb923c;
+  }
+  .cover-subtitle {
+    font-size: 15pt;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 7mm;
+    font-weight: 500;
+  }
+  .cover-divider {
+    width: 50mm;
+    height: 1px;
+    background: rgba(249,115,22,0.5);
+    margin-bottom: 5mm;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 12mm;
+  }
+  .cover-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .cover-meta-label {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .cover-meta-value {
+    font-size: 12pt;
+    color: #fff;
+    font-weight: 700;
+  }
+  .cover-graphic {
+    position: absolute;
+    right: 12mm;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 5mm;
+    align-items: flex-end;
+  }
+  .cover-icon-row {
+    display: flex;
+    gap: 4mm;
+  }
+  .cover-icon-box {
+    width: 30mm;
+    height: 30mm;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .cover-icon-box i {
+    font-size: 22pt;
+    color: #fb923c;
+  }
+  .cover-icon-box span {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    text-align: center;
+  }
+  .cover-steps-preview {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 4mm;
+  }
+  .csp-item {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 10pt;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .csp-arrow {
+    color: #fb923c;
+    font-size: 14pt;
+    padding: 0 3px;
+  }
+  .cover-contents {
+    position: absolute;
+    bottom: 14mm;
+    right: 12mm;
+    left: auto;
+  }
+  .cover-toc {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 3px 12px;
+  }
+  .cover-toc-item {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .cover-toc-num {
+    color: #fb923c;
+    font-weight: 700;
+  }
+
+  /* ===== PAGE 2: 3ステップ ===== */
+  .p2-content {
+    position: absolute;
+    top: 14mm; left: 8mm; right: 8mm; bottom: 10mm;
+  }
+  .section-title {
+    font-size: 20pt;
+    font-weight: 900;
+    color: #1a2e5a;
+    margin-bottom: 1mm;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-title i {
+    color: #f97316;
+  }
+  .section-sub {
+    font-size: 12pt;
+    color: #666;
+    margin-bottom: 5mm;
+  }
+  .steps-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    height: 114mm;
+  }
+  .step-card {
+    flex: 1;
+    border-radius: 12px;
+    padding: 6mm 5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .step-card.s1 { background: linear-gradient(135deg, #e8f0fe, #c7d9fd); }
+  .step-card.s2 { background: linear-gradient(135deg, #e8f5e9, #bbdefb); }
+  .step-card.s3 { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+  .step-num {
+    font-size: 10pt;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    margin-bottom: 1mm;
+  }
+  .s1 .step-num { color: #3b5bdb; }
+  .s2 .step-num { color: #2e7d32; }
+  .s3 .step-num { color: #e65100; }
+  .step-icon {
+    font-size: 28pt;
+    margin-bottom: 1mm;
+  }
+  .s1 .step-icon { color: #3b5bdb; }
+  .s2 .step-icon { color: #2e7d32; }
+  .s3 .step-icon { color: #e65100; }
+  .step-label {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #555;
+    background: rgba(255,255,255,0.6);
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    width: fit-content;
+  }
+  .step-title {
+    font-size: 16pt;
+    font-weight: 900;
+    color: #1a2e5a;
+    line-height: 1.2;
+  }
+  .step-goal {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #555;
+    background: rgba(255,255,255,0.7);
+    padding: 2px 8px;
+    border-radius: 6px;
+    width: fit-content;
+  }
+  .step-desc {
+    font-size: 11pt;
+    color: #444;
+    line-height: 1.6;
+  }
+  .step-examples {
+    margin-top: 2mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .step-ex-item {
+    font-size: 11pt;
+    color: #555;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .step-ex-item::before {
+    content: '▶';
+    font-size: 9pt;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .s1 .step-ex-item::before { color: #3b5bdb; }
+  .s2 .step-ex-item::before { color: #2e7d32; }
+  .s3 .step-ex-item::before { color: #e65100; }
+  .step-status {
+    margin-top: auto;
+    font-size: 10pt;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  .s1 .step-status { background: rgba(59,91,219,0.1); color: #3b5bdb; }
+  .s2 .step-status { background: rgba(46,125,50,0.1); color: #2e7d32; }
+  .s3 .step-status { background: rgba(230,81,0,0.1); color: #e65100; }
+  .arrow-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16mm;
+    flex-shrink: 0;
+  }
+  .arrow-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .arrow-wrap i {
+    font-size: 20pt;
+    color: #f97316;
+  }
+  .arrow-label {
+    font-size: 9pt;
+    color: #f97316;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .steps-note {
+    margin-top: 2mm;
+    background: #fff8f0;
+    border-left: 4px solid #f97316;
+    border-radius: 0 8px 8px 0;
+    padding: 3mm 5mm;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .steps-note i {
+    font-size: 16pt;
+    color: #f97316;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .steps-note p {
+    font-size: 11pt;
+    color: #555;
+    line-height: 1.5;
+  }
+  .steps-note strong {
+    color: #e65100;
+  }
+
+  /* ===== PAGE 3: 5領域 ===== */
+  .p3-content {
+    position: absolute;
+    top: 14mm; left: 8mm; right: 8mm; bottom: 10mm;
+  }
+  .area-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4mm;
+    margin-top: 4mm;
+    height: 118mm;
+  }
+  .area-card {
+    border-radius: 10px;
+    padding: 5mm 4mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+    border: 1.5px solid;
+  }
+  .area-card.ac1 { background: #f0f4ff; border-color: #c7d2fe; }
+  .area-card.ac2 { background: #f0fdf4; border-color: #bbf7d0; }
+  .area-card.ac3 { background: #fff7ed; border-color: #fed7aa; }
+  .area-card.ac4 { background: #faf5ff; border-color: #e9d5ff; }
+  .area-card.ac5 { background: #f0f9ff; border-color: #bae6fd; }
+  .area-icon {
+    font-size: 24pt;
+    margin-bottom: 1mm;
+  }
+  .ac1 .area-icon { color: #4f46e5; }
+  .ac2 .area-icon { color: #16a34a; }
+  .ac3 .area-icon { color: #ea580c; }
+  .ac4 .area-icon { color: #9333ea; }
+  .ac5 .area-icon { color: #0284c7; }
+  .area-num {
+    font-size: 10pt;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: #999;
+  }
+  .area-title {
+    font-size: 14pt;
+    font-weight: 900;
+    color: #1a2e5a;
+    line-height: 1.2;
+  }
+  .area-tag {
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    width: fit-content;
+  }
+  .ac1 .area-tag { background: rgba(79,70,229,0.1); color: #4f46e5; }
+  .ac2 .area-tag { background: rgba(22,163,74,0.1); color: #16a34a; }
+  .ac3 .area-tag { background: rgba(234,88,12,0.1); color: #ea580c; }
+  .ac4 .area-tag { background: rgba(147,51,234,0.1); color: #9333ea; }
+  .ac5 .area-tag { background: rgba(2,132,199,0.1); color: #0284c7; }
+  .area-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 1mm;
+  }
+  .area-item {
+    font-size: 11pt;
+    color: #444;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    line-height: 1.4;
+  }
+  .area-item::before {
+    content: '●';
+    font-size: 7pt;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .ac1 .area-item::before { color: #4f46e5; }
+  .ac2 .area-item::before { color: #16a34a; }
+  .ac3 .area-item::before { color: #ea580c; }
+  .ac4 .area-item::before { color: #9333ea; }
+  .ac5 .area-item::before { color: #0284c7; }
+  .area-highlight {
+    margin-top: auto;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #777;
+    background: rgba(255,255,255,0.7);
+    border-radius: 6px;
+    padding: 3px 6px;
+    line-height: 1.3;
+  }
+  .p3-footer-note {
+    margin-top: 3mm;
+    background: #f8faff;
+    border: 1px solid #dde3f0;
+    border-radius: 8px;
+    padding: 3mm 5mm;
+    font-size: 11pt;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .p3-footer-note i { color: #f97316; font-size: 14pt; }
+  .p3-footer-note strong { color: #1a2e5a; }
+
+  /* ===== PAGE 4: RPAクラス比較 ===== */
+  .p4-content {
+    position: absolute;
+    top: 14mm; left: 8mm; right: 8mm; bottom: 18mm;
+    overflow: hidden;
+  }
+  .class-table-wrap {
+    margin-top: 3mm;
+    max-height: 128mm;
+    overflow: hidden;
+  }
+  .class-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .class-table th {
+    background: #1a2e5a;
+    color: #fff;
+    font-size: 12pt;
+    font-weight: 700;
+    padding: 2.5mm 4mm;
+    text-align: left;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .class-table th:last-child { border-right: none; }
+  .class-table td {
+    font-size: 12pt;
+    padding: 2.5mm 4mm;
+    vertical-align: top;
+    border-bottom: 1px solid #e8eaf0;
+    border-right: 1px solid #e8eaf0;
+  }
+  .class-table td:last-child { border-right: none; }
+  .class-table tr:last-child td { border-bottom: none; }
+  .class-table tr.row-c1 td { background: #f0f4ff; }
+  .class-table tr.row-c2 td { background: #f0fdf4; }
+  .class-table tr.row-c3 td { background: #fff7ed; }
+  .class-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11pt;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+  .cb1 { background: #e0e7ff; color: #3730a3; }
+  .cb2 { background: #dcfce7; color: #166534; }
+  .cb3 { background: #ffedd5; color: #9a3412; }
+  .class-tech-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+  }
+  .ct-item {
+    font-size: 11pt;
+    color: #555;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .ct-item i {
+    font-size: 12pt;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .c1i { color: #4f46e5; }
+  .c2i { color: #16a34a; }
+  .c3i { color: #ea580c; }
+  .example-tag {
+    display: inline-block;
+    background: rgba(249,115,22,0.1);
+    color: #ea580c;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-bottom: 3px;
+  }
+  .level-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2mm;
+  }
+  .level-label {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #666;
+  }
+  .level-bars {
+    display: flex;
+    gap: 2px;
+  }
+  .lbar {
+    width: 12mm;
+    height: 6mm;
+    border-radius: 3px;
+    background: #e0e0e0;
+  }
+  .lbar.on-c1 { background: #4f46e5; }
+  .lbar.on-c2 { background: #16a34a; }
+  .lbar.on-c3 { background: #ea580c; }
+  .ai-tag {
+    display: inline-block;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .ai-tag.none { background: #eee; color: #999; }
+  .ai-tag.partial { background: #dbeafe; color: #1e40af; }
+  .ai-tag.full { background: #dcfce7; color: #166534; }
+  .p4-note {
+    margin-top: 2mm;
+    background: #f0f9ff;
+    border-left: 4px solid #0284c7;
+    border-radius: 0 8px 8px 0;
+    padding: 1.5mm 5mm;
+    font-size: 11pt;
+    color: #555;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .p4-note i { color: #0284c7; font-size: 16pt; flex-shrink: 0; margin-top: 1px; }
+  .p4-note strong { color: #1a2e5a; }
+
+  /* ===== PAGE 5: 製品比較表 ===== */
+  .p5-content {
+    position: absolute;
+    top: 14mm; left: 8mm; right: 8mm; bottom: 10mm;
+  }
+  .prod-table-wrap {
+    margin-top: 2mm;
+  }
+  .prod-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 10pt;
+  }
+  .prod-table thead tr th {
+    background: #1a2e5a;
+    color: #fff;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 1.5mm 2.5mm;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .prod-table thead tr th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+  .prod-table thead tr th:last-child { border-right: none; border-radius: 0 8px 0 0; }
+  .prod-table tbody tr td {
+    padding: 1.2mm 2.5mm;
+    vertical-align: middle;
+    border-bottom: 1px solid #e8eaf0;
+    border-right: 1px solid #e8eaf0;
+    font-size: 11pt;
+  }
+  .prod-table tbody tr td:last-child { border-right: none; }
+  .prod-table tbody tr:last-child td { border-bottom: none; }
+  .prod-table tbody tr:nth-child(odd) td { background: #fafbff; }
+  .prod-table tbody tr:nth-child(even) td { background: #fff; }
+  .prod-name {
+    font-weight: 700;
+    color: #1a2e5a;
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+  .prod-vendor {
+    font-size: 9pt;
+    color: #888;
+    margin-top: 1px;
+  }
+  .type-badge {
+    display: inline-block;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .type-desktop { background: #e0e7ff; color: #3730a3; }
+  .type-cloud   { background: #dcfce7; color: #166534; }
+  .type-server  { background: #ffedd5; color: #9a3412; }
+  .type-hybrid  { background: #fce7f3; color: #9d174d; }
+  .scale-badge {
+    display: inline-block;
+    font-size: 10pt;
+    padding: 2px 6px;
+    border-radius: 6px;
+    color: #555;
+    background: #f3f4f6;
+    white-space: nowrap;
+  }
+  .price-cell {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1a2e5a;
+    white-space: nowrap;
+  }
+  .price-free { color: #16a34a; }
+  .diff-badge {
+    display: inline-block;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .diff-easy   { background: #dcfce7; color: #166534; }
+  .diff-mid    { background: #fef9c3; color: #854d0e; }
+  .diff-hard   { background: #fee2e2; color: #991b1b; }
+  .ai-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 7mm;
+    height: 7mm;
+    border-radius: 50%;
+    font-size: 12pt;
+  }
+  .ai-yes { background: #dcfce7; color: #16a34a; }
+  .ai-no  { background: #f3f4f6; color: #999; }
+  .use-text {
+    font-size: 9.5pt;
+    color: #444;
+    line-height: 1.3;
+  }
+  .p5-note {
+    margin-top: 2mm;
+    background: #fff8f0;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    padding: 2mm 5mm;
+    font-size: 10pt;
+    color: #666;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .p5-note i { color: #f97316; font-size: 14pt; }
+
+  /* ===== PAGE 6: AI+RPA連携 ===== */
+  .p6-content {
+    position: absolute;
+    top: 14mm; left: 8mm; right: 8mm; bottom: 10mm;
+  }
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-top: 3mm;
+    height: 122mm;
+  }
+  .approach-card {
+    border-radius: 12px;
+    padding: 5mm;
+    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+  }
+  .approach-card.apA {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border-color: #93c5fd;
+  }
+  .approach-card.apB {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-color: #86efac;
+  }
+  .approach-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 1mm;
+  }
+  .approach-badge {
+    font-size: 11pt;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .apA .approach-badge { background: #1e40af; color: #fff; }
+  .apB .approach-badge { background: #166534; color: #fff; }
+  .approach-title {
+    font-size: 16pt;
+    font-weight: 900;
+    color: #1a2e5a;
+  }
+  .approach-why {
+    font-size: 11pt;
+    color: #555;
+    background: rgba(255,255,255,0.7);
+    border-radius: 6px;
+    padding: 3px 8px;
+    line-height: 1.4;
+  }
+  .flow-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+    flex: 1;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .flow-step {
+    flex: 1;
+    border-radius: 8px;
+    padding: 3mm 4mm;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 12mm;
+  }
+  .flow-step i {
+    font-size: 18pt;
+    flex-shrink: 0;
+  }
+  .flow-step-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .fst-label {
+    font-size: 10pt;
+    font-weight: 700;
+    opacity: 0.7;
+  }
+  .fst-main {
+    font-size: 11pt;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .flow-step.trigger { background: rgba(99,102,241,0.1); }
+  .flow-step.trigger i { color: #6366f1; }
+  .flow-step.ai-step { background: rgba(249,115,22,0.1); }
+  .flow-step.ai-step i { color: #f97316; }
+  .flow-step.rpa-step { background: rgba(16,185,129,0.1); }
+  .flow-step.rpa-step i { color: #10b981; }
+  .flow-step.output { background: rgba(59,130,246,0.1); }
+  .flow-step.output i { color: #3b82f6; }
+  .flow-arrow {
+    color: #1a2e5a;
+    font-size: 14pt;
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+  .flow-ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: rgba(249,115,22,0.15);
+    border: 1px solid rgba(249,115,22,0.3);
+    color: #ea580c;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+  }
+  .approach-tip {
+    background: rgba(255,255,255,0.8);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 10pt;
+    color: #555;
+    line-height: 1.3;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .approach-tip i { color: #f97316; font-size: 12pt; flex-shrink: 0; margin-top: 1px; }
+  .usecase-row {
+    display: flex;
+    gap: 4mm;
+    margin-top: 4mm;
+    height: 30mm;
+  }
+  .uc-card {
+    flex: 1;
+    background: #f8faff;
+    border: 1.5px solid #dde3f0;
+    border-radius: 10px;
+    padding: 3mm 4mm;
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+  }
+  .uc-icon {
+    font-size: 18pt;
+    color: #f97316;
+    flex-shrink: 0;
+  }
+  .uc-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .uc-title {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1a2e5a;
+  }
+  .uc-desc {
+    font-size: 11pt;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  /* ===== PAGE 7: ロードマップ ===== */
+  .p7-content {
+    position: absolute;
+    top: 14mm; left: 8mm; right: 8mm; bottom: 10mm;
+  }
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5mm;
+    margin-top: 4mm;
+    height: 118mm;
+  }
+  .rm-card {
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid;
+  }
+  .rm-card.rm1 { border-color: #93c5fd; }
+  .rm-card.rm2 { border-color: #86efac; }
+  .rm-card.rm3 { border-color: #fcd34d; }
+  .rm-header {
+    padding: 4mm 5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+  .rm1 .rm-header { background: linear-gradient(135deg, #1e40af, #3b5bdb); }
+  .rm2 .rm-header { background: linear-gradient(135deg, #166534, #16a34a); }
+  .rm3 .rm-header { background: linear-gradient(135deg, #92400e, #d97706); }
+  .rm-phase {
+    font-size: 10pt;
+    font-weight: 900;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .rm-step-num {
+    font-size: 28pt;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+  .rm-title {
+    font-size: 16pt;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .rm-timing {
+    display: inline-block;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.9);
+    width: fit-content;
+  }
+  .rm-body {
+    padding: 4mm 5mm;
+    flex: 1;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+  }
+  .rm-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+  }
+  .rm-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    background: #f8faff;
+    border-radius: 8px;
+    padding: 3mm 4mm;
+  }
+  .rm-item i {
+    font-size: 18pt;
+    flex-shrink: 0;
+  }
+  .rm1 .rm-item i { color: #3b5bdb; }
+  .rm2 .rm-item i { color: #16a34a; }
+  .rm3 .rm-item i { color: #d97706; }
+  .rm-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .rm-item-title {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1a2e5a;
+    line-height: 1.2;
+  }
+  .rm-item-desc {
+    font-size: 11pt;
+    color: #666;
+    line-height: 1.4;
+  }
+  .rm-goal {
+    margin-top: auto;
+    padding: 2mm 3mm;
+    border-radius: 6px;
+    font-size: 11pt;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .rm1 .rm-goal { background: #e0e7ff; color: #3730a3; }
+  .rm2 .rm-goal { background: #dcfce7; color: #166534; }
+  .rm3 .rm-goal { background: #fef3c7; color: #92400e; }
+  .rm-footer {
+    margin-top: 5mm;
+    background: #1a2e5a;
+    border-radius: 10px;
+    padding: 4mm 6mm;
+    display: flex;
+    align-items: center;
+    gap: 6mm;
+  }
+  .rm-footer i {
+    font-size: 24pt;
+    color: #fb923c;
+    flex-shrink: 0;
+  }
+  .rm-footer-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .rm-footer-title {
+    font-size: 14pt;
+    font-weight: 900;
+    color: #fff;
+  }
+  .rm-footer-desc {
+    font-size: 12pt;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.3;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1: 表紙 ===== -->
+<div class="page cover">
+  <div class="cover-accent-top"></div>
+  <div class="cover-accent-left"></div>
+  <div class="cover-content">
+    <div class="cover-badge">
+      <i class="ri-building-2-line"></i>
+      中小企業向け DX支援レポート
+    </div>
+    <div class="cover-title">
+      中小企業向け<br>
+      <span>RPA導入ガイド</span><br>
+      ＋製品比較レポート
+    </div>
+    <div class="cover-subtitle">IT化からDXへの道のり</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">作成日</span>
+        <span class="cover-meta-value">2025年7月</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">対象</span>
+        <span class="cover-meta-value">中小企業 経営者・管理職</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">ページ数</span>
+        <span class="cover-meta-value">7ページ</span>
+      </div>
+    </div>
+  </div>
+  <div class="cover-graphic">
+    <div class="cover-icon-row">
+      <div class="cover-icon-box">
+        <i class="ri-robot-2-line"></i>
+        <span>RPA</span>
+      </div>
+      <div class="cover-icon-box">
+        <i class="ri-brain-line"></i>
+        <span>AI連携</span>
+      </div>
+    </div>
+    <div class="cover-icon-row">
+      <div class="cover-icon-box">
+        <i class="ri-flow-chart"></i>
+        <span>自動化</span>
+      </div>
+      <div class="cover-icon-box">
+        <i class="ri-bar-chart-grouped-line"></i>
+        <span>DX推進</span>
+      </div>
+    </div>
+    <div class="cover-steps-preview">
+      <div class="csp-item">IT化</div>
+      <div class="csp-arrow">→</div>
+      <div class="csp-item">自動化</div>
+      <div class="csp-arrow">→</div>
+      <div class="csp-item">DX</div>
+    </div>
+    <div class="cover-toc">
+      <div class="cover-toc-item"><span class="cover-toc-num">1</span> DX3ステップ図解</div>
+      <div class="cover-toc-item"><span class="cover-toc-num">2</span> 中小企業5領域</div>
+      <div class="cover-toc-item"><span class="cover-toc-num">3</span> RPAクラス比較</div>
+      <div class="cover-toc-item"><span class="cover-toc-num">4</span> 製品・サービス比較</div>
+      <div class="cover-toc-item"><span class="cover-toc-num">5</span> AI＋RPA連携</div>
+      <div class="cover-toc-item"><span class="cover-toc-num">6</span> 導入ロードマップ</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 2: IT化→DXの3ステップ ===== -->
+<div class="page">
+  <div class="page-header-bar">
+    <span class="brand">中小企業向け RPA導入ガイド ＋ 製品比較レポート</span>
+    <span class="page-num">1 / 6</span>
+  </div>
+  <div class="p2-content">
+    <div class="section-title"><i class="ri-route-line"></i> IT化からDXへの3ステップ</div>
+    <div class="section-sub">経済産業省も提唱するDXへの段階的な道のり。土台から順に積み上げることが成功の鍵。</div>
+    <div class="steps-flow">
+      <!-- STEP 1 -->
+      <div class="step-card s1">
+        <div class="step-num">STEP 01</div>
+        <div class="step-icon"><i class="ri-file-transfer-line"></i></div>
+        <div class="step-label">デジタイゼーション</div>
+        <div class="step-title">局所的な<br>デジタル化</div>
+        <div class="step-goal">目的：業務効率化・コスト削減</div>
+        <div class="step-desc">アナログな情報や業務プロセスをそのままデジタルデータに置き換える段階。</div>
+        <div class="step-examples">
+          <div class="step-ex-item">紙の書類・伝票のペーパーレス化（PDF化・クラウド管理）</div>
+          <div class="step-ex-item">ハンコ決裁 → 電子契約・電子承認システム</div>
+          <div class="step-ex-item">対面会議 → Zoom・Teamsなどオンライン化</div>
+        </div>
+        <div class="step-status">道具がデジタルになった状態 ＝ 一般的な「IT化」の初期</div>
+      </div>
+      <!-- ARROW -->
+      <div class="arrow-col">
+        <div class="arrow-wrap">
+          <i class="ri-arrow-right-circle-fill"></i>
+          <span class="arrow-label">次の段階へ</span>
+        </div>
+      </div>
+      <!-- STEP 2 -->
+      <div class="step-card s2">
+        <div class="step-num">STEP 02</div>
+        <div class="step-icon"><i class="ri-links-line"></i></div>
+        <div class="step-label">デジタライゼーション</div>
+        <div class="step-title">プロセスの<br>デジタル化</div>
+        <div class="step-goal">目的：新たな顧客価値の創出・業務自動化</div>
+        <div class="step-desc">一連の業務プロセス・ビジネスモデル全体をデジタル化・最適化する段階。</div>
+        <div class="step-examples">
+          <div class="step-ex-item">CRM×SFAを連携させマーケティングから販売までを一元管理</div>
+          <div class="step-ex-item">RPAを導入しシステム間のデータ入力を自動化</div>
+          <div class="step-ex-item">ECサイト×店舗を連動させたオムニチャネル購買体験</div>
+        </div>
+        <div class="step-status">業務の仕組み（プロセス）が効率的にリデザインされた状態</div>
+      </div>
+      <!-- ARROW -->
+      <div class="arrow-col">
+        <div class="arrow-wrap">
+          <i class="ri-arrow-right-circle-fill"></i>
+          <span class="arrow-label">さらに進む</span>
+        </div>
+      </div>
+      <!-- STEP 3 -->
+      <div class="step-card s3">
+        <div class="step-num">STEP 03</div>
+        <div class="step-icon"><i class="ri-building-4-line"></i></div>
+        <div class="step-label">デジタルトランスフォーメーション</div>
+        <div class="step-title">組織・ビジネスの<br>変革（DX）</div>
+        <div class="step-goal">目的：競争優位性の源泉化・ビジネスモデル変革</div>
+        <div class="step-desc">デジタル技術とデータを完全に競争優位性の源泉とし、組織そのものを変革する最終段階。</div>
+        <div class="step-examples">
+          <div class="step-ex-item">製品をサービス化（サブスク化）・モノのSaaS化</div>
+          <div class="step-ex-item">データ分析で市場変化に<br>リアルタイム適応できる組織</div>
+          <div class="step-ex-item">既存業界の枠を覆す新しい顧客体験（CX）</div>
+        </div>
+        <div class="step-status">デジタルで会社そのものが生まれ変わった状態</div>
+      </div>
+    </div>
+    <div class="steps-note">
+      <i class="ri-error-warning-line"></i>
+      <p><strong>ステップを飛び越えない：</strong>アナログデータのデジタル化（STEP1）ができていない状態でいきなりAI活用（STEP3）を目指しても、扱うデータが無いため失敗します。また、最も多い失敗は<strong>「ツール導入（STEP1〜2）が目的化」</strong>してしまうケース。「何のためにやるか＝ビジョン」を経営層が明確に持つことが成功の鍵です。</p>
+    </div>
+  </div>
+  <div class="page-footer-bar">
+    <span>経済産業省のDXフレームワークをベースに作成</span>
+    <span>© 2025 Business Automation Guide</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 3: 中小企業の5領域 ===== -->
+<div class="page">
+  <div class="page-header-bar">
+    <span class="brand">中小企業向け RPA導入ガイド ＋ 製品比較レポート</span>
+    <span class="page-num">2 / 6</span>
+  </div>
+  <div class="p3-content">
+    <div class="section-title"><i class="ri-focus-3-line"></i> 中小企業が取り組むべき5つの領域</div>
+    <div class="section-sub">安価なクラウドSaaS・ノーコードツールで「業務と業務をつなぐ」自動化・可視化が主流。</div>
+    <div class="area-grid">
+      <!-- 1 -->
+      <div class="area-card ac1">
+        <div class="area-icon"><i class="ri-money-yen-circle-line"></i></div>
+        <div class="area-num">AREA 01</div>
+        <div class="area-title">バック<br>オフィス</div>
+        <div class="area-tag">最も効果が出やすい</div>
+        <div class="area-items">
+          <div class="area-item">見積→請求→会計を自動連携（freee・マネーフォワード）</div>
+          <div class="area-item">AI-OCRで領収書を読み取り、仕訳・保管まで一気通貫</div>
+          <div class="area-item">インボイス・電帳法対応のペーパーレス化</div>
+        </div>
+        <div class="area-highlight">Excel手入力の二度手間をゼロへ</div>
+      </div>
+      <!-- 2 -->
+      <div class="area-card ac2">
+        <div class="area-icon"><i class="ri-user-heart-line"></i></div>
+        <div class="area-num">AREA 02</div>
+        <div class="area-title">営業・<br>マーケ</div>
+        <div class="area-tag">機会損失防止</div>
+        <div class="area-items">
+          <div class="area-item">WEB問い合わせをCRM（kintone・HubSpot）へ自動登録</div>
+          <div class="area-item">名刺スキャン→全社共有の顧客リストに自動登録</div>
+          <div class="area-item">商談進捗をガントチャートで可視化・共有</div>
+        </div>
+        <div class="area-highlight">属人化営業からチーム営業へ</div>
+      </div>
+      <!-- 3 -->
+      <div class="area-card ac3">
+        <div class="area-icon"><i class="ri-group-line"></i></div>
+        <div class="area-num">AREA 03</div>
+        <div class="area-title">人事<br>労務</div>
+        <div class="area-tag">管理コスト削減</div>
+        <div class="area-items">
+          <div class="area-item">スマホ打刻→勤怠集計→給与計算まで自動化</div>
+          <div class="area-item">入社手続き・社会保険申請をシステム上で完結</div>
+          <div class="area-item">給与明細発行までWEB上で一連処理</div>
+        </div>
+        <div class="area-highlight">毎月の給与計算の手間を劇的削減</div>
+      </div>
+      <!-- 4 -->
+      <div class="area-card ac4">
+        <div class="area-icon"><i class="ri-store-3-line"></i></div>
+        <div class="area-num">AREA 04</div>
+        <div class="area-title">受発注・<br>在庫</div>
+        <div class="area-tag">製造・小売・卸に必須</div>
+        <div class="area-items">
+          <div class="area-item">ECサイト・POSレジと在庫データをリアルタイム連動</div>
+          <div class="area-item">在庫が基準数を下回ったら自動で発注アラート・注文</div>
+          <div class="area-item">QR/バーコードで棚卸しを紙台帳ゼロへ</div>
+        </div>
+        <div class="area-highlight">過剰在庫・転記ミスを撲滅</div>
+      </div>
+      <!-- 5 -->
+      <div class="area-card ac5">
+        <div class="area-icon"><i class="ri-chat-settings-line"></i></div>
+        <div class="area-num">AREA 05</div>
+        <div class="area-title">情報<br>共有</div>
+        <div class="area-tag">急増中のノーコード活用</div>
+        <div class="area-items">
+          <div class="area-item">稟議・スケジュール・タスクをSlack/LINE WORKSと連携</div>
+          <div class="area-item">承認ボタン→担当者へ自動チャット通知</div>
+          <div class="area-item">kintone・Platioで現場報告アプリを自社で作成</div>
+        </div>
+        <div class="area-highlight">専門知識なしで業務アプリを自社構築</div>
+      </div>
+    </div>
+    <div class="p3-footer-note">
+      <i class="ri-lightbulb-flash-line"></i>
+      <span><strong>スタートラインの傾向：</strong>現在の中小企業は「手書き・Excelの転記作業（二度手間）をゼロにする」ことと「法改正（インボイス・電帳法）や人手不足への対応」が強力な動機。まずは<strong>バックオフィス（AREA01）や自社最大のボトルネックとなっている領域の一連のプロセスをクラウドでつなぐ</strong>ことが一般的な着手点です。</span>
+    </div>
+  </div>
+  <div class="page-footer-bar">
+    <span>中小企業のデジタライゼーション（プロセスのデジタル化）5領域</span>
+    <span>© 2025 Business Automation Guide</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 4: RPAクラス比較 ===== -->
+<div class="page">
+  <div class="page-header-bar">
+    <span class="brand">中小企業向け RPA導入ガイド ＋ 製品比較レポート</span>
+    <span class="page-num">3 / 6</span>
+  </div>
+  <div class="p4-content">
+    <div class="section-title"><i class="ri-robot-line"></i> RPAの3クラス比較（総務省定義）</div>
+    <div class="section-sub">RPAはAIとの組み合わせで「手順通りに動くロボット」から「自分で判断するアシスタント」へと進化する。</div>
+    <div class="class-table-wrap">
+      <table class="class-table">
+        <thead>
+          <tr>
+            <th style="width:15%">クラス</th>
+            <th style="width:15%">名称</th>
+            <th style="width:20%">主な業務範囲</th>
+            <th style="width:28%">技術・定義</th>
+            <th style="width:22%">活用例・製品例</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-c1">
+            <td>
+              <span class="class-badge cb1"><i class="ri-checkbox-circle-line"></i> クラス1</span>
+            </td>
+            <td>
+              <div style="font-size:13pt;font-weight:900;color:#3730a3;">RPA</div>
+              <div style="font-size:10pt;color:#666;">Robotic Process<br>Automation</div>
+            </td>
+            <td>
+              <div style="font-size:12pt;font-weight:700;color:#1a2e5a;margin-bottom:2px;">定型業務の自動化</div>
+              <div style="font-size:11pt;color:#555;">判断を伴わない作業を正確にこなす</div>
+            </td>
+            <td>
+              <div class="class-tech-list">
+                <div class="ct-item"><i class="ri-check-line c1i"></i> 情報取得・入力・検証などの定型作業</div>
+                <div class="ct-item"><i class="ri-check-line c1i"></i> マニュアルが作れる業務はすべて対象</div>
+                <div class="ct-item"><i class="ri-check-line c1i"></i> 「AからBへ転記」「毎週データ抽出」</div>
+              </div>
+            </td>
+            <td>
+              <div class="example-tag">活用例</div>
+              <div style="font-size:11pt;color:#444;">毎朝メールの添付Excelをダウンロードして社内システムに転記→チャット通知</div>
+              <div style="font-size:11pt;color:#888;margin-top:4px;">★ Power Automate / WinActor</div>
+            </td>
+          </tr>
+          <tr class="row-c2">
+            <td>
+              <span class="class-badge cb2"><i class="ri-brain-line"></i> クラス2</span>
+            </td>
+            <td>
+              <div style="font-size:13pt;font-weight:900;color:#166534;">EPA</div>
+              <div style="font-size:10pt;color:#666;">Enhanced Process<br>Automation</div>
+            </td>
+            <td>
+              <div style="font-size:12pt;font-weight:700;color:#1a2e5a;margin-bottom:2px;">一部非定型業務の自動化</div>
+              <div style="font-size:11pt;color:#555;">AI連携で柔軟な判断が可能に</div>
+            </td>
+            <td>
+              <div class="class-tech-list">
+                <div class="ct-item"><i class="ri-check-line c2i"></i> RPA＋AI（自然言語解析・画像解析）</div>
+                <div class="ct-item"><i class="ri-check-line c2i"></i> マシーンラーニングの搭載</div>
+                <div class="ct-item"><i class="ri-check-line c2i"></i> 非構造化データ（手書き・音声）の読み取り</div>
+              </div>
+            </td>
+            <td>
+              <div class="example-tag">活用例</div>
+              <div style="font-size:11pt;color:#444;">手書き注文書をAI-OCRでテキスト化→RPAが受注システムへ自動入力</div>
+              <div style="font-size:11pt;color:#888;margin-top:4px;">★ AI Builder（Microsoft）</div>
+            </td>
+          </tr>
+          <tr class="row-c3">
+            <td>
+              <span class="class-badge cb3"><i class="ri-sparkling-2-line"></i> クラス3</span>
+            </td>
+            <td>
+              <div style="font-size:13pt;font-weight:900;color:#9a3412;">CA</div>
+              <div style="font-size:10pt;color:#666;">Cognitive<br>Automation</div>
+            </td>
+            <td>
+              <div style="font-size:12pt;font-weight:700;color:#1a2e5a;margin-bottom:2px;">高度な自律化</div>
+              <div style="font-size:11pt;color:#555;">ロボット自身がデータ分析・判断・実行</div>
+            </td>
+            <td>
+              <div class="class-tech-list">
+                <div class="ct-item"><i class="ri-check-line c3i"></i> ディープラーニング・自然言語処理（LLM）</div>
+                <div class="ct-item"><i class="ri-check-line c3i"></i> プロセスの分析・改善・意思決定まで自動化</div>
+                <div class="ct-item"><i class="ri-check-line c3i"></i> 生成AIの進化でビジネス組み込みが現実化</div>
+              </div>
+            </td>
+            <td>
+              <div class="example-tag">活用例</div>
+              <div style="font-size:11pt;color:#444;">売上データ×SNSをAIが分析→需要予測→発注書を自動作成・仕入れ先送信</div>
+              <div style="font-size:11pt;color:#888;margin-top:4px;">★ UiPath + 生成AI連携</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="p4-note">
+      <i class="ri-information-line"></i>
+      <p>国（総務省）もまず<strong>クラス1を確実にクリア</strong>し、段階的にクラス2・3へとステップアップすることを推奨。中小企業での実践的な着手順位はクラス1→クラス2（AI-OCR活用）→クラス3の順。「これはクラス1だから今すぐ自動化できる」「これはクラス2だからAI連携が必要」と切り分けることで、導入計画が立てやすくなります。</p>
+    </div>
+  </div>
+  <div class="page-footer-bar">
+    <span>出典：総務省「自治体におけるAI・RPA実証実験」/ 情報通信白書 のRPAクラス定義を参考に作成</span>
+    <span>© 2025 Business Automation Guide</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 5: 製品・サービス比較表 ===== -->
+<div class="page">
+  <div class="page-header-bar">
+    <span class="brand">中小企業向け RPA導入ガイド ＋ 製品比較レポート</span>
+    <span class="page-num">4 / 6</span>
+  </div>
+  <div class="p5-content">
+    <div class="section-title"><i class="ri-table-2"></i> RPA製品・サービス比較表</div>
+    <div class="section-sub">主要7製品を対象規模・価格・AI連携・導入難易度・おすすめ用途で比較。</div>
+    <div class="prod-table-wrap">
+      <table class="prod-table">
+        <thead>
+          <tr>
+            <th style="width:18%;text-align:left;padding-left:4mm;">製品名 / ベンダー</th>
+            <th style="width:11%;">タイプ</th>
+            <th style="width:11%;">対象規模</th>
+            <th style="width:14%;">価格感</th>
+            <th style="width:8%;">AI連携</th>
+            <th style="width:10%;">導入難易度</th>
+            <th style="width:28%;">おすすめ用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="prod-name">Power Automate<br>for desktop</div>
+              <div class="prod-vendor">Microsoft</div>
+            </td>
+            <td style="text-align:center;"><span class="type-badge type-desktop">デスクトップ</span></td>
+            <td style="text-align:center;"><span class="scale-badge">中小〜大</span></td>
+            <td><span class="price-cell"><span class="price-free">無料〜</span><br><span style="font-size:10pt;color:#888;font-weight:400;">（Win10/11標準）</span></span></td>
+            <td style="text-align:center;"><span class="ai-circle ai-yes"><i class="ri-check-line"></i></span></td>
+            <td style="text-align:center;"><span class="diff-badge diff-easy">低 ★★☆</span></td>
+            <td><span class="use-text">Windowsユーザーの最初の一歩。社内システムとの連携、AI Builderで書類読み取り自動化。</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="prod-name">Make<br><span style="font-size:10pt;color:#888;">（旧 Integromat）</span></div>
+              <div class="prod-vendor">Make</div>
+            </td>
+            <td style="text-align:center;"><span class="type-badge type-cloud">クラウド</span></td>
+            <td style="text-align:center;"><span class="scale-badge">スタート〜中</span></td>
+            <td><span class="price-cell"><span class="price-free">無料〜</span><br><span style="font-size:10pt;color:#888;font-weight:400;">$9/月〜（月間1,000操作）</span></span></td>
+            <td style="text-align:center;"><span class="ai-circle ai-yes"><i class="ri-check-line"></i></span></td>
+            <td style="text-align:center;"><span class="diff-badge diff-easy">低 ★★☆</span></td>
+            <td><span class="use-text">Webツール連携の王道。Gmail・Slack・kintone等600以上のサービスをノーコードで接続。OpenAI連携も簡単。</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="prod-name">Zapier</div>
+              <div class="prod-vendor">Zapier, Inc.</div>
+            </td>
+            <td style="text-align:center;"><span class="type-badge type-cloud">クラウド</span></td>
+            <td style="text-align:center;"><span class="scale-badge">個人〜中</span></td>
+            <td><span class="price-cell"><span class="price-free">無料〜</span><br><span style="font-size:10pt;color:#888;font-weight:400;">$20/月〜（750タスク）</span></span></td>
+            <td style="text-align:center;"><span class="ai-circle ai-yes"><i class="ri-check-line"></i></span></td>
+            <td style="text-align:center;"><span class="diff-badge diff-easy">低 ★☆☆</span></td>
+            <td><span class="use-text">英語圏SaaSとの連携に強い。7,000以上のアプリを接続可。最も簡単に使い始められる入門ツール。</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="prod-name">WinActor</div>
+              <div class="prod-vendor">NTTデータ</div>
+            </td>
+            <td style="text-align:center;"><span class="type-badge type-desktop">デスクトップ</span></td>
+            <td style="text-align:center;"><span class="scale-badge">中〜大</span></td>
+            <td><span class="price-cell">要見積<br><span style="font-size:10pt;color:#888;font-weight:400;">（年間ライセンス）</span></span></td>
+            <td style="text-align:center;"><span class="ai-circle ai-yes"><i class="ri-check-line"></i></span></td>
+            <td style="text-align:center;"><span class="diff-badge diff-mid">中 ★★★</span></td>
+            <td><span class="use-text">日本製・日本語サポート充実。官公庁・自治体・金融機関での導入実績多数。レガシーシステム連携に強み。</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="prod-name">UiPath</div>
+              <div class="prod-vendor">UiPath</div>
+            </td>
+            <td style="text-align:center;"><span class="type-badge type-server">サーバー型</span></td>
+            <td style="text-align:center;"><span class="scale-badge">中〜大企業</span></td>
+            <td><span class="price-cell"><span class="price-free">無料〜</span><br><span style="font-size:10pt;color:#888;font-weight:400;">エンタープライズは要見積</span></span></td>
+            <td style="text-align:center;"><span class="ai-circle ai-yes"><i class="ri-check-line"></i></span></td>
+            <td style="text-align:center;"><span class="diff-badge diff-hard">高 ★★★★</span></td>
+            <td><span class="use-text">世界シェアトップクラス。数百〜数千ロボットの統合管理。大量データ処理・基幹システム連携に最適。</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="prod-name">kintone<br>＋プラグイン</div>
+              <div class="prod-vendor">サイボウズ</div>
+            </td>
+            <td style="text-align:center;"><span class="type-badge type-hybrid">ノーコード</span></td>
+            <td style="text-align:center;"><span class="scale-badge">小〜中</span></td>
+            <td><span class="price-cell">$24/月〜<br><span style="font-size:10pt;color:#888;font-weight:400;">（1ユーザー/月・5人〜）</span></span></td>
+            <td style="text-align:center;"><span class="ai-circle ai-yes"><i class="ri-check-line"></i></span></td>
+            <td style="text-align:center;"><span class="diff-badge diff-easy">低 ★★☆</span></td>
+            <td><span class="use-text">業務アプリをノーコードで自社構築。日報・受注管理・プロジェクト管理を一元化。Makeと連携でさらに強力。</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="prod-name">BizteX cobit</div>
+              <div class="prod-vendor">BizteX</div>
+            </td>
+            <td style="text-align:center;"><span class="type-badge type-cloud">クラウド</span></td>
+            <td style="text-align:center;"><span class="scale-badge">中小</span></td>
+            <td><span class="price-cell">要見積<br><span style="font-size:10pt;color:#888;font-weight:400;">（ロボット数・利用量で変動）</span></span></td>
+            <td style="text-align:center;"><span class="ai-circle ai-yes"><i class="ri-check-line"></i></span></td>
+            <td style="text-align:center;"><span class="diff-badge diff-mid">中 ★★★</span></td>
+            <td><span class="use-text">日本製クラウドRPA。PCを使わず24時間自動実行。Webブラウザ操作の自動化・SaaS同士の連携に向く。</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="p5-note">
+      <i class="ri-information-line"></i>
+      <span>価格は2025年7月時点の公開情報をもとにした目安です。為替・プランにより変動します。エンタープライズプランは別途お問い合わせください。AI連携◎：標準搭載あり。導入難易度はノーコードでの利用開始を基準とした目安です。</span>
+    </div>
+  </div>
+  <div class="page-footer-bar">
+    <span>各社公式情報をもとに作成（2025年7月時点）</span>
+    <span>© 2025 Business Automation Guide</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 6: AI＋RPA連携 ===== -->
+<div class="page">
+  <div class="page-header-bar">
+    <span class="brand">中小企業向け RPA導入ガイド ＋ 製品比較レポート</span>
+    <span class="page-num">5 / 6</span>
+  </div>
+  <div class="p6-content">
+    <div class="section-title"><i class="ri-links-line"></i> AI＋RPA連携　最もやりやすい2つのアプローチ</div>
+    <div class="section-sub">RPAが「手足（実行）」、AIが「脳（判断）」。組み合わせることで自動化できる範囲が爆発的に広がる。</div>
+    <div class="approach-grid">
+      <!-- アプローチA -->
+      <div class="approach-card apA">
+        <div class="approach-header">
+          <span class="approach-badge">アプローチ A</span>
+          <span class="approach-title">Microsoft Power Automate活用</span>
+        </div>
+        <div class="approach-why">
+          <i class="ri-windows-line"></i> Windowsユーザーに最もハードルが低い。AI BuilderとCopilotが標準統合済み。
+        </div>
+        <div class="flow-diagram">
+          <div class="flow-row">
+            <div class="flow-step trigger">
+              <i class="ri-mail-receive-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">トリガー</span>
+                <span class="fst-main">メール受信・ファイル作成・時刻</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-row">
+            <div style="width:10mm;text-align:center;font-size:18pt;color:#999;flex-shrink:0;">↓</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-step ai-step">
+              <i class="ri-brain-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">AIステップ <span class="flow-ai-badge"><i class="ri-sparkling-2-line"></i> AI Builder / Copilot</span></span>
+                <span class="fst-main">請求書読み取り・感情分析・分類・要約</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-row">
+            <div style="width:10mm;text-align:center;font-size:18pt;color:#999;flex-shrink:0;">↓</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-step rpa-step">
+              <i class="ri-robot-2-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">RPAステップ</span>
+                <span class="fst-main">社内システム・会計ソフトへ自動入力</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-row">
+            <div style="width:10mm;text-align:center;font-size:18pt;color:#999;flex-shrink:0;">↓</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-step output">
+              <i class="ri-notification-3-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">アウトプット</span>
+                <span class="fst-main">Teams/チャットへ完了通知</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="approach-tip">
+          <i class="ri-lightbulb-flash-line"></i>
+          AIパーツ（テンプレート）をドラッグ&ドロップで組み込むだけ。プログラミング不要で AI＋RPA が完成。
+        </div>
+      </div>
+      <!-- アプローチB -->
+      <div class="approach-card apB">
+        <div class="approach-header">
+          <span class="approach-badge">アプローチ B</span>
+          <span class="approach-title">Make / Zapier ＋ OpenAI API</span>
+        </div>
+        <div class="approach-why">
+          <i class="ri-cloud-line"></i> Webツール（Gmail・LINE・Slack・kintone等）の連携に最強。OpenAIコネクタが標準搭載。
+        </div>
+        <div class="flow-diagram">
+          <div class="flow-row">
+            <div class="flow-step trigger">
+              <i class="ri-question-answer-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">トリガー</span>
+                <span class="fst-main">WEBサイトから問い合わせ受信</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-row">
+            <div style="width:10mm;text-align:center;font-size:18pt;color:#999;flex-shrink:0;">↓</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-step ai-step">
+              <i class="ri-openai-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">AIステップ <span class="flow-ai-badge"><i class="ri-sparkling-2-line"></i> OpenAI (ChatGPT)</span></span>
+                <span class="fst-main">内容を分類（苦情/見積/その他）＋返信案を自動生成</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-row">
+            <div style="width:10mm;text-align:center;font-size:18pt;color:#999;flex-shrink:0;">↓</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-step rpa-step">
+              <i class="ri-database-2-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">RPAステップ</span>
+                <span class="fst-main">CRM・スプレッドシートに結果を自動書き込み</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-row">
+            <div style="width:10mm;text-align:center;font-size:18pt;color:#999;flex-shrink:0;">↓</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-step output">
+              <i class="ri-user-smile-line"></i>
+              <div class="flow-step-text">
+                <span class="fst-label">アウトプット</span>
+                <span class="fst-main">担当者はAIの返信案を確認して送信ボタンを押すだけ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="approach-tip">
+          <i class="ri-lightbulb-flash-line"></i>
+          「AIに文章を分類させて、結果をRPAに渡す」単純なリレーから始めるのが最も成功率の高いアプローチ。
+        </div>
+      </div>
+    </div>
+    <div class="usecase-row">
+      <div class="uc-card">
+        <i class="ri-file-pdf-line uc-icon"></i>
+        <div class="uc-content">
+          <div class="uc-title">ユースケース① AI-OCR ＋ RPA</div>
+          <div class="uc-desc">PDF請求書・注文書をAIが読み取ってテキスト化→RPAが会計ソフトや受注システムへ自動入力。フォーマットが違っても現在のAIは自動認識。</div>
+        </div>
+      </div>
+      <div class="uc-card">
+        <i class="ri-chat-check-line uc-icon"></i>
+        <div class="uc-content">
+          <div class="uc-title">ユースケース② 生成AI ＋ クラウドRPA</div>
+          <div class="uc-desc">Webからの問い合わせを生成AIが分類・返信案を自動作成→RPAが担当者チャットに添付。人間は「確認して送信ボタンを押すだけ」に。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer-bar">
+    <span>AI＋RPA連携：最もハードルの低い実践アプローチ</span>
+    <span>© 2025 Business Automation Guide</span>
+  </div>
+</div>
+
+<!-- ===== PAGE 7: 導入ロードマップ ===== -->
+<div class="page">
+  <div class="page-header-bar">
+    <span class="brand">中小企業向け RPA導入ガイド ＋ 製品比較レポート</span>
+    <span class="page-num">6 / 6</span>
+  </div>
+  <div class="p7-content">
+    <div class="section-title"><i class="ri-map-pin-time-line"></i> 中小企業向け RPA導入ロードマップ</div>
+    <div class="section-sub">スモールスタートで確実に成果を積み上げる3ステップ。まずは1つの自動化から始める。</div>
+    <div class="roadmap-grid">
+      <!-- STEP 1 -->
+      <div class="rm-card rm1">
+        <div class="rm-header">
+          <span class="rm-phase">Phase 01</span>
+          <span class="rm-step-num">01</span>
+          <span class="rm-title">最初の1本を<br>自動化する</span>
+          <span class="rm-timing">目安：1〜2週間</span>
+        </div>
+        <div class="rm-body">
+          <div class="rm-items">
+            <div class="rm-item">
+              <i class="ri-search-eye-line"></i>
+              <div class="rm-item-text">
+                <span class="rm-item-title">毎日30分のコピペ作業を特定</span>
+                <span class="rm-item-desc">「毎朝◯◯のデータをAに貼り付ける」など、マニュアル化できる1作業を選ぶ</span>
+              </div>
+            </div>
+            <div class="rm-item">
+              <i class="ri-tools-line"></i>
+              <div class="rm-item-text">
+                <span class="rm-item-title">Power Automate for desktopで自動化</span>
+                <span class="rm-item-desc">Windowsに無料で入っているツールから始める。まずはAIなしのシンプルな転記だけ</span>
+              </div>
+            </div>
+          </div>
+          <div class="rm-goal"><i class="ri-flag-2-line"></i> 週2〜3時間の作業をゼロへ</div>
+        </div>
+      </div>
+      <!-- STEP 2 -->
+      <div class="rm-card rm2">
+        <div class="rm-header">
+          <span class="rm-phase">Phase 02</span>
+          <span class="rm-step-num">02</span>
+          <span class="rm-title">AIパーツを<br>1個だけ追加</span>
+          <span class="rm-timing">目安：1〜2ヶ月後</span>
+        </div>
+        <div class="rm-body">
+          <div class="rm-items">
+            <div class="rm-item">
+              <i class="ri-brain-line"></i>
+              <div class="rm-item-text">
+                <span class="rm-item-title">AIモジュールを1つ挟む</span>
+                <span class="rm-item-desc">AI Builder（書類読み取り）またはOpenAIモジュール（文章分類・要約）を既存フローに追加</span>
+              </div>
+            </div>
+            <div class="rm-item">
+              <i class="ri-links-line"></i>
+              <div class="rm-item-text">
+                <span class="rm-item-title">クラウドツール同士を連携</span>
+                <span class="rm-item-desc">Make / Zapierで2〜3のSaaSをつなぐ。Gmail→CRM→チャット通知など</span>
+              </div>
+            </div>
+          </div>
+          <div class="rm-goal"><i class="ri-flag-2-line"></i> 判断業務の一部もAIに委ねる</div>
+        </div>
+      </div>
+      <!-- STEP 3 -->
+      <div class="rm-card rm3">
+        <div class="rm-header">
+          <span class="rm-phase">Phase 03</span>
+          <span class="rm-step-num">03</span>
+          <span class="rm-title">自動化を<br>横展開・高度化</span>
+          <span class="rm-timing">目安：3〜6ヶ月後</span>
+        </div>
+        <div class="rm-body">
+          <div class="rm-items">
+            <div class="rm-item">
+              <i class="ri-expand-width-line"></i>
+              <div class="rm-item-text">
+                <span class="rm-item-title">他の部門・業務へ横展開</span>
+                <span class="rm-item-desc">営業・経理・人事など複数領域で自動化を拡大。成功パターンを型にして再現</span>
+              </div>
+            </div>
+            <div class="rm-item">
+              <i class="ri-line-chart-line"></i>
+              <div class="rm-item-text">
+                <span class="rm-item-title">データを蓄積しDX基盤へ</span>
+                <span class="rm-item-desc">自動化で集まったデータを分析に活用。需要予測・顧客分析でビジネスモデルを進化させる</span>
+              </div>
+            </div>
+          </div>
+          <div class="rm-goal"><i class="ri-flag-2-line"></i> DX（組織変革）へのステップアップ</div>
+        </div>
+      </div>
+    </div>
+    <div class="rm-footer">
+      <i class="ri-lightbulb-flash-fill"></i>
+      <div class="rm-footer-text">
+        <div class="rm-footer-title">成功のコツ：まず「1つだけ」から始めること</div>
+        <div class="rm-footer-desc">最初から複雑な意思決定をAIにさせようとせず、「毎朝30分かかっているコピペ作業を1つだけ自動化する」スモールスタートが最も成功率が高い。成果が出たら次へ。この繰り返しがDXへの確実な道です。</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer-bar">
+    <span>スモールスタートで確実に成果を積み上げるRPA導入ロードマップ</span>
+    <span>© 2025 Business Automation Guide</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "project": "sample",
+  "title": "サンプル",
+  "hasBgm": false,
+  "clips": [
+    {
+      "file": "001.jpg",
+      "type": "photo",
+      "location": "場所名",
+      "comment": "コメント",
+      "duration": 4,
+      "ai_generated": false
+    }
+  ]
+}

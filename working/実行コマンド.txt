@@ -1,0 +1,10 @@
+```bash
+# 1. CW案件検索（スプシ正源として起動時にCSVを最新化してからスクレイピング）
+python tools/job-scout/crowdworks_search.py
+
+# 2. 除外KWフィルタリング（ゴミ除去）
+python tools/job-scout/filter_csv.py
+
+# 3. スプシに差分追記（通常運用）
+node server/scripts/sync-sheet.mjs
+```

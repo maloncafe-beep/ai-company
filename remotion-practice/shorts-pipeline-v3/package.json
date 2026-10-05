@@ -1,0 +1,36 @@
+{
+  "name": "shorts-pipeline-v3",
+  "version": "1.0.0",
+  "description": "Shorts pipeline v3 — 180sec katsu style (sepia bg + line text)",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "4.0.509",
+    "music-metadata": "^11.15.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.509"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.509",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.19.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "type": "module",
+  "scripts": {
+    "split": "node split-voicebox.js",
+    "build-data": "node prepare.js",
+    "go": "node prepare.js && node render.js",
+    "dev": "remotion studio",
+    "render": "node render.js",
+    "build": "remotion bundle",
+    "lint": "eslint src && tsc"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}
