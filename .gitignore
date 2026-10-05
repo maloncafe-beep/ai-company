@@ -37,3 +37,6 @@ line-stumps/
 *.log
 *.pid
 scripts/.bridge-state.json
+
+# 認証情報（絶対にコミットしない）
+credentials/
