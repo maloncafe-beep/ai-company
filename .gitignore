@@ -28,3 +28,12 @@ line-stumps/
 # Suno BGM audio (back up elsewhere)
 *.mp3
 *.wav
+
+# Claude Code worktree・ローカル設定（成果物ではない）
+**/.claude/worktrees/
+**/.claude/settings.local.json
+
+# 実行時ファイル
+*.log
+*.pid
+scripts/.bridge-state.json
