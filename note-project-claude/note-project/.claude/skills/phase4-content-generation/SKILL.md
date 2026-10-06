@@ -65,7 +65,7 @@ note.comには本文と別立ての「販売ページ」は存在しない。実
 
 ### Step 4: SNS告知文（X／Threads用、複数パターン）
 `products/YYYYMMDD-案件スラッグ/04-content/sns-announcement.md` に執筆する。複数パターン（最低2〜3案）を用意する。
-このファイルが後工程で `x-auto-post` 用スプレッドシートへの転記元になる。
+このファイルが後工程で、経営者が手動でXに貼り付ける告知文の元になる（スプレッドシートで管理）。
 
 ### Step 5: LINE案内文（該当する場合のみ）
 `products/YYYYMMDD-案件スラッグ/04-content/line-announcement.md` に執筆する。不要な場合はファイルを作らない。

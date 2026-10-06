@@ -93,3 +93,4 @@
 - 2026-10-06 1on1記事のX告知文（3パターン）を作成：products/20261006-1on1-jikan/04-content/sns-announcement.md。未投稿
 - 2026-10-06 X告知はパターン2（本来の目的型）で出す（経営者決定）
 - 2026-10-06 X告知を投稿（パターン2、@zodiacm369）：https://x.com/zodiacm369/status/2107309431994376670 12:18。公開記録に反映
+- 2026-10-06 SNS告知方針を変更：@zodiacm369に手動貼付、スプレッドシート管理、x-auto-postは使わない。brief・README・phase4/7スキル・テンプレートを更新

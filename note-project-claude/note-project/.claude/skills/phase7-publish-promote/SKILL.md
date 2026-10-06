@@ -29,9 +29,9 @@ note.comには本文と別立ての「販売ページ」は存在しない。貼
    - 価格：`03-product-design.md`の価格欄
    - サムネ：`05-thumbnail/`から選択
 2. 最終確認後、公開する
-3. `x-auto-post`（別プロジェクト、Python／Codexで手動トリガー）を実行し、SNS告知を行う
-   - SNS告知アカウントは`config/project-brief.md`の方針に従う（デフォルトは`@maloncafe`アカウント共有。note.comアカウント自体との分離とは別問題）
-   - 告知文は`04-content/sns-announcement.md`から採用パターンを選び、記事URLを差し込んでから該当スプレッドシートに記入し、トリガーする
+3. SNS告知を行う（経営者が`@zodiacm369`に手動で貼り付けて投稿。`x-auto-post`は使わない）
+   - SNS告知アカウントは`config/project-brief.md`の方針に従う
+   - 告知文は`04-content/sns-announcement.md`から採用パターンを選び、記事URLを差し込んだ貼り付け用の完成文面で渡す。投稿はスプレッドシートで管理される
 
 ## Claude Codeが行うこと
 - 上記の実行事項をチェックリストとして提示する
