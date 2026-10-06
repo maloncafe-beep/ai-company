@@ -190,7 +190,7 @@ def draw_header(
         draw.text((78, 130), tag_text, font=jp_font(style, 22, bold=False), fill=muted)
 
     title_font = jp_font(style, 56)
-    lines = wrap_text(title, 11)[:3]
+    lines = title.split("|")[:3] if "|" in title else wrap_text(title, 11)[:3]  # "|" で明示改行
     y = 208
     for line in lines:
         draw.text((82, y + 4), line, font=title_font, fill=title_shadow)
