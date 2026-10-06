@@ -4,7 +4,7 @@
 - note記事URL：https://note.com/zodiacm369/n/nd79efa390b11
 - 価格：¥1,480
 - x-auto-post 実行日：2026-10-04
-- SNS告知投稿URL：https://x.com/maloncafe/status/2106547291972849902
+- SNS告知投稿URL：https://x.com/maloncafe/status/2106547291972849902（@maloncafeの全投稿を削除済みのため無効。2026-10-04 13:58に同じ文を@zodiacm369へ移して投稿。新URL：https://x.com/zodiacm369/status/2106609463893676091 。スプレッドシート上の文面は「評価面談、気まずくなる瞬間は3つしかない」（sns-announcement.mdのパターン2）で、当初記録のパターン1とは異なる）
 
 ## 初速の数字（分かる範囲で）
 - 2026-10-05 09:49集計（公開1日）：インプレッション15／PV1（クリック率6.7%、判断保留段階）

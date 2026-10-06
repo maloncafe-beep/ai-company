@@ -3,7 +3,7 @@
 - 公開日：2026-09-30
 - note記事URL：https://note.com/zodiacm369/n/nf6c72eaeed11
 - 価格：¥1,480
-- SNS告知投稿URL：https://x.com/maloncafe/status/2105215206624497781
+- SNS告知投稿URL：https://x.com/maloncafe/status/2105215206624497781（@maloncafeの全投稿を削除済みのため無効。2026-10-04 13:58に同じ文を@zodiacm369へ移して投稿。新URL：https://x.com/zodiacm369/status/2106608920710246461 。当初の投稿日は2026-09-30 17:36）
 
 ## 初速の数字
 - 2026-09-30（1日目）：インプレッション10／PV3／スキ3（自動いいねの疑い）／売上0
