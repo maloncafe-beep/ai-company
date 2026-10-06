@@ -89,3 +89,6 @@
 - 2026-10-06 本文の仕上げ（文の分割・断定の修正・参考欄追加）。products/20261006-1on1-jikan/04-content/article-body.md
 - 2026-10-06 サムネ作成（無料記事・2人アバター）：products/20261006-1on1-jikan/05-thumbnail/banner-01.png。make_note_banner.pyに「|」での明示改行を追加（互換あり）
 - 2026-10-06 1on1記事のファイルを research/ から products/20261006-1on1-jikan/ に移動（02〜05・LOG.md）。INDEX.md に1行追加
+- 2026-10-06 1on1記事が公開された（経営者投稿）。07-publish-log・INDEX更新、公開版本文を保存
+- 2026-10-06 1on1記事のX告知文（3パターン）を作成：products/20261006-1on1-jikan/04-content/sns-announcement.md。未投稿
+- 2026-10-06 X告知はパターン2（本来の目的型）で出す（経営者決定）
