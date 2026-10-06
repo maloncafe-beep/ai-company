@@ -73,18 +73,19 @@
 - 残したもの：research-topic、phase5-thumbnail、バナー関連（scripts/・config/banner-style.json）、author-profile、company-philosophy（核のみ）。
 - 工場で使わないものを archive/ へ移動：config/author-profile.md、config/company-philosophy.md（旧Maloncafe文体・哲学）。archive/ の削除は経営者が手動で行う。
 - 注意：経営者の過去出力に、評価面談記事の成果物パス `note-project/products/20261004-hyoka-mendan-ai/`（本文・販売ページ・特典・SNS告知・`05-thumbnail/banner-01.png`）が記載されていた。2026-10-05時点でこのパスは存在せず、git履歴にも無い（未コミットのまま消えた、または別の場所に移動した可能性）。バナー関連（scripts/・config/banner-style.json・phase5-thumbnail）は、この流れで使われた可能性が高いため archive に移さない。
-- 2026-10-06 次のnote題材リサーチ（1on1／気を遣う疲れ／日本の社会人が学ばない理由）：research/20261006-theme-next-candidates.md。note内検索は未実施、結論なし
+- 2026-10-06 次のnote題材リサーチ（1on1／気を遣う疲れ／日本の社会人が学ばない理由）：products/20261006-1on1-jikan/02-market-research.md。note内検索は未実施、結論なし
 - 2026-10-06 上記リサーチにnote内検索（A/B/C、人気順上位20件のタイトル・スキ）を追記。本文は未読
 - 2026-10-06 A/Bの上位記事本文15本を確認（％の数字0本、データ軸は空き）。メモに追記
 - 2026-10-06 1on1の「効果×構造」両面の記事を78本の本文で確認。両面主軸の記事は見当たらず。メモに追記
 - 2026-10-06 1on1の本来の目的・手法（グローブ／ヤフー）と実態のずれ（評価反映79.6%）を調査。メモに追記。一次資料は未確認
 - 2026-10-06 1on1の本来の目的・手法とパーソル調査を比較（一致：主役・上司の姿勢／ずれ：実態・頻度・学ぶ仕組み）。メモに追記
-- 2026-10-06 1on1「正論の本当の意味」の構成案を作成：research/20261006-outline-1on1-seiron.md（本文は未執筆）
+- 2026-10-06 1on1「正論の本当の意味」の構成案を作成：products/20261006-1on1-jikan/03-product-design.md（本文は未執筆）
 - 2026-10-06 構成案に本音・タイトル案・引きつける言葉を追記
 - 2026-10-06 構成案の冒頭を変更（調査の数字を冒頭に出さず、日常の問い→「実は」でつなぐ）
 - 2026-10-06 構成案の立ち位置を変更（専門家でなく一般の会社員の目線。専門家向けの困りごと表現は冒頭に使わない）
-- 2026-10-06 本文たたき台を作成：research/20261006-draft-1on1-seiron.md（【要確認】あり、タイトル未決定）
+- 2026-10-06 本文たたき台を作成：products/20261006-1on1-jikan/04-content/article-body.md（【要確認】あり、タイトル未決定）
 - 2026-10-06 タイトル決定「その1on1、誰の時間ですか」。本文・構成案に反映
 - 2026-10-06 原典確認を実施。本文の【要確認】を解消（頻度の月2〜3回は削除）、出典メモを追加。「従業員4割が本音で話せない」は誤りと訂正
-- 2026-10-06 本文の仕上げ（文の分割・断定の修正・参考欄追加）。research/20261006-draft-1on1-seiron.md
-- 2026-10-06 サムネ作成（無料記事・2人アバター）：research/20261006-thumb-1on1/banner-01.png。make_note_banner.pyに「|」での明示改行を追加（互換あり）
+- 2026-10-06 本文の仕上げ（文の分割・断定の修正・参考欄追加）。products/20261006-1on1-jikan/04-content/article-body.md
+- 2026-10-06 サムネ作成（無料記事・2人アバター）：products/20261006-1on1-jikan/05-thumbnail/banner-01.png。make_note_banner.pyに「|」での明示改行を追加（互換あり）
+- 2026-10-06 1on1記事のファイルを research/ から products/20261006-1on1-jikan/ に移動（02〜05・LOG.md）。INDEX.md に1行追加
