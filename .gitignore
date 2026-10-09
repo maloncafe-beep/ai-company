@@ -41,3 +41,7 @@ scripts/.bridge-state.json
 
 # 認証情報（絶対にコミットしない）
 credentials/
+
+# LINEスタンプ工場の入出力画像（手動管理）
+line-stamps/input/
+line-stamps/output/
