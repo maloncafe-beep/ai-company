@@ -99,3 +99,14 @@
 - 2026-10-08 訂正：note集計期間を過去28日間から全期間に変更。古い記事の急増は期間の違いによる見かけで、実際の増加ではない。ANALYSIS.mdを訂正（今後は全期間で統一）
 - 2026-10-08 ANALYSIS.mdに古い記事の全期間の数字を基準（ほぼ最終値）として追記（経営者見解）
 - 2026-10-13 アクセス数字を記録（1on1記事7日目：45/9/2）。ANALYSIS.mdを更新。3本とも大差なし、古い記事は5日間でほぼ動かず
+- 2026-10-13 次の題材探し（AI×仕事、note内検索6語＋Web3回）：research/20261013-theme-ai-search.md。候補A（教える負担）・B（浮いた時間・飽和）・C（資格×AI・2アカウント占有）。結論なし
+- 2026-10-13 範囲拡大の題材探し（会社員まわり8語）：research/20261013-theme-wide-search.md。退職実務・106万円壁・静かな退職・中間管理職。結論なし
+- 2026-10-13 テーマ別の有料記事の割合を集計（人気順100〜200件×35語、新着7語）：research/20261013-theme-paid-share.md。割合は供給側の指標で購入数は不明。結論なし
+- 2026-10-13 Excel・年収・面接の有料記事10本の無料部分を読んだ：research/20261013-theme-paid-contents.md。有料部分は未読、購入数は不明
+- 2026-10-13 実際の困りごと（知恵袋・Excel毎月の手作業）10件を収集：research/20261013-theme-real-pain-excel.md。売り手の型でなく質問者の言葉。結論なし
+- 2026-10-13 新案件フォルダ products/20261013-excel-kintai-matome（Excel・勤務簿集計）。Python版は検証済み、VBA版は未検証（Excelのセキュリティ設定）
+- 2026-10-13 Excel勤務簿集計記事を作成（本文・バナー・概要欄案）。フェーズ6レビュー待ち：products/20261013-excel-kintai-matome
+- 2026-10-13 Excel勤務簿記事を改稿（シリーズ化・3方法・3方法とも検証済み）。scripts/make_note_banner.pyの3ステップ配置を修正
+- 2026-10-13 AIっぽい言い回しを修正（「〜まで落とし込みます」「効くのは次の3点です」「思い当たりませんか」、方法①②③の定型箇条書き→文章、「例外」→「うまくいかないファイル」、まとめを箇条書きから文章へ）。products/20261013-excel-kintai-matome/04-content/article-body.md
+- 2026-10-13 バナー：シリーズ配色（--theme series-work、--series）を scripts/make_note_banner.py と config/banner-style.json に追加。Excel勤務簿記事のバナーを banner-02.png に差し替え（旧は banner-01.png）
+- 2026-10-13 シリーズ#2を作成：products/20261013-excel-torihikisaki-bunkatsu（売上一覧を取引先ごとに分ける）。3方法とも検証済み。フェーズ6待ち

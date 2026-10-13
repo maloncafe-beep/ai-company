@@ -1,20 +1,91 @@
 {
-  "canvas": { "width": 1280, "height": 670 },
+  "canvas": {
+    "width": 1280,
+    "height": 670
+  },
   "colors": {
-    "bg_left": [240, 238, 230],
-    "bg_right": [214, 222, 218],
-    "glow_sage": [104, 132, 129],
-    "glow_terracotta": [189, 116, 83],
-    "dark": [36, 48, 51],
-    "muted": [90, 105, 104],
-    "accent_terracotta": [178, 91, 67],
-    "accent_sage": [113, 137, 132],
-    "accent_gold": [176, 141, 65],
-    "panel_dark": [66, 83, 86],
-    "card_cream": [255, 253, 247],
-    "card_dark": [37, 45, 47],
-    "text_on_dark": [244, 238, 228],
-    "avatar_colors": [[178, 91, 67], [95, 112, 112], [108, 83, 66]]
+    "bg_left": [
+      240,
+      238,
+      230
+    ],
+    "bg_right": [
+      214,
+      222,
+      218
+    ],
+    "glow_sage": [
+      104,
+      132,
+      129
+    ],
+    "glow_terracotta": [
+      189,
+      116,
+      83
+    ],
+    "dark": [
+      36,
+      48,
+      51
+    ],
+    "muted": [
+      90,
+      105,
+      104
+    ],
+    "accent_terracotta": [
+      178,
+      91,
+      67
+    ],
+    "accent_sage": [
+      113,
+      137,
+      132
+    ],
+    "accent_gold": [
+      176,
+      141,
+      65
+    ],
+    "panel_dark": [
+      66,
+      83,
+      86
+    ],
+    "card_cream": [
+      255,
+      253,
+      247
+    ],
+    "card_dark": [
+      37,
+      45,
+      47
+    ],
+    "text_on_dark": [
+      244,
+      238,
+      228
+    ],
+    "avatar_colors": [
+      [
+        178,
+        91,
+        67
+      ],
+      [
+        95,
+        112,
+        112
+      ],
+      [
+        108,
+        83,
+        66
+      ]
+    ]
   },
   "fonts": {
     "candidates_bold": [
@@ -29,5 +100,92 @@
       "C:/Windows/Fonts/meiryo.ttc",
       "C:/Windows/Fonts/msgothic.ttc"
     ]
+  },
+  "themes": {
+    "series-work": {
+      "dark": true,
+      "colors": {
+        "bg_left": [
+          11,
+          31,
+          58
+        ],
+        "bg_right": [
+          14,
+          92,
+          110
+        ],
+        "glow_sage": [
+          255,
+          176,
+          32
+        ],
+        "glow_terracotta": [
+          255,
+          94,
+          58
+        ],
+        "dark": [
+          255,
+          255,
+          255
+        ],
+        "muted": [
+          190,
+          214,
+          226
+        ],
+        "accent_terracotta": [
+          255,
+          112,
+          67
+        ],
+        "accent_sage": [
+          28,
+          170,
+          170
+        ],
+        "accent_gold": [
+          255,
+          196,
+          40
+        ],
+        "panel_dark": [
+          14,
+          44,
+          74
+        ],
+        "card_cream": [
+          255,
+          252,
+          244
+        ],
+        "texture": [
+          255,
+          255,
+          255
+        ],
+        "subtitle_fill": [
+          255,
+          196,
+          40
+        ],
+        "subtitle_text": [
+          14,
+          31,
+          58
+        ],
+        "badge_text": [
+          14,
+          31,
+          58
+        ],
+        "card_text": [
+          14,
+          31,
+          58
+        ]
+      }
+    }
   }
 }

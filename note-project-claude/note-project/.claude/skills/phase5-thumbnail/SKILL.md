@@ -58,3 +58,12 @@ CLAUDE.mdの全社ルールに従い、生成した画像は自動的に開い�
 
 ## 次のフェーズへ
 フェーズ4・5の全生成物が揃ったら `phase6-review` に進む。
+
+## シリーズ記事のバナー（2026-10-13追加）
+シリーズ物（例：社内の困りごと解決シリーズ）は、通常のベージュ系ではなく、シリーズ共通の配色で目を惹かせる。
+```
+python scripts/make_note_banner.py --theme series-work --series "社内の困りごと解決 #1" --title "..." --subtitle "..." --tag "..." --paid --steps "1:...,2:...,3:..." --out products/.../05-thumbnail/banner-01.png
+```
+- `--theme series-work`：濃紺〜ティールの背景、黄のサブタイトル帯、オレンジのシリーズラベル（config/banner-style.json の themes）
+- `--series`：左上にシリーズ名＋回数のラベルを入れる
+- 3ステップの図解は、下で切れないよう自動で上に寄せる

@@ -99,10 +99,11 @@ def make_background(style: dict) -> Image.Image:
 
     texture = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     td = ImageDraw.Draw(texture)
+    tex = rgb(c.get("texture", [55, 78, 82]))
     for y in range(0, H, 58):
-        td.line((0, y, W, y), fill=(55, 78, 82, 9))
+        td.line((0, y, W, y), fill=(*tex, 9))
     for x in range(0, W, 58):
-        td.line((x, 0, x, H), fill=(55, 78, 82, 9))
+        td.line((x, 0, x, H), fill=(*tex, 9))
     img.alpha_composite(texture)
     return img
 
@@ -171,7 +172,12 @@ def draw_header(
     accent_t = rgb(c["accent_gold"]) if paid else rgb(c["accent_terracotta"])
     accent_s = rgb(c["accent_sage"])
 
-    if on_photo:
+    if "subtitle_fill" in c:  # シリーズ用の濃色テーマ
+        dark, muted = rgb(c["dark"]), rgb(c["muted"])
+        title_shadow = (0, 0, 0, 140)
+        subtitle_box_fill = (*rgb(c["subtitle_fill"]), 255)
+        subtitle_text_color = (*rgb(c["subtitle_text"]), 255)
+    elif on_photo:
         dark = (255, 255, 255)
         muted = (225, 225, 220)
         title_shadow = (0, 0, 0, 200)
@@ -213,7 +219,17 @@ def draw_premium_badge(img: Image.Image, style: dict) -> None:
     gold = rgb(c["accent_gold"])
     x1, y1, x2, y2 = W - 190, 36, W - 40, 84
     rounded(draw, (x1, y1, x2, y2), 24, (*gold, 235))
-    draw.text((x1 + 26, y1 + 11), "PREMIUM", font=jp_font(style, 22), fill=(255, 255, 255))
+    draw.text((x1 + 26, y1 + 11), "PREMIUM", font=jp_font(style, 22), fill=rgb(c.get("badge_text", [255, 255, 255])))
+
+
+def draw_series_label(img: Image.Image, style: dict, text: str) -> None:
+    """シリーズ名を示す、左上の帯ラベル。"""
+    draw = ImageDraw.Draw(img)
+    c = style["colors"]
+    font = jp_font(style, 24)
+    w = draw.textbbox((0, 0), text, font=font)[2] + 48
+    rounded(draw, (78, 36, 78 + w, 84), 24, (*rgb(c["accent_terracotta"]), 255))
+    draw.text((78 + 24, 46), text, font=font, fill=(255, 255, 255))
 
 
 def panel(img: Image.Image, box, fill, outline=(255, 255, 255, 120), radius: int = 8) -> None:
@@ -254,7 +270,7 @@ def draw_steps_card(img: Image.Image, style: dict, x: int, y: int, steps: list[t
         color = colors[i % len(colors)]
         draw.ellipse((x + 20, yy + 20, x + 20 + 54, yy + 20 + 54), fill=color)
         draw.text((x + 38, yy + 32), str(num), font=jp_font(style, 28), fill=(255, 255, 255))
-        draw.text((x + 92, yy + 28), label, font=jp_font(style, 24), fill=rgb(c["dark"]))
+        draw.text((x + 92, yy + 28), label, font=jp_font(style, 24), fill=rgb(c.get("card_text", c["dark"])))
         draw.line((x + 92, yy + 64, x + 290, yy + 64), fill=(*rgb(c["panel_dark"]), 58), width=8)
         yy += h + 24
 
@@ -266,7 +282,7 @@ def draw_flow(img: Image.Image, style: dict, x: int, y: int, before: str, after:
     accent = rgb(c["accent_terracotta"])
     w, h = 340, 90
     rounded(draw, (x, y, x + w, y + h), 9, (*rgb(c["card_cream"]), 242), (255, 255, 255, 225), 1)
-    draw.text((x + 24, y + 30), before, font=jp_font(style, 24), fill=rgb(c["dark"]))
+    draw.text((x + 24, y + 30), before, font=jp_font(style, 24), fill=rgb(c.get("card_text", c["dark"])))
     arrow_x1, arrow_x2 = x + w - 110, x + w - 30
     arrow_y = y + h // 2
     draw.line((arrow_x1, arrow_y, arrow_x2, arrow_y), fill=accent, width=7)
@@ -304,10 +320,14 @@ def main() -> None:
     parser.add_argument("--flow-before", default="")
     parser.add_argument("--flow-after", default="")
     parser.add_argument("--avatars", type=int, default=0, help="人数(0なら表示しない)")
+    parser.add_argument("--theme", default="", help="配色テーマ名（config/banner-style.json の themes）")
+    parser.add_argument("--series", default="", help="シリーズ名ラベル（例: 社内の困りごと解決 #1）")
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
 
     style = load_style()
+    if args.theme:
+        style["colors"].update(style["themes"][args.theme]["colors"])
     size = (style["canvas"]["width"], style["canvas"]["height"])
 
     on_photo = bool(args.bg)
@@ -320,6 +340,8 @@ def main() -> None:
     draw_header(img, style, args.tag, args.title, args.subtitle, args.paid, on_photo=on_photo)
     if args.paid:
         draw_premium_badge(img, style)
+    if args.series:
+        draw_series_label(img, style, args.series)
 
     right_x = 760
     right_y = 104
@@ -335,7 +357,9 @@ def main() -> None:
                 num, label = chunk.split(":", 1)
                 steps.append((num.strip(), label.strip()))
         if steps:
-            draw_steps_card(img, style, right_x, 360, steps)
+            total_h = len(steps) * 94 + (len(steps) - 1) * 24
+            steps_y = min(360, size[1] - 50 - total_h)
+            draw_steps_card(img, style, right_x, steps_y, steps)
 
     if args.flow_before and args.flow_after:
         draw_flow(img, style, right_x, 420, args.flow_before, args.flow_after)
