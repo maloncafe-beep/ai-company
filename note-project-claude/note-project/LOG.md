@@ -110,3 +110,4 @@
 - 2026-10-13 AIっぽい言い回しを修正（「〜まで落とし込みます」「効くのは次の3点です」「思い当たりませんか」、方法①②③の定型箇条書き→文章、「例外」→「うまくいかないファイル」、まとめを箇条書きから文章へ）。products/20261013-excel-kintai-matome/04-content/article-body.md
 - 2026-10-13 バナー：シリーズ配色（--theme series-work、--series）を scripts/make_note_banner.py と config/banner-style.json に追加。Excel勤務簿記事のバナーを banner-02.png に差し替え（旧は banner-01.png）
 - 2026-10-13 シリーズ#2を作成：products/20261013-excel-torihikisaki-bunkatsu（売上一覧を取引先ごとに分ける）。3方法とも検証済み。フェーズ6待ち
+- 2026-10-13 #1（Excel勤務簿）公開（経営者投稿）：https://note.com/zodiacm369/n/nbe88dfa68acf ¥980。公開記録07・X告知文案を作成、INDEXを更新
