@@ -19,4 +19,4 @@ URL：https://note.com/zodiacm369/n/nbe88dfa68acf
 【社内の困りごと解決 #1】
 毎月、社員ごとのExcelを1つずつ開いてコピペしている人へ。
 解決は3通り、どれも簡単です。
-（URL）
+URL：https://note.com/zodiacm369/n/nbe88dfa68acf
