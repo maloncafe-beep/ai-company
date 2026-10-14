@@ -1,0 +1,19 @@
+{
+  "name": "x-research",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "XリサーチからX投稿下書きとnote記事テーマへ分岐する運用プロジェクト",
+  "scripts": {
+    "help": "node tools/x-research.mjs --help",
+    "research": "node tools/x-research.mjs --research-only",
+    "to:x": "node tools/x-research.mjs --draft-only",
+    "to:note": "node tools/x-research.mjs --note-only",
+    "research:to-note": "node tools/x-research.mjs --note-pool --research-only",
+    "all": "node tools/x-research.mjs",
+    "keyword:lab": "node tools/keyword-lab.mjs",
+    "keyword:focus": "node tools/keyword-lab.mjs --profiles keyword-profiles-invisible-work.json --limit 5 --themes 5",
+    "pool:summary": "node tools/pool-maintenance.mjs summary",
+    "pool:archive": "node tools/pool-maintenance.mjs archive"
+  }
+}
