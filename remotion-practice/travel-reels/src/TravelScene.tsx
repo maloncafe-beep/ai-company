@@ -46,7 +46,6 @@ const ClipView: React.FC<{ clip: Clip; clipIndex: number; totalFrames: number }>
           file={clip.file}
           frame={frame}
           totalFrames={totalFrames}
-          patternIndex={clipIndex}
         />
       ) : (
         <OffthreadVideo
