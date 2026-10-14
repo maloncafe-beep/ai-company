@@ -1,0 +1,2 @@
+comment: 祀られるのは、イザナミノミコト
+ai_generated: false

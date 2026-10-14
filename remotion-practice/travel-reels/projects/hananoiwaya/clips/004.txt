@@ -1,0 +1,2 @@
+comment: 花を添えることから「花の窟」と言われる
+ai_generated: false

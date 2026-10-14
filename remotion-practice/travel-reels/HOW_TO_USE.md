@@ -147,6 +147,19 @@ travel-reels/
 
 ---
 
+## 横向き画像を縦向き画像にする際に、ドリフトで切り抜く（遠景のパノラマ様の動き）
+
+**使い方**
+```bash
+node render-drift.js <プロジェクト名> <NNN> <横向き元写真のパス> [秒数=5] [方向=left-to-right]
+```
+- 出力は `projects/<プロジェクト名>/clips/<NNN>.mp4` に直接できます。
+- あとは `NNN.txt`（location/comment）を今までどおり作って、`node prepare.js <プロジェクト名>` → `npx remotion render` を通せば、他のクリップと全く同じ扱いで組み込まれます。
+- 方向は `left-to-right` か `right-to-left` の2択です。連続するショットで違和感が出ないよう、隣り合うクリップでは方向を変えてお使いください。
+
+
+---
+
 ## よくある確認事項
 
 - **30秒を超えそう**: クリップ数を減らすか `duration_per_photo` を小さくする

@@ -1,0 +1,4 @@
+location: 
+comment: 窓の向こうにもぬいぐるみさん
+ai_generated: false
+duration: 5

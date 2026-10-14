@@ -1,14 +1,175 @@
 {
-  "project": "sample",
-  "title": "サンプル",
-  "hasBgm": false,
+  "project": "nuigurumijinja",
+  "title": "ぬいぐるみ神社",
+  "hasBgm": true,
+  "textLayout": "vertical",
   "clips": [
     {
-      "file": "001.jpg",
-      "type": "photo",
-      "location": "場所名",
-      "comment": "コメント",
+      "file": "001.mp4",
+      "type": "video",
+      "location": "",
+      "comment": "美山かやぶきの里から、ずっと奥へ",
       "duration": 4,
+      "ai_generated": false
+    },
+    {
+      "file": "002.mp4",
+      "type": "video",
+      "location": "",
+      "comment": "山のさらに奥に",
+      "duration": 4,
+      "ai_generated": false
+    },
+    {
+      "file": "003.mp4",
+      "type": "video",
+      "location": "京都府南丹市美山町　Nuigurumi Jinja",
+      "comment": "ぬいぐるみ神社",
+      "duration": 7,
+      "ai_generated": false
+    },
+    {
+      "file": "004.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "静かな神社ができました",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "005.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "運営は「ぬいぐるみ病院」",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "006.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "ぬいぐるみを静かに祀る場所",
+      "duration": 6,
+      "ai_generated": false
+    },
+    {
+      "file": "007.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "まずは手水舎で、心を整えて",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "008.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "木の香りが残る新しい社",
+      "duration": 4,
+      "ai_generated": false
+    },
+    {
+      "file": "009.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "迎えてくれたのはフクロウとクマ",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "010.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "拝殿にもぬいぐるみさんたち",
+      "duration": 6,
+      "ai_generated": false
+    },
+    {
+      "file": "011.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "約28haの「いのちの森」",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "012.mp4",
+      "type": "video",
+      "location": "",
+      "comment": "川の音だけが聞こえる",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "013.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "クマの窓から森が見える",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "014.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "窓の向こうにもぬいぐるみさん",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "015.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "風に揺れる小さな灯り",
+      "duration": 4,
+      "ai_generated": false
+    },
+    {
+      "file": "016.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "社務所にはやさしい授与品",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "017.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "授与は開所日の10:00〜15:00",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "018.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "願いをのせた絵馬",
+      "duration": 5,
+      "ai_generated": false
+    },
+    {
+      "file": "019.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "森のなかでひと息",
+      "duration": 4,
+      "ai_generated": false
+    },
+    {
+      "file": "020.jpg",
+      "type": "photo",
+      "location": "",
+      "comment": "帰り道はカエルが見送り",
+      "duration": 6,
+      "ai_generated": false
+    },
+    {
+      "file": "021.mp4",
+      "type": "video",
+      "location": "ぬいぐるみ神社　京都府南丹市美山町",
+      "comment": "あらゆるいのちにありがとう",
+      "duration": 8,
       "ai_generated": false
     }
   ]

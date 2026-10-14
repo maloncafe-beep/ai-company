@@ -1,0 +1,4 @@
+location: ぬいぐるみ神社　京都府南丹市美山町
+comment: あらゆるいのちにありがとう
+ai_generated: false
+duration: 8

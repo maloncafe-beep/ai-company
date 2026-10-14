@@ -1,0 +1,4 @@
+location: 
+comment: 授与は開所日の10:00〜15:00
+ai_generated: false
+duration: 5

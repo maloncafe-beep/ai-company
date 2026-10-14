@@ -1,0 +1,4 @@
+location: 
+comment: 風に揺れる小さな灯り
+ai_generated: false
+duration: 4

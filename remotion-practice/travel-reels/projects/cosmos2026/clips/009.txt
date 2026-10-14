@@ -1,0 +1,2 @@
+comment: ゆっくり、歩きたくなる
+ai_generated: false

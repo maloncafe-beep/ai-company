@@ -1,0 +1,4 @@
+location: 
+comment: 約28haの「いのちの森」
+ai_generated: false
+duration: 5

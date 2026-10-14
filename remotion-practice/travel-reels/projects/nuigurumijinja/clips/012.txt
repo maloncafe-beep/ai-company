@@ -1,0 +1,4 @@
+location: 
+comment: 川の音だけが聞こえる
+ai_generated: false
+duration: 5

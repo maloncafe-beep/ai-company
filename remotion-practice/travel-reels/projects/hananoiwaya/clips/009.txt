@@ -1,0 +1,2 @@
+comment: 熊野の神々に、手を合わせる
+ai_generated: false

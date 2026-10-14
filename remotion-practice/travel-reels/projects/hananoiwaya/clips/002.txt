@@ -1,0 +1,2 @@
+comment: 熊野灘に面した、世界遺産の聖地
+ai_generated: false

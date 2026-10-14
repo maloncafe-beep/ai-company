@@ -33,14 +33,10 @@ const ClipView: React.FC<{ clip: Clip; clipIndex: number; totalFrames: number }>
 }) => {
   const frame = useCurrentFrame();
 
-  const fadeIn = interpolate(frame, [0, FADE_FRAMES], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const fadeOut = interpolate(frame, [totalFrames - FADE_FRAMES, totalFrames - 1], [1, 0], {
+  const opacity = interpolate(frame, [totalFrames - FADE_FRAMES, totalFrames - 1], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const opacity = fadeIn * fadeOut;
 
   return (
     <div style={{ position: "absolute", inset: 0, opacity }}>
@@ -65,6 +61,8 @@ const ClipView: React.FC<{ clip: Clip; clipIndex: number; totalFrames: number }>
         comment={clip.comment}
         frame={frame}
         totalFrames={totalFrames}
+        layout={(clipsData as { textLayout?: string }).textLayout === "horizontal" ? "horizontal" : "vertical"}
+        instant={clipIndex === 0}
       />
 
       {/* AI生成バッジ */}

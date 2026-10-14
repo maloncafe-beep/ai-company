@@ -1,0 +1,4 @@
+location: 
+comment: 木の香りが残る新しい社
+ai_generated: false
+duration: 4

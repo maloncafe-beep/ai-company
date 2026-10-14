@@ -1,0 +1,3 @@
+location: Hananoiwaya Shrine
+comment: 三重・花の窟神社
+ai_generated: false

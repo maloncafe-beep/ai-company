@@ -1,0 +1,4 @@
+location: 
+comment: 山のさらに奥に
+ai_generated: false
+duration: 4

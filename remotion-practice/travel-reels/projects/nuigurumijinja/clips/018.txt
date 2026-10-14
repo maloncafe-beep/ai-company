@@ -1,0 +1,4 @@
+location: 
+comment: 願いをのせた絵馬
+ai_generated: false
+duration: 5

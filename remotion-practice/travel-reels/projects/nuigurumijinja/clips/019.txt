@@ -1,0 +1,4 @@
+location: 
+comment: 森のなかでひと息
+ai_generated: false
+duration: 4

@@ -142,7 +142,7 @@ const TitleCard: React.FC<{ text: string; opacity: number; popY: number }> = ({ 
         fontFamily: FONT_MINCHO,
         fontSize: 76,
         fontWeight: 900,
-        color: "#d4aa60",
+        color: "#ffd97a",
         lineHeight: 1.6,
         letterSpacing: "0.06em",
         textShadow: SHADOW_GOLD,

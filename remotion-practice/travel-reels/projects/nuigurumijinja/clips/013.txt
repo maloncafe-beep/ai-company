@@ -1,0 +1,4 @@
+location: 
+comment: クマの窓から森が見える
+ai_generated: false
+duration: 5

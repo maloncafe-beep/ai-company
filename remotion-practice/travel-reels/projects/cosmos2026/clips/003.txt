@@ -1,0 +1,2 @@
+comment: 近くに立ち寄ると
+ai_generated: false

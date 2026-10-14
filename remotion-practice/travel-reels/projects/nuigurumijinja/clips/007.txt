@@ -1,0 +1,4 @@
+location: 
+comment: まずは手水舎で、心を整えて
+ai_generated: false
+duration: 5

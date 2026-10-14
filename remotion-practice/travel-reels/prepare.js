@@ -162,7 +162,13 @@ async function main() {
   if (!hasBgm) console.log("\n  BGM: なし");
 
   // clips-data.json 出力
-  const data = { project: PROJECT_NAME, title: config.title, hasBgm, clips };
+  const data = {
+    project: PROJECT_NAME,
+    title: config.title,
+    hasBgm,
+    textLayout: config.text_layout ?? "vertical",
+    clips,
+  };
   fs.mkdirSync("./src", { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(data, null, 2), "utf8");
 

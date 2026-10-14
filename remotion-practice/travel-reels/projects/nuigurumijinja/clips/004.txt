@@ -1,0 +1,4 @@
+location: 
+comment: 静かな神社ができました
+ai_generated: false
+duration: 5

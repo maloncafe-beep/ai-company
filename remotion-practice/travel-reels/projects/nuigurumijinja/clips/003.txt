@@ -1,0 +1,4 @@
+location: 京都府南丹市美山町　Nuigurumi Jinja
+comment: ぬいぐるみ神社
+ai_generated: false
+duration: 7

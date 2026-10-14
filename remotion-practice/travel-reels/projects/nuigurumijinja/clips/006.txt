@@ -1,0 +1,4 @@
+location: 
+comment: ぬいぐるみを静かに祀る場所
+ai_generated: false
+duration: 6

@@ -1,0 +1,4 @@
+location: 
+comment: 社務所にはやさしい授与品
+ai_generated: false
+duration: 5

@@ -1,0 +1,2 @@
+comment: 揺れる、ピンクの波
+ai_generated: false

@@ -1,0 +1,3 @@
+location: 四天王寺
+comment: 連なる願い事。
+ai_generated: false

@@ -1,0 +1,3 @@
+location: 四天王寺
+comment:
+ai_generated: false

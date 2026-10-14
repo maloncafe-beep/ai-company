@@ -1,0 +1,2 @@
+comment: ご神体は、高さ約45mの巨岩
+ai_generated: false

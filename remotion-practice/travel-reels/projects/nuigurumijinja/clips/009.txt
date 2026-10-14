@@ -1,0 +1,4 @@
+location: 
+comment: 迎えてくれたのはフクロウとクマ
+ai_generated: false
+duration: 5

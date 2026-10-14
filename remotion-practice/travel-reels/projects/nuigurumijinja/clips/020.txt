@@ -1,0 +1,4 @@
+location: 
+comment: 帰り道はカエルが見送り
+ai_generated: false
+duration: 6

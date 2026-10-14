@@ -1,0 +1,4 @@
+location: 
+comment: 美山かやぶきの里から、ずっと奥へ
+ai_generated: false
+duration: 4

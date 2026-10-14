@@ -6,7 +6,9 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@remotion/bundler": "4.0.509",
     "@remotion/cli": "4.0.509",
+    "@remotion/renderer": "4.0.509",
     "remotion": "4.0.509",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -20,7 +22,8 @@
   "scripts": {
     "dev": "remotion studio",
     "render": "npx remotion render TravelVideo",
-    "build": "remotion bundle"
+    "build": "remotion bundle",
+    "drift": "node render-drift.js"
   },
   "sideEffects": ["*.css"]
 }

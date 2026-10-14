@@ -1,0 +1,4 @@
+location: 
+comment: 拝殿にもぬいぐるみさんたち
+ai_generated: false
+duration: 6

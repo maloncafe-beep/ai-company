@@ -1,0 +1,2 @@
+comment: 願いが叶う丸い岩があります。
+ai_generated: false

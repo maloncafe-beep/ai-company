@@ -1,0 +1,2 @@
+comment: 法隆寺の拝観のあと
+ai_generated: false

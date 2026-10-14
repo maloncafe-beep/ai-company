@@ -22,9 +22,13 @@
   },
   "type": "module",
   "scripts": {
+    "script": "node script-to-voicevox.js",
     "split": "node split-voicebox.js",
+    "voice": "node generate-voice.js",
     "build-data": "node prepare.js",
     "go": "node prepare.js && node render.js",
+    "auto": "node split-voicebox.js && node generate-voice.js && node prepare.js && node render.js",
+    "auto-script": "node script-to-voicevox.js && node generate-voice.js && node prepare.js && node render.js",
     "dev": "remotion studio",
     "render": "node render.js",
     "build": "remotion bundle",

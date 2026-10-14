@@ -1,0 +1,2 @@
+comment: 秋空に、咲き誇る
+ai_generated: false

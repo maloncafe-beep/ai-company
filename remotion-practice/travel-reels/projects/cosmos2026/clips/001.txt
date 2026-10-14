@@ -1,0 +1,3 @@
+location: Chuguji Ruins
+comment: 奈良・中宮寺跡
+ai_generated: false

@@ -1,0 +1,4 @@
+location: 
+comment: 運営は「ぬいぐるみ病院」
+ai_generated: false
+duration: 5
