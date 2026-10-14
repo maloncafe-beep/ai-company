@@ -96,11 +96,14 @@ def create_text_image(text, video_width, video_height, font_size):
         x = (img_w - lw) // 2 - bb[0]
         y_draw = y_offset - min(bb[1], 0)
 
-        for dx in range(-OUTLINE_WIDTH, OUTLINE_WIDTH + 1):
-            for dy in range(-OUTLINE_WIDTH, OUTLINE_WIDTH + 1):
-                if dx * dx + dy * dy <= OUTLINE_WIDTH * OUTLINE_WIDTH:
-                    draw.text((x + dx, y_draw + dy), line, font=font, fill=OUTLINE_COLOR)
-        draw.text((x, y_draw), line, font=font, fill=TEXT_COLOR)
+        draw.text(
+            (x, y_draw),
+            line,
+            font=font,
+            fill=TEXT_COLOR,
+            stroke_width=OUTLINE_WIDTH,
+            stroke_fill=OUTLINE_COLOR,
+        )
         y_offset += line_full_heights[idx] + line_spacing
 
     return np.array(img)

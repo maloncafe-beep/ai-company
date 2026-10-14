@@ -9,7 +9,7 @@ OUTPUT_FILE = f"20260913_Yoshino_reel_{TODAY}.mp4"
 FONT_PATH = r"C:\Windows\Fonts\NotoSansJP-VF.ttf"
 
 FONT_SIZE = 60          # 縦動画
-OUTLINE_WIDTH = 6       # 縦動画
+OUTLINE_WIDTH = 2       # 縦動画
 TEXT_COLOR = (255, 255, 255, 255)
 OUTLINE_COLOR = (0, 0, 0, 255)
 TELOP_Y_RATIO = 0.85    # 画面下から15%
@@ -79,11 +79,14 @@ def create_text_image(text, video_width):
         lw = bb[2] - bb[0]
         x = (img_w - lw) // 2 - bb[0]
         y_draw = y_offset - min(bb[1], 0)
-        for dx in range(-OUTLINE_WIDTH, OUTLINE_WIDTH + 1):
-            for dy in range(-OUTLINE_WIDTH, OUTLINE_WIDTH + 1):
-                if dx * dx + dy * dy <= OUTLINE_WIDTH * OUTLINE_WIDTH:
-                    draw.text((x + dx, y_draw + dy), line, font=font, fill=OUTLINE_COLOR)
-        draw.text((x, y_draw), line, font=font, fill=TEXT_COLOR)
+        draw.text(
+            (x, y_draw),
+            line,
+            font=font,
+            fill=TEXT_COLOR,
+            stroke_width=OUTLINE_WIDTH,
+            stroke_fill=OUTLINE_COLOR,
+        )
         y_offset += line_full_heights[idx] + line_spacing
 
     return np.array(img)
