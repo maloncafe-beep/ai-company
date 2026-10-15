@@ -141,7 +141,7 @@ travel-reels/
 | テロップの文字サイズ | src/components/TextOverlay.tsx | `fontSize` |
 | テロップの位置（下からの余白） | src/components/TextOverlay.tsx | `padding` |
 | AI生成バッジのデザイン | src/components/AiBadge.tsx | — |
-| 写真のズーム・パン幅 | src/components/KenBurns.tsx | `PATTERNS` |
+| 写真のズーム・パン幅（全クリップ共通） | src/components/KenBurns.tsx | `TO_SCALE` / `FROM_X` / `TO_X` |
 | クリップ間のフェード速度 | src/TravelScene.tsx | `FADE_FRAMES` |
 | BGMの音量 | src/TravelScene.tsx | `BGM_VOLUME` |
 | 写真のデフォルト表示秒数 | projects/xxx/config.json | `duration_per_photo` |
@@ -156,7 +156,8 @@ node render-drift.js <プロジェクト名> <NNN> <横向き元写真のパス>
 ```
 - 出力は `projects/<プロジェクト名>/clips/<NNN>.mp4` に直接できます。
 - あとは `NNN.txt`（location/comment）を今までどおり作って、`node prepare.js <プロジェクト名>` → `npx remotion render` を通せば、他のクリップと全く同じ扱いで組み込まれます。
-- 方向は `left-to-right` か `right-to-left` の2択です。連続するショットで違和感が出ないよう、隣り合うクリップでは方向を変えてお使いください。
+- 方向は `left-to-right`（既定）か `right-to-left` の2択です。静止画クリップの動きも左→右に統一されているため、基本は左→右にします。
+- 違和感の主因は**方向よりも速度**です（経営者判断）。ドリフト同士の間に静止画が挟まっていれば違和感は少なく、ゆっくりした動きなら方向が違ってもさほど気になりません。**素早い切り替えと速い動きの組み合わせ**を避けます。
 - **向く被写体**：遠景・一面に広がる景色（花畑、パノラマ的な景色）。**向かない被写体**：鳥居・巨岩など近距離で構図が重要なもの（見せたい部分から外れて動く）。その場合は Canva で手動作成する。
 - 元写真は**横向き（4:3等）のみ**有効。すでに縦向きの写真では動く余地がなく、ほぼ静止画になる。
 - 実行場所は `travel-reels` フォルダ直下（`node_modules` がここにあるため）。
