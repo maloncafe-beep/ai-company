@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 dotenv.config({ path: join(PROJECT_ROOT, ".env") });
 
-const RESEARCH_DIR = join(PROJECT_ROOT, "projects", "x-research");
+const RESEARCH_DIR = process.env.X_RESEARCH_DIR || join(PROJECT_ROOT, "projects", "x-research");
 const RESULTS_DIR = join(RESEARCH_DIR, "results");
 const DATA_DIR = join(RESEARCH_DIR, "data");
 const POOL_PATH = join(RESEARCH_DIR, "iwakan-theme-pool.json");
@@ -18,7 +18,8 @@ const EXCLUDED_THEME_TERMS = ["違和感", "矛盾", "AI", "成長", "勉強"];
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  if (args.includes("--help") || args.includes("-h")) {
+  const normalizedArgs = args.filter((arg) => arg !== "--");
+  if (normalizedArgs.includes("--help") || normalizedArgs.includes("-h") || normalizedArgs.includes("help")) {
     printHelp();
     process.exit(0);
   }
@@ -64,9 +65,21 @@ function parseArgs() {
 }
 
 function printHelp() {
-  console.log(`違和感収集家テーマ運用
+  const inStandaloneResearch = Boolean(process.env.X_RESEARCH_DIR);
+  const commandHelp = inStandaloneResearch
+    ? `基本:
+  npm run research
+  npm run to:x
+  npm run to:note
+  npm run research:to-note
+  npm run all
 
-基本:
+よく使う指定:
+  npm run research -- --days 90 --themes 12
+  npm run to:x -- --drafts 3
+  npm run to:note -- --themes 12
+  npm run research:to-note -- --days 90 --themes 12`
+    : `基本:
   npm run iwakan
 
 よく使う指定:
@@ -74,7 +87,11 @@ function printHelp() {
   npm run iwakan -- --research-only --days 60 --themes 20
   npm run iwakan -- --draft-only --drafts 3
   npm run iwakan -- --note-only
-  npm run iwakan -- --note-pool --research-only
+  npm run iwakan -- --note-pool --research-only`;
+
+  console.log(`違和感収集家テーマ運用
+
+${commandHelp}
 
 オプション:
   --research-only   Xからテーマ候補を探してプールに貯めるだけ

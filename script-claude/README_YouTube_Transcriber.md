@@ -61,7 +61,7 @@ PowerShellを開いて、以下のコマンドを実行してください。
 ```powershell
 .\youtube-transcriber.ps1 "https://www.youtube.com/watch?v=HVGPMoj6SFk&t=875s" -Format md
 ```
-https://www.youtube.com/watch?v=S0RHNQg5SD4
+https://youtu.be/8ys-TVcolAw
 
 **結果**: カレントディレクトリに `S0RHNQg5SD4_2026-08-28_153045.md` が作成されます
 
